@@ -8,7 +8,7 @@ class Caixa(models.Model):
         Saída = '2'
     tipo = models.IntegerField(choices=Tipos.choices)
     descricao = models.CharField(max_length=50, blank=False)
-    valor = models.FloatField(max_length=10, blank=True)
+    valor = models.FloatField(MaxValueValidator=10, blank=True)
 
     class Meta:
         db_table = 'Caixa'

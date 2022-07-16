@@ -7,8 +7,8 @@ from Cursos.models import Cursos,Periodos,Salas
 # Create your models here.
 class Cursos(models.Model):
     nm_curso = models.CharField(max_length=50, blank=False, unique=True, primary_key=True)
-    carga_horaria = models.IntegerField(max_length=3 ,blank=False)
-    vl_curso = models.FloatField(max_length=8, blank=False)
+    carga_horaria = models.IntegerField(MaxValueValidator=3 ,blank=False)
+    vl_curso = models.FloatField(MaxValueValidator=8, blank=False)
 
     class Meta:
         db_table = 'Cursos'
@@ -19,7 +19,7 @@ class Cursos(models.Model):
 
 class Salas(models.Model):
     nm_sala = models.CharField(max_length=50, blank=False, unique=True, primary_key=True)
-    capacidade = models.IntegerField(max_length=3, blank=False)
+    capacidade = models.IntegerField(MaxValueValidator=3, blank=False)
 
     class Meta:
         db_table = 'Salas'
@@ -46,7 +46,7 @@ class Matriculas(models.Model):
     dt_inicio = models.DateField(blank=False)
     dt_fim = models.DateField(blank=False)
     qtd_dias = models.IntegerField(blank=False)
-    qtd_horas = models.IntegerField(blank=False)
+    qtd_horas = models.IntegerField(MaxValueValidator=3, blank=False)
     id_aluno = models.ForeignKey(Pessoas, on_delete=models.CASCADE)
     id_curso = models.ForeignKey(Cursos, on_delete=models.CASCADE)
     id_periodo = models.ForeignKey(Periodos, on_delete=models.CASCADE)
@@ -62,11 +62,11 @@ class Matriculas(models.Model):
 
 class Notas(models.Model):
     id_matricula = models.ForeignKey(Matriculas, blank=False)
-    nota_1 = models.FloatField(max_length=4, blank=False)
-    nota_2 = models.FloatField(max_length=4, blank=False)
-    nota_3 = models.FloatField(max_length=4, blank=False)
-    nota_4 = models.FloatField(max_length=4, blank=False)
-    media = models.FloatField(max_length=4)
+    nota_1 = models.FloatField(MaxValueValidator=4, blank=False)
+    nota_2 = models.FloatField(MaxValueValidator=4, blank=False)
+    nota_3 = models.FloatField(MaxValueValidator=4, blank=False)
+    nota_4 = models.FloatField(MaxValueValidator=4, blank=False)
+    media = models.FloatField(MaxValueValidator=4)
 
     class Meta:
         db_table = 'Notas'
