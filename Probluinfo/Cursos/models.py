@@ -22,3 +22,12 @@ class Salas(models.Model):
     
     def __str__(self):
         return self.nm_sala
+
+class Periodos(models.Model):
+    descricao = models.CharField(max_length=20, blank=False, unique=True, primary_key=True)
+
+    class Meta:
+        db_table = 'Periodos'
+
+    def __str__(self):
+        return self.descricao
