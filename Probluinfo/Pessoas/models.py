@@ -1,5 +1,4 @@
 from django.db import models
-
 from Pessoas.models import Perfil
 
 
@@ -7,7 +6,7 @@ from Pessoas.models import Perfil
 class Pessoas(models.Model):
 
     nm_completo = models.CharField(max_length=100, blank=False) # Nome completo
-    cpf = models.CharField(max_length=11, unique=True, blank=False, primary_key=True) # CPF somente numeros
+    cpf = models.CharField(max_length=14, unique=True, blank=False, primary_key=True) # CPF somente numeros
     email = models.EmailField(max_length=50, blank=True, unique=True) # Email com validação
     dt_nascimento = models.DateField(max_length=10, blank=False) # Somente numeros, pois no banco salva com '/'
     celular = models.CharField(max_length=11, blank=True, unique=True) # Somente numeros
@@ -30,11 +29,11 @@ class Pessoas(models.Model):
 # Nova tabela abaixo
         
 
-class Perfil(models.Model):
+class Perfis(models.Model):
     ds_perfil = models.CharField(max_length=30, blank=False, unique=True)
 
     class Meta:
-        db_table = 'Perfil'
+        db_table = 'Perfis'
     
     def __str__(self):
         return self.ds_perfil
