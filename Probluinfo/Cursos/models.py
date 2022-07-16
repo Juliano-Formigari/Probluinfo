@@ -1,4 +1,8 @@
+from random import choices
 from django.db import models
+from Pessoas.models import Pessoas,Perfis
+from Cursos.models import Cursos,Periodos,Salas
+
 
 # Create your models here.
 class Cursos(models.Model):
@@ -24,10 +28,36 @@ class Salas(models.Model):
         return self.nm_sala
 
 class Periodos(models.Model):
-    descricao = models.CharField(max_length=20, blank=False, unique=True, primary_key=True)
+    class Turnos(models.IntegerChoices):
+        Matutino = '1'
+        Verpertino = '2'
+        Noturno = '3'
+
+    descricao = models.IntegerChoices(choices=Turnos.choices)
 
     class Meta:
         db_table = 'Periodos'
 
     def __str__(self):
         return self.descricao
+
+class Matriculas(models.Model):
+    id_vendedor = models.ForeignKey(Pessoas, on_delete=models.CASCADE)
+    dt_inicio = models.DateField(blank=False)
+    dt_fim = models.DateField(blank=False)
+    qtd_dias = models.IntegerField(blank=False)
+    qtd_horas = models.IntegerField(blank=False)
+    id_aluno = models.ForeignKey(Pessoas, on_delete=models.CASCADE)
+    id_curso = models.ForeignKey(Cursos, on_delete=models.CASCADE)
+    id_periodo = models.ForeignKey(Periodos, on_delete=models.CASCADE)
+    id_sala = models.ForeignKey(Salas, on_delete=models.CASCADE)
+    id_instrutor = models.ForeignKey(Pessoas, on_delete=models.CASCADE)
+    id_perfil = models.ForeignKey(Perfis, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'Matriculas'
+    
+    def __str__(self):
+        return self.id_aluno
+
+    

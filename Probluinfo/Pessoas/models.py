@@ -30,7 +30,12 @@ class Pessoas(models.Model):
         
 
 class Perfis(models.Model):
-    ds_perfil = models.CharField(max_length=30, blank=False, unique=True)
+    class Cargo(models.IntegerChoices):
+        Administrador = '1'
+        Instrutor = '2'
+        Vendedor = '3'
+
+    ds_perfil = models.IntegerField(choices=Cargo.choices)
 
     class Meta:
         db_table = 'Perfis'
