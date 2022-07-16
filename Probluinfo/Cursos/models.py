@@ -60,4 +60,20 @@ class Matriculas(models.Model):
     def __str__(self):
         return self.id_aluno
 
+class Notas(models.Model):
+    id_matricula = models.ForeignKey(Matriculas, blank=False)
+    nota_1 = models.FloatField(max_length=4, blank=False)
+    nota_2 = models.FloatField(max_length=4, blank=False)
+    nota_3 = models.FloatField(max_length=4, blank=False)
+    nota_4 = models.FloatField(max_length=4, blank=False)
+    media = models.FloatField(max_length=4)
+
+    class Meta:
+        db_table = 'Notas'
+
+    def __str__(self):
+        return self.id_matricula
+    
+
+
     
