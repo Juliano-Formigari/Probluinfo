@@ -12,3 +12,13 @@ class Cursos(models.Model):
     def __str__(self):
         return self.nm_curso
             
+
+class Salas(models.Model):
+    nm_sala = models.CharField(max_length=50, blank=False, unique=True, primary_key=True)
+    capacidade = models.IntegerField(max_length=3, blank=False)
+
+    class Meta:
+        db_table = 'Salas'
+    
+    def __str__(self):
+        return self.nm_sala
