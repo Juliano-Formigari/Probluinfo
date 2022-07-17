@@ -12,10 +12,10 @@ class Pessoas(models.Model):
     celular = models.CharField(max_length=11, blank=True, unique=True) # Somente numeros
     fone_res = models.CharField(max_length=10, blank=True, unique=True) # Telefone resindencial, somente numeros
     nm_resp = models.CharField(max_length=100, blank=True) # Nome da mãe, ou responsável caso não tenha, e seja menor de idade
-    dt_alteracao = models.DateField(auto_now=True) # Data de registro de alteração do cadastro
-    contato = models.CharField(max_length=100, blank=True) # Nome da mãe, ou responsável caso não tenha, e seja menor de idade
+    dt_alteracao = models.DateField(auto_now=True) # Data de registro de alteração do cadastro    
     login = models.CharField(max_length=50, blank=False, unique=True)
     senha = models.CharField(max_length=50, blank=False)
+    contato = models.CharField(max_length=100, blank=True) # Nome da mãe, ou responsável caso não tenha, e seja menor de idade
     perfil = models.ForeignKey(Perfil, on_delete=models.CASCADE)
     dt_alteracao = models.DateField(auto_now=True) # Data de registro de alteração do cadastro
 
