@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from random import choices
 from django.db import models
-from .models import Cursos,Periodos,Salas,Matriculas,Notas
+from Cursos.models import Cursos,Salas,Matriculas,Notas
  
 
 
@@ -16,14 +16,9 @@ class FormSalas(ModelForm):
     fields = ['id','nm_sala','capacidade']  
     db_table = 'Salas'
 
-class FormPeriodos(ModelForm):
-    model = Periodos
-    fields = ['id','descricao'] 
-    db_table = 'Periodos'
-
 class FormMatriculas(ModelForm):
     model = Matriculas
-    fields = ['id','id_vendedor','dt_inicio','dt_fim','td_dias','qtd_horas','id_aluno','id_curso','id_periodo','id_sala','id_instrutor','id_perfil']   
+    fields = ['id','id_vendedor','dt_inicio','dt_fim','td_dias','qtd_horas','id_aluno','id_curso','periodo','id_sala','id_instrutor','id_perfil']   
     db_table = 'Matriculas'
 
 class FormNotas(ModelForm):

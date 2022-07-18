@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Pessoas,Perfis
+from Pessoas.models import Pessoas
 
 
 class FormPessoas(ModelForm):
@@ -9,8 +9,3 @@ class FormPessoas(ModelForm):
 
 # Nova tabela abaixo
         
-
-class ForPerfis(ModelForm):
-    model = Perfis
-    fields = ['id','ds_perfil']
-    db_table = 'Perfis'

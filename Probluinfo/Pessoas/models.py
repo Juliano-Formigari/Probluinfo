@@ -1,10 +1,14 @@
 from django.db import models
 # Create your models here.
-from Pessoas.models import Perfil
 
-# Create your models here.
 class Pessoas(models.Model):
-
+    Cargo = (
+    ('1','Aluno'),
+    ('2','Instrutor'),
+    ('3','Vendedor'),
+    ('4','Administrador')
+        
+    )
     nm_completo = models.CharField(max_length=100, blank=False) # Nome completo
     cpf = models.CharField(max_length=14, unique=True, blank=False, primary_key=True) # CPF somente numeros
     email = models.EmailField(max_length=50, blank=True, unique=True) # Email com validação
@@ -16,7 +20,7 @@ class Pessoas(models.Model):
     login = models.CharField(max_length=50, blank=False, unique=True)
     senha = models.CharField(max_length=50, blank=False)
     contato = models.CharField(max_length=100, blank=True) # Nome da mãe, ou responsável caso não tenha, e seja menor de idade
-    perfil = models.ForeignKey(Perfil, on_delete=models.CASCADE)
+    perfil = models.CharField(max_length=1,choices=Cargo, blank=False)
     dt_alteracao = models.DateField(auto_now=True) # Data de registro de alteração do cadastro
 
     class Meta:
@@ -27,19 +31,4 @@ class Pessoas(models.Model):
         return self.nm_completo
 
 # Nova tabela abaixo
-        
-
-class Perfis(models.Model):
-    class Cargo(models.IntegerChoices):
-        Administrador = '1'
-        Instrutor = '2'
-        Vendedor = '3'
-
-    ds_perfil = models.IntegerField(choices=Cargo.choices)
-
-    class Meta:
-        db_table = 'Perfis'
     
-    def __str__(self):
-        return self.ds_perfil
-        
