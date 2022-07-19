@@ -30,8 +30,3 @@ class Pessoas(models.Model):
     def __str__(self):
         return self.nm_completo
 
-# Nova tabela abaixo
-    
-
-    
-    

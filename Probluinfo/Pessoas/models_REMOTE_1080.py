@@ -32,6 +32,3 @@ class Pessoas(models.Model):
 
 # Nova tabela abaixo
     
-
-    
-    
