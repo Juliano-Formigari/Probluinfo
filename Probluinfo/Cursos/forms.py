@@ -1,6 +1,4 @@
 from django.forms import ModelForm
-from random import choices
-from django.db import models
 from Cursos.models import Cursos,Salas,Matriculas,Notas
  
 
