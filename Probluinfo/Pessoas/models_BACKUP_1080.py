@@ -31,7 +31,10 @@ class Pessoas(models.Model):
         return self.nm_completo
 
 # Nova tabela abaixo
+<<<<<<< HEAD
     
 
     
+=======
     
+>>>>>>> develop
