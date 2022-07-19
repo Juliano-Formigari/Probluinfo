@@ -21,7 +21,7 @@ from Financeiro.views import cadastra_lancamento
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('cadastra-salas',cadastra_salas),
+    path('cadastra-salas',cadastra_salas),#testepermissoesgfufyhgf
     path('cadastra-cursos',cadastra_cursos),
     path('cadastra-matricula',cadastra_matricula),
     path('cadastra-notas',cadastra_notas),
