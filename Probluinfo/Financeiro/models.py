@@ -1,6 +1,4 @@
-from random import choices
 from django.db import models
-from django.forms import CharField
 from Pessoas.models import Pessoas
 
 # Create your models here.

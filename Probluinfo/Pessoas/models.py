@@ -7,7 +7,6 @@ class Pessoas(models.Model):
     ('2','Instrutor'),
     ('3','Vendedor'),
     ('4','Administrador')
-        
     )
     nm_completo = models.CharField(max_length=100, blank=False) # Nome completo
     cpf = models.CharField(max_length=14, unique=True, blank=False, primary_key=True) # CPF somente numeros
@@ -26,11 +25,8 @@ class Pessoas(models.Model):
     class Meta:
         db_table = 'Pessoas'
 
-
     def __str__(self):
         return self.nm_completo
-
-# Nova tabela abaixo
     
 
     
