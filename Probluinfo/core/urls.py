@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Cursos.views import cadastra_salas,cadastra_cursos,cadastra_matricula,cadastra_notas
-from Pessoas.views import cadastra_pessoa
+from Pessoas.views import cadastra_pessoa,login
 from Financeiro.views import cadastra_lancamento
 
 urlpatterns = [
@@ -27,4 +27,5 @@ urlpatterns = [
     path('cadastra-notas',cadastra_notas),
     path('cadastra-pessoa',cadastra_pessoa),
     path('cadastra-lancamento',cadastra_lancamento),
+    path('login',login),
 ]
