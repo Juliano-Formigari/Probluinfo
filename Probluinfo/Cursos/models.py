@@ -1,7 +1,6 @@
 from django.db import models
 from Pessoas.models import Pessoas
 
-
 # Create your models here.
 class Cursos(models.Model):
     nm_curso = models.CharField(max_length=50, blank=False, unique=True, primary_key=True)
@@ -14,7 +13,6 @@ class Cursos(models.Model):
     def __str__(self):
         return self.nm_curso
             
-
 class Salas(models.Model):
     nm_sala = models.CharField(max_length=50, blank=False, unique=True, primary_key=True)
     capacidade = models.DecimalField(max_digits=3, decimal_places=0 ,blank=False)
@@ -24,7 +22,6 @@ class Salas(models.Model):
     
     def __str__(self):
         return self.nm_sala
-
 
 class Matriculas(models.Model):
     Turnos = (
