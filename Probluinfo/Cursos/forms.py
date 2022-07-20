@@ -1,7 +1,5 @@
 from django.forms import ModelForm
 from Cursos.models import Cursos,Salas,Matriculas,Notas
- 
-
 
 # Create your models here.
 class FormCursos(ModelForm):

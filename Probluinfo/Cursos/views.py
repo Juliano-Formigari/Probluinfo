@@ -7,8 +7,8 @@ def cadastra_salas(request):
 def cadastra_cursos(request):
     return render(request,'cadastra_cursos.html')
 
-def cadastra_matricula(request):
-    return render(request,'cadastra_matricula.html')
+def cadastra_matriculas(request):
+    return render(request,'cadastra_matriculas.html')
 
 def cadastra_notas(request):
     return render(request,'cadastra_notas.html')
