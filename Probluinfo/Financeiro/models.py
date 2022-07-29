@@ -8,7 +8,7 @@ class Caixa(models.Model):
     ('2','Saída'),
     )
     tipo = models.CharField(max_length=1,choices=Tipos, blank=False)
-    id_pessoa = models.ForeignKey(Pessoas, on_delete=models.CASCADE)
+    id_pessoa = models.ForeignKey(Pessoas, on_delete=models.PROTECT)
     descricao = models.CharField(max_length=50, blank=False)
     valor = models.DecimalField(max_digits=8, decimal_places=2,blank=True)
     dt_lancamento = models.DateField(auto_now=True)

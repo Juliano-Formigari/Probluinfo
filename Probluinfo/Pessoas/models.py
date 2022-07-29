@@ -9,7 +9,7 @@ class Pessoas(models.Model):
     ('4','Administrador')
     )
     nm_completo = models.CharField(max_length=100, blank=False) # Nome completo
-    cpf = models.CharField(max_length=14, unique=True, blank=False, primary_key=True) # CPF somente numeros
+    cpf = models.CharField(max_length=14, unique=True, blank=False) # CPF somente numeros
     email = models.EmailField(max_length=50, blank=True, unique=True) # Email com validação
     dt_nascimento = models.DateField(max_length=10, blank=False) # Somente numeros, pois no banco salva com '/'
     celular = models.CharField(max_length=11, blank=True, unique=True) # Somente numeros
