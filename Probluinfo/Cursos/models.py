@@ -24,36 +24,38 @@ class Salas(models.Model):
         return self.nm_sala
 
 class Matriculas(models.Model):
-    Turnos = (
-    ('1' , 'Matutino'),
-    ('2' , 'Verpertino'),
-    ('3', 'Noturno'),
+    Matutino = 1
+    Vespertino = 2
+    Noturno = 3
+
+    PERIODOS_CHOICES = (
+        (Matutino,'Matutino'),
+        (Vespertino,'Verpertino'),
+        (Noturno,'Noturno'),
     )
-    id_vendedor = models.ForeignKey(Pessoas, related_name='vendedor',on_delete=models.PROTECT)
+
     dt_inicio = models.DateField(blank=False)
     dt_fim = models.DateField(blank=False)
     qtd_dias = models.DecimalField(max_digits=3,decimal_places=0,blank=False)
     qtd_horas = models.DecimalField(max_digits=3,decimal_places=0,blank=False)
-    id_aluno = models.ForeignKey(Pessoas,related_name='aluno', on_delete=models.PROTECT)
-    id_curso = models.ForeignKey(Cursos,on_delete=models.PROTECT)
-    periodo = models.CharField(max_length=1,choices=Turnos,blank=False)
+    periodo = models.CharField(max_length=1,choices=PERIODOS_CHOICES,blank=False)
     id_sala = models.ForeignKey(Salas,on_delete=models.PROTECT)
-    id_instrutor = models.ForeignKey(Pessoas,on_delete=models.PROTECT)
-    id_perfil = models.ForeignKey(Pessoas,related_name='cargos',on_delete=models.PROTECT)
+    id_curso = models.ForeignKey(Cursos,on_delete=models.PROTECT)
+    id_pessoa = models.ForeignKey(Pessoas,related_name='pessoas',on_delete=models.PROTECT)
     
     class Meta:
         db_table = 'Matriculas'
     
     def __str__(self):
-        return self.id_aluno
+        return self.id_pessoa
 
 class Notas(models.Model):
-    id_matricula = models.ForeignKey(Matriculas,blank=False,on_delete=models.PROTECT)
     nota_1 = models.DecimalField(max_digits=3,decimal_places=2,blank=False)
     nota_2 = models.DecimalField(max_digits=3,decimal_places=2,blank=False)
     nota_3 = models.DecimalField(max_digits=3,decimal_places=2,blank=False)
     nota_4 = models.DecimalField(max_digits=3,decimal_places=2,blank=False)
     media = models.DecimalField(max_digits=3,decimal_places=2)
+    id_matricula = models.ForeignKey(Matriculas,blank=False,on_delete=models.PROTECT)
 
     class Meta:
         db_table = 'Notas'

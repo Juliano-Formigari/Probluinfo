@@ -3,21 +3,25 @@ from Cursos.models import Cursos,Salas,Matriculas,Notas
 
 # Create your models here.
 class FormCursos(ModelForm):
-    model = Cursos
-    fields = ['id','nm_curso','carga_horaria','vl_curso']
-    db_table = 'Cursos'          
+    class Meta:
+        model = Cursos
+        fields = ['id','nm_curso','carga_horaria','vl_curso']
+        db_table = 'Cursos'          
 
 class FormSalas(ModelForm):
-    model = Salas
-    fields = ['id','nm_sala','capacidade']  
-    db_table = 'Salas'
+    class Meta:
+        model = Salas
+        fields = ['id','nm_sala','capacidade']  
+        db_table = 'Salas'
 
 class FormMatriculas(ModelForm):
-    model = Matriculas
-    fields = ['id','id_vendedor','dt_inicio','dt_fim','td_dias','qtd_horas','id_aluno','id_curso','periodo','id_sala','id_instrutor','id_perfil']   
-    db_table = 'Matriculas'
+    class Meta:
+        model = Matriculas
+        fields = ['id','dt_inicio','dt_fim','qtd_dias','qtd_horas','periodo','id_sala','id_curso','id_pessoa']   
+        db_table = 'Matriculas'
 
 class FormNotas(ModelForm):
-    model = Notas
-    fields = ['id','id_matricula','nota_1','nota_2','nota_3','nota_4','media']
-    db_table = 'Notas'
+    class Meta:
+        model = Notas
+        fields = ['id','nota_1','nota_2','nota_3','nota_4','media','id_matricula']
+        db_table = 'Notas'
