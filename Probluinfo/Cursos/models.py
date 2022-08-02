@@ -6,8 +6,8 @@ from Pessoas.models import Pessoas
 # Create your models here.
 class Cursos(models.Model):
     nm_curso = models.CharField(max_length=50,blank=False,unique=True)
-    carga_horaria = models.DecimalField(max_digits=3,decimal_places=0,blank=False)
-    vl_curso = models.DecimalField(max_digits=8,decimal_places=3,blank=False)
+    carga_horaria = models.DecimalField(default=1 ,max_digits=3,decimal_places=0,blank=False)
+    vl_curso = models.DecimalField(default=1.000 ,max_digits=5,decimal_places=3,blank=False)
 
     class Meta:
         db_table = 'Cursos'
