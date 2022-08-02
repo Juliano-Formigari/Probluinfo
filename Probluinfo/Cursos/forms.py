@@ -17,7 +17,7 @@ class FormSalas(ModelForm):
 class FormMatriculas(ModelForm):
     class Meta:
         model = Matriculas
-        fields = ['id','dt_inicio','dt_fim','qtd_dias','qtd_horas','periodo','id_sala','id_curso','id_pessoa']   
+        fields = ['id','dt_inicio','dt_fim','qtd_dias','qtd_horas','id_aluno','id_curso','periodo','id_sala']   
         db_table = 'Matriculas'
 
 class FormNotas(ModelForm):
