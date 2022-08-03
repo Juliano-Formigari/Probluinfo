@@ -1,8 +1,12 @@
 from django.shortcuts import render
-from Cursos.forms import FormCursos
+from Cursos.forms import FormCursos, FormSalas
 
 # Create your views here.
 def cadastra_salas(request):
+    if request.method == 'POST':
+        form = FormSalas(request.POST or None)
+        if form.is_valid():
+            form.save()
     return render(request,'cadastra_salas.html')
 
 def cadastra_cursos(request):
