@@ -1,1 +1,22 @@
-<h1>Cadastra Salas</h1>
+{% extends 'base.html' %} 
+{% block titulo %}Cadastra Salas{% endblock %} 
+{% block corpo %} 
+
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3 row">
+        <label for="colFormLabelLg" class="col-2 col-form-label col-form-label-lg"><b>Sala</b></label>
+        <div class="col-10">
+          <input type="text" name="nm_sala" class="form-control form-control-lg" max_length=50 id="colFormLabelLg" placeholder="Nome da sala" required>
+        </div>
+    </div>
+    
+    <div class="mb-3 row">
+        <label for="colFormLabelLg" class="col-2 col-form-label col-form-label-lg"><b>Capacidade</b></label>
+        <div class="col-10">
+          <input type="number" min="0" name="capacidade" class="form-control form-control-lg" id="colFormLabelLg" placeholder="Capacidade" required>
+        </div>
+    </div>
+    {% include 'acoes_form.html' %}
+</form>
+{% endblock %}
