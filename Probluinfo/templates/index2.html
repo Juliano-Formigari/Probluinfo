@@ -11,7 +11,7 @@
     <!-- Ícone do favicon -->
     <link href="{% static 'img/favico.png' %}" rel="shortcut icon" type="image/x-icon" />
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{% static 'css/pbi2.css' %}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/datatables.min.css" />
 
@@ -20,7 +20,6 @@
     {% endblock %}
 
 </head>
-
 <body class="d-flex flex-column h-100">
     <main role="main" class="flex-shrink-0">
     <!-- Bloco com o menu principal -->
@@ -30,14 +29,39 @@
             <img src="{% static 'img/logo.png' %}" height="40" alt="">
         </a>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'suporte' %}">Suporte</a>
-            </li>
             <ul class="navbar-nav">
-            <li class="nav-item dropdown">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user-circle" aria-hidden="true"></i>
+                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                    Alunos
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Cadastrar</a></li>
+                    <li><a class="dropdown-item" href="#">Listar</a></li>
+                    <li><a class="dropdown-item" href="#">Excluir</a></li>
+                    <li><a class="dropdown-item" href="#">Alterar</a></li>
+                </ul>
+            </li>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-usd" aria-hidden="true"></i>
+                    Lançamentos
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Cadastrar</a></li>
+                    <li><a class="dropdown-item" href="#">Listar</a></li>
+                    <li><a class="dropdown-item" href="#">Excluir</a></li>
+                    <li><a class="dropdown-item" href="#">Alterar</a></li>
+                </ul>
+            </li>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
                     Matriculas
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -47,68 +71,44 @@
                     <li><a class="dropdown-item" href="#">Alterar</a></li>
                 </ul>
             </li>
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
-                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user-circle" aria-hidden="true"></i>
-                    Alunos
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">Cadastrar</a></li>
-                    <li><a class="dropdown-item" href="#">Listar</a></li>
-                    <li><a class="dropdown-item" href="#">Excluir</a></li>
-                    <li><a class="dropdown-item" href="#">Alterar</a></li>
-                </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
-                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user-circle" aria-hidden="true"></i>
-                    Lançamentos
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">Cadastrar</a></li>
-                    <li><a class="dropdown-item" href="#">Listar</a></li>
-                    <li><a class="dropdown-item" href="#">Excluir</a></li>
-                    <li><a class="dropdown-item" href="#">Alterar</a></li>
-                </ul>
-                </li>
-            </ul>
-            {% endblock %}
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
-                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user-circle" aria-hidden="true"></i>
-                        <span id="username">{{ request.user }}</span>
+                <li class="nav-item ">
+                    <a class="nav-link  text-white" href="#" 
+                        role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                        Suporte
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{% url 'atualizar_dados' %}">
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                            Meus dados</a>
-                        <a class="dropdown-item" href="{%url 'recup_senha'%}">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
-                            Alterar senha</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'logout' %}">
-                            <i class="fa-solid fa-bridge-suspension"></i>
-                            Sair</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
+                </ul>
+            </li>
         </ul>
-</div>
-
-<!-- fim do container -->
-</div>
+        {% endblock %}
+        <ul class="navbar-nav" >
+            <li class="nav-item dropdown" >
+                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" 
+                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user-circle" aria-hidden="true"></i>
+                        <span id="username">{{ request.user }} </span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{% url 'atualizar_dados' %}">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                        Meus dados</a>
+                <a class="dropdown-item" href="{%url 'recup_senha'%}">
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                        Alterar senha</a>
+                    <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'logout' %}">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                Sair</a>
+                </div>
+            </li>
+        </ul>
+    </div>
 </nav>
-
-<!-- Bloco de conteúdo -->
+      
+        <!-- Bloco de conteúdo -->
         <div class="container py-5">
             {% block conteudo %}
-            MODULO PDV - FINANCEIRO E CAIXA
+            MODULO GESTÃO ACADÊMICA
             {% endblock %}
         </div>
 
@@ -117,7 +117,6 @@
     <footer class="mt-auto">
 
         <!-- Rodapé -->
-        {% block rodape %}
         <div class="container-fluid bg-light text-center p-3">
             <div class="row">
                 <div class="col-md-4 mx-auto text-center">
@@ -127,13 +126,9 @@
                         <span>Desenvolvido pela Equipe SuperDev2021</span>
                     </p>
                 </div>
-
                 </p>
             </div>
-            {% endblock %}
-
     </footer>
-
 
     <!-- Importação do JS -->
     <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>

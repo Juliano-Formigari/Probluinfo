@@ -16,6 +16,7 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('suporte',views.suporte, name='suporte'),
+    path('suporte2',views.suporte2, name='suporte2'),
     path('cadastra-salas',cadastra_salas),
     path('cadastra-cursos',cadastra_cursos),
     path('cadastra-matriculas',cadastra_matriculas),
@@ -24,6 +25,9 @@ urlpatterns = [
     path('cadastra-lancamento',cadastra_lancamento),
     path('logout/',views.logout, name = "logout"),
     path('base/',views.base, name = "base"),
+    path('base2/',views.base2, name = "base2"),
+    path('cabecalho/',views.cabecalho, name = "cabecalho"),
+    path('cabecalho2/',views.cabecalho2, name = "cabecalho2"),
     path("login/", views.login, name="login"),
     path('index2/',views.index2, name = "index2"),
     path('index/',views.index, name = "index"),
