@@ -5,6 +5,7 @@ from django.contrib import admin
 from django.urls import path
 from Cursos.views import cadastra_salas,cadastra_cursos,cadastra_matriculas,cadastra_notas
 from Pessoas.views import cadastra_pessoas
+from Pessoas.views import lista_pessoas
 from Financeiro.views import cadastra_lancamento
 
 urlpatterns = [
@@ -14,5 +15,6 @@ urlpatterns = [
     path('cadastra-matriculas',cadastra_matriculas),
     path('cadastra-notas',cadastra_notas),
     path('cadastra-pessoas',cadastra_pessoas),
+    path('lista-pessoas',lista_pessoas),
     path('cadastra-lancamento',cadastra_lancamento),
 ]
