@@ -39,7 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Cursos',
     'Financeiro',
+    'Matriculas',
+    'Notas',
     'Pessoas',
+    'Salas',
+    'Usuarios'
 ]
 
 MIDDLEWARE = [
@@ -128,7 +132,7 @@ STATICFILES_DIRS = ["static/"]
 
 LOGIN_URL = 'accounts/login'
 
-LOGIN_REDIRECT_URL = 'inicio'
+LOGIN_REDIRECT_URL = 'login'
 
 
 # Default primary key field type

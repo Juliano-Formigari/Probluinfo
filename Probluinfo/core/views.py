@@ -13,20 +13,11 @@ def pagina_inexistente(request, exception):  # precisa ser exception
 def suporte(request):
     return render(request, 'suporte.html')
 
-def suporte2(request):
-    return render(request, 'suporte2.html')
+def base_gestao(request):
+    return render(request, 'base_gestao.html')
 
-def base(request):
-    return render(request, 'base.html')
-
-def base2(request):
-    return render(request, 'base2.html')
-
-def cabecalho(request):
-    return render(request, 'cabecalho.html')
-
-def cabecalho2(request):
-    return render(request, 'cabecalho2.html')
+def base_pdv(request):
+    return render(request, 'base_pdv.html')
 
 def atualizar_dados(request):
     return render(request, 'atualizar_dados.html')
@@ -34,11 +25,13 @@ def atualizar_dados(request):
 def recup_senha(request):
     return render(request, 'recup_senha.html')
 
-def index(request):
-    return render(request, 'index.html')
-
-def index2(request):
-    return render(request, 'index2.html')
-
 def altera_senha(request):
     return render(request, 'altera_senha.html')
+
+def sobre(request):
+    return render(request, 'sobre.html')
+
+
+def cadastra_alunos(request):
+    return render(request, 'cadastra_alunos.html')
+

@@ -1,3 +1,43 @@
-{% extends 'base.html' %}
+{% extends 'base_gestao.html' %}
 
-<h1>teste</h1>
+{% block conteudo %}
+    <body class="bg-primary">
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-12">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Atualizar Dados Cadastrais:</h3></div>
+                                    <div class="card-body">
+                                        
+                                    </div>
+                                    <div class="card-body">
+                                        
+                                    </div>
+                                    <div class="card-body">
+                                       
+                                    </div>
+                                    <div class="card-body">
+                                        <button class="btn btn-second" href="#">Alterar</button>
+                                        <button class="btn btn-second" href="../templates/base_gestao.html">Cancelar</button>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+            <div id="layoutAuthentication_footer">
+                <footer class="py-4 bg-light mt-auto">     
+                </footer>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
+{% endblock %}

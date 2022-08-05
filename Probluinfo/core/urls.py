@@ -5,35 +5,39 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
-from Cursos.views import cadastra_salas,cadastra_cursos,cadastra_matriculas,cadastra_notas
-from Pessoas.views import cadastra_pessoas
-from Financeiro.views import cadastra_lancamento
 from django.views.generic import TemplateView
 from core import views
+
+
+# from Cursos.views import cadastra_cursos
+
+# from Financeiro.views import cadastra_lancamentos
+
+# from Matriculas.views import cadastra_matriculas
+
+# from Notas.views import cadastra_notas
+
+# from Pessoas.views import cadastra_pessoas
+
+# from Salas.views import cadastra_salas
+
+
 
 
 urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('suporte',views.suporte, name='suporte'),
-    path('suporte2',views.suporte2, name='suporte2'),
-    path('cadastra-salas',cadastra_salas),
-    path('cadastra-cursos',cadastra_cursos),
-    path('cadastra-matriculas',cadastra_matriculas),
-    path('cadastra-notas',cadastra_notas),
-    path('cadastra-pessoas',cadastra_pessoas),
-    path('cadastra-lancamento',cadastra_lancamento),
+    path('cadastra-alunos',views.cadastra_alunos),
     path('logout/',views.logout, name = "logout"),
-    path('base/',views.base, name = "base"),
-    path('base2/',views.base2, name = "base2"),
-    path('cabecalho/',views.cabecalho, name = "cabecalho"),
-    path('cabecalho2/',views.cabecalho2, name = "cabecalho2"),
+    path('base_gestao/',views.base_gestao, name = "base_gestao"),
+    path('base_pdv/',views.base_pdv, name = "base_pdv"),
     path("login/", views.login, name="login"),
-    path('index2/',views.index2, name = "index2"),
-    path('index/',views.index, name = "index"),
+    path("sobre/", views.sobre, name="sobre"),
     path('recup_senha/',views.recup_senha, name = "recup_senha"),
     path('atualizar_dados/',views.atualizar_dados, name = "atualizar_dados"),
     path('altera_senha/',views.altera_senha, name = "altera_senha"),
+    path("", views.login, name="login"),
     
  
 ]
