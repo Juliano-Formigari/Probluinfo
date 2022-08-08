@@ -6,4 +6,3 @@ class FormPessoas(ModelForm):
         model = Pessoas
         fields = ['id','nm_completo','cpf','email','dt_nascimento','celular','fone_res','nm_resp','login','senha','perfil']
         db_table = 'Pessoas'
-        
