@@ -7,7 +7,6 @@ def cadastra_pessoas(request):
     perfis = Pessoas.PERFIS_CHOICES
 
     if request.method == 'POST':
-        # perfil = request.POST.get('perfil')
         form = FormPessoas(request.POST or None)
         if form.is_valid():
             form.save()
@@ -15,7 +14,6 @@ def cadastra_pessoas(request):
 
     dados = {
                 'perfis' : perfis,
-                # 'perfil' : request.POST.get('perfil'),
             }
 
     return render(request,'cadastra_pessoas.html', dados)
