@@ -2,46 +2,47 @@
 {% load static %}
 
 {% block conteudo %}
-    <body class="bg-primary">
-        <div id="layoutAuthentication">
-            <div id="layoutAuthentication_content">
-                <main>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-12">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Alterar Senha</h3></div>
-                                    <div class="card-body">
-                                        <div class="small mb-3 text-muted">Digite sua senha Atual:</div>
-                                        <input type="password" placeholder="Password">
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="small mb-3 text-muted">Digite sua nova senha:</div>
-                                        <input type="password" placeholder="Password">
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="small mb-3 text-muted">Digite novamente sua nova senha:</div>
-                                        <input type="password" placeholder="Password">
-                                    </div>
-                                    <div class="card-body">
-                                        <button class="btn btn-second" href="#">Alterar</button>
-                                        <button class="btn btn-second" href="../templates/base_gestao.html">Cancelar</button>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
-            </div>
-            <div id="layoutAuthentication_footer">
-                <footer class="py-4 bg-light mt-auto">     
-                </footer>
+<div class="container bg-light back02">
+
+    <form method="post" class="form" autocomplete="off">
+    {% csrf_token %}
+
+        <div class="row">
+            <div class="col col-5">
+                <div class="form-group">
+                    <label for="old_password">Senha atual<span style="color: red;">*</span></label>
+                    <input type="password" class="form-control" id="old_password" name="old_password" required autofocus>
+                    <p class="errorlist">{{ form.errors.old_password }}</p>
+                </div>
             </div>
         </div>
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-    </body>
-</html>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="new_password1">Senha nova<span style="color: red;">*</span></label>
+                    <input type="password" class="form-control" id="new_password1" name="new_password1" required>
+                    <small id="password-help" class="form-text text-muted">
+                    </small>
+                    <p class="errorlist">{{ form.errors.new_password1 }}</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="new_password2">Repita a senha nova<span style="color: red;">*</span></label>
+                    <input type="password" class="form-control" id="new_password2" name="new_password2" required>
+                    <p class="errorlist">{{ form.errors.new_password2 }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-dark-blue px-4 shadow-lg mr-2">Alterar</button>
+            <button class="btn btn-dark-blue px-4 shadow-lg" onclick="history.back();">Cancelar</button>
+        </div>
+
+    </form>
+
+</div>
+
 {% endblock %}

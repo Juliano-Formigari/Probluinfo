@@ -1,11 +1,116 @@
 {% extends 'base_gestao.html' %}
-
 {% block conteudo %}
-<h3>Criar</h3>
 
-<p class="lead">Criar</p>
+<div class="container bg-light back02">
+    <form method="POST" class="form-group" name="pessoas_form" action="">
+        {% csrf_token %}
 
-<p>
-    Em breve mais detalhes.
-</p>
+        <!-- Identificação -->
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <div><h4>Cadatrar Pessoas</h4></div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="nm_completo">Nome</label>
+                <input type="text" class="form-control" id="nm_completo" name="nm_completo" maxlength="100" required
+                       value="{% if request.POST %}{{ request.POST.nm_completo }}{% elif object.nm_completo %}{{ object.nm_completo }}{% endif %}">
+                <p class="errorlist">{{ form.errors.nm_completo }}</p>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="dt_nascimento">Data de nascimento</label>
+                <input type="date" class="form-control" id="dt_nascimento" placeholder="dd/mm/aaaa" required name="dt_nascimento"  maxlength="10"
+                       value="{% if request.POST %}{{ request.POST.dt_nascimento }}{% elif object.dt_nascimento %}{{ object.dt_nascimento }}{% endif %}">
+                <p class="errorlist">{{ form.errors.dt_nascimento }}</p>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="cpf">CPF</label>
+                <input type="text" class="form-control" id="cpf" name="cpf" maxlength="14"
+                       value="{% if request.POST %}{{ request.POST.cpf }}{% elif object.cpf %}{{ object.cpf }}{% endif %}">
+                <p class="errorlist">{{ form.errors.cpf }}</p>
+            </div>
+        </div>
+        
+        <!-- Contatos -->
+        <hr>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <div><h4>Contatos</h4></div>
+            </div>
+        </div>
+            <div class="form-group col-md-4">
+                <label for="fone_res">Telefone</label>
+                <input type="text" class="form-control" id="fone_res" name="fone_res" maxlength="9"
+                       value="{% if request.POST %}{{ request.POST.fone_res }}{% elif object.fone_res %}{{ object.fone_res }}{% endif %}">
+                <p class="errorlist">{{ form.errors.fone_res }}</p>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="celular">Celular</label>
+                <input type="text" class="form-control" id="celular" name="celular" maxlength="9"
+                       value="{% if request.POST %}{{ request.POST.celular }}{% elif object.celular %}{{ object.celular }}{% endif %}">
+                <p class="errorlist">{{ form.errors.celular }}</p>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" maxlength="250"
+                       value="{% if request.POST %}{{ request.POST.email }}{% elif object.email %}{{ object.email }}{% endif %}">
+                <p class="errorlist">{{ form.errors.email }}</p>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="nm_resp">Responsável <span style="color: red;">*</span></label>
+                <input type="text" class="form-control" id="nm_resp" name="nm_resp" maxlength="100" required
+                        value="{% if request.POST %}{{ request.POST.nm_resp }}{% elif object.nm_resp %}{{ object.nm_resp}}{% endif %}">
+                <p class="errorlist">{{ form.errors.nm_resp }}</p>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="contato">Contato</label>
+                <input type="text" class="form-control" id="contato" name="contato" maxlength="100"
+                       value="{% if request.POST %}{{ request.POST.contato }}{% elif object.contato %}{{ object.contato }}{% endif %}">
+                <p class="errorlist">{{ form.errors.contato }}</p>
+            </div>
+            <br>
+            <div class="form-group col-md-6">
+                <label for="dt_alteracao">Data de Alteração</label>
+                <input type="date" class="form-control" id="dt_alteracao" name="dt_alteracao" maxlength="100"
+                       value="{% if request.POST %}{{ request.POST.dt_alteracao }}{% elif object.dt_alteracao %}{{ object.dt_alteracao }}{% endif %}">
+                <p class="errorlist">{{ form.errors.dt_alteracao }}</p>
+            </div>
+            <br>
+        <hr>
+        
+        <!-- Informação de Login -->
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <div><h4>Dados para Login</h4></div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="login">Login <span style="color: red;">*</span></label>
+                <input type="text" class="form-control" id="login" placeholder="Login" required name="login" maxlength="100" required
+                       value="{% if request.POST %}{{ request.POST.login }}{% elif object.login %}{{ object.login }}{% endif %}">
+                <p class="errorlist">{{ form.errors.login }}</p>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="senha">Senha <span style="color: red;">*</span></label>
+                <input type="text" class="form-control" id="senha" placeholder="Senha" required name="senha"  maxlength="10"
+                       value="{% if request.POST %}{{ request.POST.senha }}{% elif object.senha %}{{ object.senha }}{% endif %}">
+                <p class="errorlist">{{ form.errors.senha }}</p>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="perfil">Perfil de Usuario <span style="color: red;">*</span></label>
+                <input type="text" class="form-control" id="perfil" placeholder="perfil" required name="perfil"  maxlength="10"
+                       value="{% if request.POST %}{{ request.POST.perfil }}{% elif object.perfil %}{{ object.perfil }}{% endif %}">
+                <p class="errorlist">{{ form.errors.perfil }}</p>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col d-flex justify-content-between">
+                <button class="btn btn-primary px-4 shadow-sm noprint" type="submit">Salvar</button>
+                <button class="btn btn-danger px-4 shadow-sm noprint" type="submit">Apagar</button>
+            </div>
+        </div>
+    </form>
+
 {% endblock %}

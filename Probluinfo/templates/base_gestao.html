@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{% static 'css/pbi_gestao.css' %}" rel="stylesheet">
     <link href="{% static 'css/admin.css' %}" rel="stylesheet">
-
+    
     {% block styles %}
     
     {% endblock %}
@@ -27,7 +27,7 @@
     {% block menu %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-pbi font-115 shadow">
         <a class="navbar-brand" href="{% url 'base_gestao' %}">
-            <img class="logo_small" src="{% static 'img/logo.png' %}" height="40" alt="">
+            <img class="logo_small" src="{% static 'img/logo.png' %}" width="40" height="40" alt="" >
         </a>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <ul class="navbar-nav">
@@ -38,10 +38,10 @@
                     Pessoas
                 </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Cadastrar</a></li>
-                <li><a class="dropdown-item" href="#">Listar</a></li>
-                <li><a class="dropdown-item" href="#">Excluir</a></li>
-                <li><a class="dropdown-item" href="#">Alterar</a></li>
+                <li><a class="dropdown-item" href="{% url 'cadastra_pessoas' %}">Cadastrar</a></li>
+                <li><a class="dropdown-item" href="{% url 'lista_pessoas' %}">Listar</a></li>
+                <li><a class="dropdown-item" href="{% url 'exclui_pessoas' %}">Excluir</a></li>
+                <li><a class="dropdown-item" href="{% url 'altera_pessoas' %}">Alterar</a></li>
             </ul>
             </li>
             <ul class="navbar-nav">
@@ -52,10 +52,10 @@
                     Financeiro
                 </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Cadastrar</a></li>
-                <li><a class="dropdown-item" href="#">Listar</a></li>
-                <li><a class="dropdown-item" href="#">Excluir</a></li>
-                <li><a class="dropdown-item" href="#">Alterar</a></li>
+                <li><a class="dropdown-item" href="{% url 'cadastra_lancamentos' %}">Cadastrar</a></li>
+                <li><a class="dropdown-item" href="{% url 'lista_lancamentos' %}">Listar</a></li>
+                <li><a class="dropdown-item" href="{% url 'exclui_lancamentos' %}">Excluir</a></li>
+                <li><a class="dropdown-item" href="{% url 'altera_lancamentos' %}">Alterar</a></li>
             </ul>
             </li>
             <ul class="navbar-nav">
@@ -66,10 +66,10 @@
                     Cursos
                 </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Cadastrar</a></li>
-                <li><a class="dropdown-item" href="#">Listar</a></li>
-                <li><a class="dropdown-item" href="#">Excluir</a></li>
-                <li><a class="dropdown-item" href="#">Alterar</a></li>
+                <li><a class="dropdown-item" href="{% url 'cadastra_cursos' %}">Cadastrar</a></li>
+                <li><a class="dropdown-item" href="{% url 'lista_cursos' %}">Listar</a></li>
+                <li><a class="dropdown-item" href="{% url 'exclui_cursos' %}">Excluir</a></li>
+                <li><a class="dropdown-item" href="{% url 'altera_cursos' %}">Alterar</a></li>
             </ul>
             </li>
             <ul class="navbar-nav">
@@ -80,28 +80,14 @@
                     Salas
                 </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Cadastrar</a></li>
-                <li><a class="dropdown-item" href="#">Listar</a></li>
-                <li><a class="dropdown-item" href="#">Excluir</a></li>
-                <li><a class="dropdown-item" href="#">Alterar</a></li>
+                <li><a class="dropdown-item" href="{% url 'cadastra_salas' %}">Cadastrar</a></li>
+                <li><a class="dropdown-item" href="{% url 'lista_salas' %}">Listar</a></li>
+                <li><a class="dropdown-item" href="{% url 'exclui_salas' %}">Excluir</a></li>
+                <li><a class="dropdown-item" href="{% url 'altera_salas' %}">Alterar</a></li>
             </ul>
             </li>
             <ul class="navbar-nav">
             </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
-                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user-o" aria-hidden="true"></i>
-                    Usuários
-                </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Cadastrar</a></li>
-                <li><a class="dropdown-item" href="#">Listar</a></li>
-                <li><a class="dropdown-item" href="#">Excluir</a></li>
-                <li><a class="dropdown-item" href="#">Alterar</a></li>
-            </ul>
-            </li>
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
@@ -110,10 +96,10 @@
                     Notas
                 </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Cadastrar</a></li>
-                <li><a class="dropdown-item" href="#">Listar</a></li>
-                <li><a class="dropdown-item" href="#">Excluir</a></li>
-                <li><a class="dropdown-item" href="#">Alterar</a></li>
+                <li><a class="dropdown-item" href="{% url 'cadastra_notas' %}">Cadastrar</a></li>
+                <li><a class="dropdown-item" href="{% url 'lista_notas' %}">Listar</a></li>
+                <li><a class="dropdown-item" href="{% url 'exclui_notas' %}">Excluir</a></li>
+                <li><a class="dropdown-item" href="{% url 'altera_notas' %}">Alterar</a></li>
             </ul>
             </li>
             <ul class="navbar-nav">
@@ -124,20 +110,20 @@
                     Matriculas
                 </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="#">Cadastrar</a></li>
-                <li><a class="dropdown-item" href="#">Listar</a></li>
-                <li><a class="dropdown-item" href="#">Excluir</a></li>
-                <li><a class="dropdown-item" href="#">Alterar</a></li>
+                <li><a class="dropdown-item" href="{% url 'cadastra_matriculas' %}">Cadastrar</a></li>
+                <li><a class="dropdown-item" href="{% url 'lista_matriculas' %}">Listar</a></li>
+                <li><a class="dropdown-item" href="{% url 'exclui_matriculas' %}">Excluir</a></li>
+                <li><a class="dropdown-item" href="{% url 'altera_matriculas' %}">Alterar</a></li>
             </ul>
             </li>
         </ul>
         {% endblock %}
         <ul class="navbar-nav" >
             <li class="nav-item dropdown" >
-                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" 
-                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link text-white dropdown-toggle px-3" href="#" id="navbarDropdown" 
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-user-circle" aria-hidden="true"></i>
-                        <span id="username">{{ request.user }} </span>
+                        <span id="username"> {{ request.user }} </span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="{% url 'suporte' %}">
@@ -165,7 +151,7 @@
      <!-- Bloco de conteúdo -->
      <div class="container py-5">
         {% block conteudo %}
-
+        BEM VINDO AO MODULO GESTÃO
         {% endblock %}
     </div>
 
@@ -191,9 +177,9 @@
     <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.22/datatables.min.js"></script>
-
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <!-- Bloco destinado aos scripts para cada página -->
     {% block scripts %}
 

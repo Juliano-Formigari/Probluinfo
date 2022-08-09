@@ -2,12 +2,13 @@
 {% block conteudo %}
 
 <div class="container bg-light back02">
-    <form method="POST" class="form-group" name="cursos_form" action="">
+    <form method="POST" class="form-group" name="pessoas_form" action="">
         <div class="form-row">
             <div class="form-group col-md-4">
-                <div><h4> Lista de Cursos </h4></div>
+                <div><h4> Lista de Pessoas </h4></div>
             </div>
         </div>
+    
     {% include 'form_pesquisa.html' %}
     <div class="container mt-3">
         {% if total > 0 %}
@@ -15,17 +16,22 @@
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>Carga Horaria</th>
-                    <th>Valor do Curso</th>
-                   
+                    <th>Data de nascimento</th>
+                    <th>Perfil</th>
+                    <th>CPF</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
                 </tr>
             </thead>
             <tbody>
-                {% for usuario in porPagina %}
+                {% for pessoas in porPagina %}
                 <tr>
-                    <td>{{ cursos.nm_curso }}</td>
-                    <td>{{ cursos.carga_horaria }}</td>
-                    <td>{{ cursos.vl_curso }}</td>
+                    <td>{{ pessoas.nm_completo }}</td>
+                    <td>{{ pessoas.dt_nascimento }}</td>
+                    <td>{{ pessoas.perfil }}</td>
+                    <td>{{ pessoas.cpf }}</td>
+                    <td>{{ pessoas.telefone }}</td>
+                    <td>{{ pessoas.email }}</td>
                     
                 </tr>
                 {% endfor %}

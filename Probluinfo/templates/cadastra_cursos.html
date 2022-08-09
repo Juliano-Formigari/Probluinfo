@@ -1,10 +1,39 @@
 {% extends 'base_gestao.html' %}
 {% block conteudo %}
-<h3>Criar</h3>
 
-<p class="lead">Criar</p>
+<div class="container bg-light back02">
+    <form method="POST" class="form-group" name="cursos_form" action="">
+        {% csrf_token %}
 
-<p>
-    Em breve mais detalhes.
-</p>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <div><h4> Cadastrar Cursos </h4></div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="nm_curso">Nome do Curso</label>
+                <input type="text" class="form-control" id="nm_curso" name="nm_curso" maxlength="100" required
+                       value="{% if request.POST %}{{ request.POST.nm_curso }}{% elif object.nm_curso %}{{ object.nm_curso }}{% endif %}">
+                <p class="errorlist">{{ form.errors.nm_curso }}</p>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="carga_horaria">Carga Horária</label>
+                <input type="text" class="form-control" id="carga_horaria" name="carga_horaria"  maxlength="10"
+                       value="{% if request.POST %}{{ request.POST.carga_horaria }}{% elif object.carga_horaria %}{{ object.carga_horaria }}{% endif %}">
+                <p class="errorlist">{{ form.errors.carga_horaria }}</p>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="vl_curso">Valor do Curso </label>
+                <input type="text" class="form-control" id="vl_curso" name="vl_curso"  maxlength="10"
+                       value="{% if request.POST %}{{ request.POST.vl_curso }}{% elif object.vl_curso %}{{ object.vl_curso }}{% endif %}">
+                <p class="errorlist">{{ form.errors.vl_curso }}</p>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col d-flex justify-content-between">
+                <button class="btn btn-primary px-4 shadow-sm noprint" type="submit">Salvar</button>
+                <button class="btn btn-danger px-4 shadow-sm noprint" type="submit">Apagar</button>
+            </div>
+        </div>
 {% endblock %}

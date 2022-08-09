@@ -2,31 +2,34 @@
 {% block conteudo %}
 
 <div class="container bg-light back02">
-    <form method="POST" class="form-group" name="cursos_form" action="">
+    <form method="POST" class="form-group" name="matriculas_form" action="">
         <div class="form-row">
             <div class="form-group col-md-4">
-                <div><h4> Lista de Cursos </h4></div>
+                <div><h4> Lista de Matriculas </h4></div>
             </div>
         </div>
+    
     {% include 'form_pesquisa.html' %}
     <div class="container mt-3">
         {% if total > 0 %}
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th>Carga Horaria</th>
-                    <th>Valor do Curso</th>
-                   
+                    <th>ID do Aluno</th>
+                    <th>Periodo</th>
+                    <th>ID do Curso</th>
+                    <th>ID da Sala</th>
+                    <th>ID do Instrutor</th>
                 </tr>
             </thead>
             <tbody>
-                {% for usuario in porPagina %}
+                {% for Matriculas in porPagina %}
                 <tr>
-                    <td>{{ cursos.nm_curso }}</td>
-                    <td>{{ cursos.carga_horaria }}</td>
-                    <td>{{ cursos.vl_curso }}</td>
-                    
+                    <td>{{ matriculas.id_aluno }}</td>
+                    <td>{{ matriculas.periodo }}</td>
+                    <td>{{ matriculas.id_curso }}</td>
+                    <td>{{ matriculas.id_sala }}</td>
+                    <td>{{ matriculas.id_instrutor }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

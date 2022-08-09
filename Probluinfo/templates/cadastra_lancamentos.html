@@ -1,11 +1,57 @@
 {% extends 'base_gestao.html' %}
-
 {% block conteudo %}
-<h3>Criar</h3>
 
-<p class="lead">Criar</p>
+<div class="container bg-light back02">
+    <form method="POST" class="form-group" name="lancamentos_form" action="">
+        {% csrf_token %}
 
-<p>
-    Em breve mais detalhes.
-</p>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <div><h4> Cadastrar Lançamentos </h4></div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="id">Id do lançamento </label>
+                <input type="text" class="form-control" id="id" name="id" maxlength="100" required
+                       value="{% if request.POST %}{{ request.POST.id }}{% elif object.id %}{{ object.id }}{% endif %}">
+                <p class="errorlist">{{ form.errors.id }}</p>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="tipo">Tipo</label>
+                <input type="text" class="form-control" id="tipo" name="tipo"  maxlength="10"
+                       value="{% if request.POST %}{{ request.POST.tipo }}{% elif object.tipo %}{{ object.tipo }}{% endif %}">
+                <p class="errorlist">{{ form.errors.tipo }}</p>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="descricao">Descrição </label>
+                <input type="text" class="form-control" id="descricao" name="descricao"  maxlength="10"
+                       value="{% if request.POST %}{{ request.POST.descricao }}{% elif object.descricao %}{{ object.descricao }}{% endif %}">
+                <p class="errorlist">{{ form.errors.descricao }}</p>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="valor">Valor </label>
+                <input type="text" class="form-control" id="valor" name="valor"  maxlength="10"
+                       value="{% if request.POST %}{{ request.POST.valor }}{% elif object.valor %}{{ object.valor }}{% endif %}">
+                <p class="errorlist">{{ form.errors.valor }}</p>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="dt_lancamento">Data do Lançamento</label>
+                <input type="date" class="form-control" id="dt_lancamento" name="dt_lancamento"  maxlength="10"
+                       value="{% if request.POST %}{{ request.POST.dt_lancamento }}{% elif object.dt_lancamento %}{{ object.dt_lancamento }}{% endif %}">
+                <p class="errorlist">{{ form.errors.dt_lancamento }}</p>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="id_pessoa_id">ID da Pessoa</label>
+                <input type="text" class="form-control" id="id_pessoa_id" name="id_pessoa_id"  maxlength="10"
+                       value="{% if request.POST %}{{ request.POST.id_pessoa_id }}{% elif object.id_pessoa_id %}{{ object.id_pessoa_id }}{% endif %}">
+                <p class="errorlist">{{ form.errors.id_pessoa_id }}</p>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col d-flex justify-content-between">
+                <button class="btn btn-primary px-4 shadow-sm noprint" type="submit">Salvar</button>
+                <button class="btn btn-danger px-4 shadow-sm noprint" type="submit">Apagar</button>
+            </div>
+        </div>
 {% endblock %}

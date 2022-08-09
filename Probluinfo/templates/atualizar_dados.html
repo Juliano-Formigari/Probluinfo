@@ -1,6 +1,8 @@
 {% extends 'base_gestao.html' %}
-
 {% block conteudo %}
+<div class="container bg-light back02">
+    <form method="POST" class="form-group" name="pessoas_form" action="">
+        {% csrf_token %}
     <body class="bg-primary">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
@@ -10,30 +12,101 @@
                             <div class="col-lg-12">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Atualizar Dados Cadastrais:</h3></div>
-                                    <div class="card-body">
-                                        
-                                    </div>
-                                    <div class="card-body">
-                                        
-                                    </div>
-                                    <div class="card-body">
-                                       
-                                    </div>
-                                    <div class="card-body">
-                                        <button class="btn btn-second" href="#">Alterar</button>
-                                        <button class="btn btn-second" href="../templates/base_gestao.html">Cancelar</button>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
+                                    <!-- Identificação -->
+        <div class="form-row">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="nm_completo">Nome</label>
+                <input type="text" class="form-control" id="nm_completo" name="nm_completo" maxlength="100" required
+                       value="{% if request.POST %}{{ request.POST.nm_completo }}{% elif object.nm_completo %}{{ object.nm_completo }}{% endif %}">
+                <p class="errorlist">{{ form.errors.nm_completo }}</p>
             </div>
-            <div id="layoutAuthentication_footer">
-                <footer class="py-4 bg-light mt-auto">     
-                </footer>
+            <div class="form-group col-md-3">
+                <label for="dt_nascimento">Data de nascimento</label>
+                <input type="date" class="form-control" id="dt_nascimento" placeholder="dd/mm/aaaa" required name="dt_nascimento"  maxlength="10"
+                       value="{% if request.POST %}{{ request.POST.dt_nascimento }}{% elif object.dt_nascimento %}{{ object.dt_nascimento }}{% endif %}">
+                <p class="errorlist">{{ form.errors.dt_nascimento }}</p>
             </div>
+            <div class="form-group col-md-3">
+                <label for="cpf">CPF</label>
+                <input type="text" class="form-control" id="cpf" name="cpf" maxlength="14"
+                       value="{% if request.POST %}{{ request.POST.cpf }}{% elif object.cpf %}{{ object.cpf }}{% endif %}">
+                <p class="errorlist">{{ form.errors.cpf }}</p>
+            </div>
+        </div>
+        <hr>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <div><h4>Contatos</h4></div>
+            </div>
+        </div>
+            <div class="form-group col-md-4">
+                <label for="fone_res">Telefone</label>
+                <input type="text" class="form-control" id="fone_res" name="fone_res" maxlength="9"
+                       value="{% if request.POST %}{{ request.POST.fone_res }}{% elif object.fone_res %}{{ object.fone_res }}{% endif %}">
+                <p class="errorlist">{{ form.errors.fone_res }}</p>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="celular">Celular</label>
+                <input type="text" class="form-control" id="celular" name="celular" maxlength="9"
+                       value="{% if request.POST %}{{ request.POST.celular }}{% elif object.celular %}{{ object.celular }}{% endif %}">
+                <p class="errorlist">{{ form.errors.celular }}</p>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" maxlength="250"
+                       value="{% if request.POST %}{{ request.POST.email }}{% elif object.email %}{{ object.email }}{% endif %}">
+                <p class="errorlist">{{ form.errors.email }}</p>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="nm_resp">Responsável</label>
+                <input type="text" class="form-control" id="nm_resp" name="nm_resp" maxlength="100" required
+                        value="{% if request.POST %}{{ request.POST.nm_completo }}{% elif object.nm_resp %}{{ object.nm_resp}}{% endif %}">
+                <p class="errorlist">{{ form.errors.nm_resp }}</p>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="contato">Contato</label>
+                <input type="text" class="form-control" id="contato" name="contato" maxlength="100"
+                       value="{% if request.POST %}{{ request.POST.contato }}{% elif object.contato %}{{ object.contato }}{% endif %}">
+                <p class="errorlist">{{ form.errors.contato }}</p>
+            </div>
+            <div>
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown"  class="dropdown-toggle">
+                      Perfil de Usuários
+                    <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">'1'-'Aluno'</a></li>
+                        <li><a href="#">'2'-'Instrutor'</a></li>
+                        <li><a href="#">'3'-'Vendedor'</a></li>
+                        <li><a href="#">'4'-'Administrador'</a></li>
+                    </ul>
+                </li>
+            </ul>
+            </div>
+            <br>
+            <div class="form-group col-md-6">
+                <label for="dt_alteracao">Data de Alteração</label>
+                <input type="date" class="form-control" id="dt_alteracao" name="dt_alteracao" maxlength="100"
+                       value="{% if request.POST %}{{ request.POST.dt_alteracao }}{% elif object.dt_alteracao %}{{ object.dt_alteracao }}{% endif %}">
+                <p class="errorlist">{{ form.errors.dt_alteracao }}</p>
+                </div>
+                <br>
+            <hr>
+            <button class="btn btn-second" href="#">Alterar</button>
+            <button class="btn btn-second" onclick="window.history.back()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+        </div>
+        <div id="layoutAuthentication_footer">
+            <footer class="py-4 bg-light mt-auto">     
+            </footer>
+        </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

@@ -37,18 +37,19 @@
                             </li>
                         </a>
                     </ul>
-                </div><!-- social media -->
-                <form class="form">
+                </div>
+                <form class="form" method="POST" autocomplete="off">
+                    {% csrf_token %}
                     <label class="label-input" for="">
                         <i class="far fa-envelope icon-modify"></i>
-                        <input type="email" placeholder="Email">
+                        <input type="text" id="login" name="login"  placeholder="Login" class="form-control" value="{{ request.POST.username }}" maxlength="30" required autofocus>
                     </label>
                     <label class="label-input" for="">
                         <i class="fas fa-lock icon-modify"></i>
-                        <input type="password" placeholder="Password">
+                        <input type="password" id="senha" name="senha" class="form-control" required>   
                     </label>
                     <a class="password" href="{% url 'recup_senha' %}">Esqueceu sua Senha?</a>
-                   <button class="btn btn-second" href="{% url 'base_pdv' %}">Fazer Login</button>
+                   <button class="btn btn-second" href="{% url 'base_pdv' %}" type="submit">Fazer Login</button>
                 </form>
             </div>
         </div>
@@ -77,18 +78,19 @@
                             </li>
                         </a>
                     </ul>
-                </div><!-- social media -->
-                <form class="form">
+                </div>
+                <form class="form" method="POST" autocomplete="off">
+                    {% csrf_token %}
                     <label class="label-input" for="">
                         <i class="far fa-envelope icon-modify"></i>
-                        <input type="email" placeholder="Email">
+                        <input type="text" id="login" name="login"  placeholder="Login" class="form-control" value="{{ request.POST.username }}" maxlength="30" required autofocus>
                     </label>
                     <label class="label-input" for="">
                         <i class="fas fa-lock icon-modify"></i>
-                        <input type="password" placeholder="Password">
+                        <input type="password" id="senha" name="senha" class="form-control" required> 
                     </label>
                     <a class="password" href="{% url 'recup_senha' %}">Esqueceu sua Senha?</a>
-                    <button class="btn btn-second" href="{% url 'base_gestao' %}">Fazer Login</button>
+                    <button class="btn btn-second" href="{% url 'base_gestao' %}" type="submit">Fazer Login</button>
                 </form>
             </div>
         </div>

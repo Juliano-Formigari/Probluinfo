@@ -1,11 +1,55 @@
 {% extends 'base_gestao.html' %}
-
 {% block conteudo %}
-<h3>Criar</h3>
 
-<p class="lead">Criar</p>
+<div class="container bg-light back02">
+    <form method="POST" class="form-group" name="notas_form" action="">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <div><h4> Lista de Notas </h4></div>
+            </div>
+        </div>
+    
+    {% include 'form_pesquisa.html' %}
+    <div class="container mt-3">
+        {% if total > 0 %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID matricula</th>
+                    <th>Nota1</th>
+                    <th>Nota2</th>
+                    <th>Nota3</th>
+                    <th>Nota4</th>
+                    <th>Media</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pessoas in porPagina %}
+                <tr>
+                    <td>{{ notas.id_matricula }}</td>
+                    <td>{{ notas.nota1 }}</td>
+                    <td>{{ notas.nota2 }}</td>
+                    <td>{{ notas.nota3}}</td>
+                    <td>{{ notas.nota4 }}</td>
+                    <td>{{ notas.media }}</td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">
+                        <label>Total de registros: {{ total }}</label>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        {% include 'paginacao.html' %}
+        {% elif procura %}
+            {% include 'sem_registro_encontrado.html' %}
+        {% else %}
+            {% include 'sem_item_cadastrado.html' %}
+        {% endif %}
+    </div>
 
-<p>
-    Em breve mais detalhes.
-</p>
 {% endblock %}

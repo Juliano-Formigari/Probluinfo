@@ -31,7 +31,3 @@ def altera_senha(request):
 def sobre(request):
     return render(request, 'sobre.html')
 
-
-def cadastra_alunos(request):
-    return render(request, 'cadastra_alunos.html')
-
