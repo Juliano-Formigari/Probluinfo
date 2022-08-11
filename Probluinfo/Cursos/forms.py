@@ -1,3 +1,4 @@
+
 from django.forms import ModelForm
 from Cursos.models import Cursos,Salas,Matriculas,Notas
 
@@ -17,7 +18,7 @@ class FormSalas(ModelForm):
 class FormMatriculas(ModelForm):
     class Meta:
         model = Matriculas
-        fields = ['id','dt_inicio','dt_fim','qtd_dias','qtd_horas','id_aluno','id_curso','periodo','id_sala']   
+        fields = ['id','dt_inicio','dt_fim','qtd_dias','qtd_horas','id_pessoa','id_curso','periodo','id_sala']   
         db_table = 'Matriculas'
 
 class FormNotas(ModelForm):

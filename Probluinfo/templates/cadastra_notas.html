@@ -1,1 +1,61 @@
-<h1>Cadastra notas</h1>
+{% extends 'base_gestao.html' %}
+{% block conteudo %}
+
+<div class="container bg-light back02">
+    <form method="POST" class="form-group" name="notas_form" action="">
+        {% csrf_token %}
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <div><h4> Cadastrar Notas</h4></div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="id">Id do Aluno </label>
+                <input type="text" class="form-control" id="id" name="id" maxlength="100" required
+                       value="{% if request.POST %}{{ request.POST.id }}{% elif object.id %}{{ object.id }}{% endif %}">
+                <p class="errorlist">{{ form.errors.id }}</p>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="id_matricula_id">Matricula</label>
+                <input type="text" class="form-control" id="id_matricula_id" name="id_matricula_id"  maxlength="10"
+                       value="{% if request.POST %}{{ request.POST.id_matricula_id }}{% elif object.id_matricula_id %}{{ object.id_matricula_id }}{% endif %}">
+                <p class="errorlist">{{ form.errors.id_matricula_id }}</p>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="nota_1">Nota 1 </label>
+                <input type="text" class="form-control" id="nota_1" name="nota_1"  maxlength="10"
+                       value="{% if request.POST %}{{ request.POST.nota_1 }}{% elif object.nota_1 %}{{ object.nota_1 }}{% endif %}">
+                <p class="errorlist">{{ form.errors.nota_1 }}</p>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="nota_2">Nota 2 </label>
+                <input type="text" class="form-control" id="nota_2" name="nota_2"  maxlength="10"
+                       value="{% if request.POST %}{{ request.POST.nota_2 }}{% elif object.nota_2 %}{{ object.nota_2 }}{% endif %}">
+                <p class="errorlist">{{ form.errors.nota_2 }}</p>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="nota_3">Nota 3</label>
+                <input type="text" class="form-control" id="nota_3" name="nota_3"  maxlength="10"
+                       value="{% if request.POST %}{{ request.POST.nota_3 }}{% elif object.nota_3 %}{{ object.nota_3 }}{% endif %}">
+                <p class="errorlist">{{ form.errors.nota_3 }}</p>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="nota_4">Nota 4 </label>
+                <input type="text" class="form-control" id="nota_4" name="nota_4"  maxlength="10"
+                       value="{% if request.POST %}{{ request.POST.nota_4 }}{% elif object.nota_4 %}{{ object.nota_4 }}{% endif %}">
+                <p class="errorlist">{{ form.errors.nota_4 }}</p>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="media">Media</label>
+                <input type="text" class="form-control" id="media" name="media"  maxlength="10"
+                       value="{% if request.POST %}{{ request.POST.media }}{% elif object.media %}{{ object.media }}{% endif %}">
+                <p class="errorlist">{{ form.errors.media }}</p>
+            </div>
+        </div>
+        {% include 'acoes_form.html' %}
+    </div>
+    </form>
+</div>
+{% endblock %}

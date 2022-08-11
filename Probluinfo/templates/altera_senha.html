@@ -1,0 +1,46 @@
+{% extends 'base_gestao.html' %}
+{% load static %}
+
+{% block conteudo %}
+<div class="container bg-light back02">
+
+    <form method="post" class="form" autocomplete="off">
+    {% csrf_token %}
+
+        <div class="row">
+            <div class="col col-5">
+                <div class="form-group">
+                    <label for="old_password">Senha atual<span style="color: red;">*</span></label>
+                    <input type="password" class="form-control" id="old_password" name="old_password" required autofocus>
+                    <p class="errorlist">{{ form.errors.old_password }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="new_password1">Senha nova<span style="color: red;">*</span></label>
+                    <input type="password" class="form-control" id="new_password1" name="new_password1" required>
+                    <small id="password-help" class="form-text text-muted">
+                    </small>
+                    <p class="errorlist">{{ form.errors.new_password1 }}</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="new_password2">Repita a senha nova<span style="color: red;">*</span></label>
+                    <input type="password" class="form-control" id="new_password2" name="new_password2" required>
+                    <p class="errorlist">{{ form.errors.new_password2 }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col d-flex justify-content-between">
+                <button class="btn btn-primary px-4 shadow-sm noprint" type="submit">Salvar</button>
+                <button class="btn btn-danger px-4 shadow-sm noprint" type="submit">Apagar</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

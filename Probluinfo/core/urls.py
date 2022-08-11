@@ -1,20 +1,69 @@
 """Probluinfo URL Configuration
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
 """
+
 from django.contrib import admin
-from django.urls import path
-from Cursos.views import cadastra_salas,cadastra_cursos,cadastra_matriculas,cadastra_notas
-from Pessoas.views import cadastra_pessoas
-from Pessoas.views import lista_pessoas
-from Financeiro.views import cadastra_lancamento
+from django.urls import path, include
+from django.contrib.auth import views as auth_views
+from django.views.generic import TemplateView
+
+from core import views
+from .views import login
+
+from Cursos.views import cadastra_cursos,altera_cursos,lista_cursos,exclui_cursos,cadastra_salas,altera_salas,lista_salas,exclui_salas,cadastra_notas,altera_notas,lista_notas,exclui_notas,cadastra_matriculas,altera_matriculas,lista_matriculas,exclui_matriculas
+
+from Financeiro.views import cadastra_lancamentos,lista_lancamentos,altera_lancamentos,exclui_lancamentos
+
+from Pessoas.views import lista_pessoas,cadastra_pessoas,altera_pessoas,exclui_pessoas
+
 
 urlpatterns = [
+
     path('admin/', admin.site.urls),
-    path('cadastra-salas',cadastra_salas),
-    path('cadastra-cursos',cadastra_cursos),
-    path('cadastra-matriculas',cadastra_matriculas),
-    path('cadastra-notas',cadastra_notas),
-    path('cadastra-pessoas',cadastra_pessoas),
-    path('lista-pessoas',lista_pessoas),
-    path('cadastra-lancamento',cadastra_lancamento),
+    
+
+    path('altera-pessoas',altera_pessoas, name='altera-pessoas'),
+    path('altera-cursos',altera_cursos, name='altera-cursos'),
+    path('altera-salas',altera_salas, name='altera-salas'),
+    path('altera-notas',altera_notas, name='altera-notas'),
+    path('altera-matriculas',altera_matriculas, name='altera-matriculas'),
+    path('altera-lancamentos',altera_lancamentos, name='altera-lancamentos'),
+
+    path('cadastra-pessoas',cadastra_pessoas, name='cadastra-pessoas'),
+    path('cadastra-cursos',cadastra_cursos, name='cadastra-cursos'),
+    path('cadastra-salas',cadastra_salas, name='cadastra-salas'),
+    path('cadastra-notas',cadastra_notas, name='cadastra-notas'),
+    path('cadastra-matriculas',cadastra_matriculas, name='cadastra-matriculas'),
+    path('cadastra-lancamentos',cadastra_lancamentos, name='cadastra-lancamentos'),
+
+    path('lista-pessoas',lista_pessoas, name='lista-pessoas'),
+    path('lista-cursos',lista_cursos, name='lista-cursos'),
+    path('lista-salas',lista_salas, name='lista-salas'),
+    path('lista-notas',lista_notas, name='lista-notas'),
+    path('lista-matriculas',lista_matriculas, name='lista-matriculas'),
+    path('lista-lancamentos',lista_lancamentos, name='lista-lancamentos'),
+
+    path('exclui-pessoas',exclui_pessoas, name='exclui-pessoas'),
+    path('exclui-cursos',exclui_cursos, name='exclui-cursos'),
+    path('exclui-salas',exclui_salas, name='exclui-salas'),
+    path('exclui-notas',exclui_notas, name='exclui-notas'),
+    path('exclui-matriculas',exclui_matriculas, name='exclui-matriculas'),
+    path('exclui-lancamentos',exclui_lancamentos, name='exclui-lancamentos'),
+
+    path('suporte',views.suporte, name='suporte'),
+    path('logged_out/',views.logged_out, name = "logged_out"),
+    path('base_gestao/',views.base_gestao, name = "base_gestao"),
+    path('base_pdv/',views.base_pdv, name = "base_pdv"),
+    path("login/", views.login, name="login"),
+    path("sobre/", views.sobre, name="sobre"),
+    path('recup-senha/',views.recup_senha, name = "recup-senha"),
+    path('atualizar-dados/',views.atualizar_dados, name = "atualizar-dados"),
+    path('altera_senha/',views.altera_senha, name = "altera-senha"),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path("", views.login, name="login"),
+   
+    
+ 
 ]
+handler404 = 'core.views.pagina_inexistente'
+    

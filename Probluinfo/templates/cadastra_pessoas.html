@@ -1,72 +1,95 @@
-{% extends 'base.html' %}
+{% extends 'base_gestao.html' %}
+{% block conteudo %}
 
-{% block titulo %}Cadastra Pessoas{% endblock %}
+<div class="container bg-light back02">
+    <form method="POST" class="form-group" name="pessoas_form" action="">
+        {% csrf_token %}
 
-<!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-
-{% block corpo %}
-    <div class="container my-3 form-control">
-        <form method="post">
-            {% csrf_token %}
-            <div class="row">
-                <div class="text-center">
-                    <label class="fs-3 my-3 fw-bold">Cadastro de Pessoas</label>
-                </div>
-                <div class="mb-3">
-                    <label for="nm_completo" class="form-label">Nome Completo:</label>
-                    <input type="text" class="form-control" name="nm_completo" id="nm_completo" maxlength="100" required placeholder="Digite seu nome completo" />
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">E-mail:</label>
-                    <input type="email" class="form-control" name="email" id="email" maxlength="50" placeholder="Digite seu e-mail" />
-                </div>
-                <div class="mb-3 col-6">
-                    <label for="cpf" class="form-label">CPF:</label>
-                    <input type="text" class="form-control" name="cpf" id="cpf" maxlength="14" required placeholder="000.000.000-00" />
-                </div>
-                <div class="mb-3 col-6">
-                    <label for="dt_nascimento" class="form-label">Data de nascimento:</label>
-                    <input type="date" class="form-control" name="dt_nascimento" id="dt_nascimento" />
-                </div>
-                <div class="mb-3">
-                    <label for="celular" class="form-label">Celular:</label>
-                    <input type="tel" class="form-control" name="celular" id="celular" placeholder="(00) 00000-0000"/>
-                </div>
-                <div class="mb-3 col-6">
-                    <label for="nm_resp" class="form-label">Nome do responsável:</label>
-                    <input type="text" class="form-control" name="nm_resp" id="nm_resp" placeholder="Digite o nome do responsável" disabled/>
-                </div>
-                <div class="mb-3 col-6">
-                    <label for="fone_res" class="form-label">Telefone do responsável:</label>
-                    <input type="tel" class="form-control" name="fone_res" id="fone_res" placeholder="(00) 00000-0000" disabled/>
-                </div>
-                <div class="mb-3 col-6">
-                    <label for="login" class="form-label">Login:</label>
-                    <input type="text" class="form-control" name="login" id="login" required
-                        placeholder="Digite seu login" />
-                </div>
-                <div class="mb-3 col-6">
-                    <label for="senha" class="form-label">Senha:</label>
-                    <input type="password" class="form-control" name="senha" id="senha" required
-                        placeholder="Digite sua senha" />
-                </div>
-                <div class="mb-3">
-                    <label for="perfil" class="form-label">Tipo de perfil:</label>
-                    <select class="form-select" name="perfil" id="perfil">
-                            <option value="0">Selecione o tipo</option>
-                        {% for perfil in perfis %}
-                            <option value="{{ perfil.0 }}">{{ perfil.1 }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+        <!-- Identificação -->
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <div><h4>Cadatrar Pessoas</h4></div>
             </div>
-            {% include 'acoes_form.html' %}
-        </form>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="nm_completo">Nome Completo</label>
+                <input type="text" class="form-control" id="nm_completo" name="nm_completo" maxlength="100" required placeholder="Digite seu nome completo" />
+            </div>
+            <div class="form-group col-md-3">
+                <label for="dt_nascimento">Data de nascimento</label>
+                <input type="date" class="form-control" id="dt_nascimento" placeholder="dd/mm/aaaa"  name="dt_nascimento" required />  
+            </div>
+            <div class="form-group col-md-3">
+                <label for="cpf">CPF</label>
+                <input type="text" class="form-control" id="cpf" name="cpf" maxlength="14" placeholder="000.000.000-00" />
+            </div>
+        </div>
+        
+        <!-- Contatos -->
+        <hr>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <div><h4>Contatos</h4></div>
+            </div>
+        </div>
+            <div class="form-group col-md-6">
+                <label for="fone_res">Telefone</label>
+                <input type="text" class="form-control" id="fone_res" name="fone_res" maxlength="9" placeholder="(00) 00000-0000" />     
+            </div>
+            <div class="form-group col-md-4">
+                <label for="celular">Celular</label>
+                <input type="text" class="form-control" id="celular" name="celular" maxlength="9" placeholder="(00) 00000-0000" />         
+            </div>
+            <div class="form-group col-md-6">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" maxlength="250" placeholder="Digite seu e-mail" placeholder="Digite seu e-mail" />         
+            </div>
+            <div class="form-group col-md-6">
+                <label for="nm_resp">Responsável<span style="color: red;">*</span></label>
+                <input type="text" class="form-control" id="nm_resp" name="nm_resp" maxlength="100" required placeholder="Digite o nome do responsável" disabled />       
+            </div>
+            <div class="form-group col-md-6">
+                <label for="fone_res">Telefone do Responsável</label>
+                <input type="text" class="form-control" id="fone_res" name="fone_res" maxlength="100" placeholder="(00) 00000-0000" disabled />       
+            </div>
+            <br>
+        <hr>
+        
+        <!-- Informação de Login -->
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <div><h4>Dados para Login</h4></div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="login">Login <span style="color: red;">*</span></label>
+                <input type="text" class="form-control" id="login" placeholder="Login" required name="login" maxlength="100" required placeholder="Digite seu login" />       
+            </div>
+            <div class="form-group col-md-3">
+                <label for="senha">Senha <span style="color: red;">*</span></label>
+                <input type="text" class="form-control" id="senha" placeholder="Senha" required name="senha"  maxlength="10" placeholder="Digite sua senha" />                
+            </div>
+            <div class="form-group col-md-6">
+                <label for="perfil">
+                <span style="color: red;">*</span></label>
+                    Perfil
+                <select class="form-control" name="perfil" id="perfil">
+                        <option value="0">Selecione o tipo</option>
+                    {% for perfil in perfis %}
+                        <option value="{{ perfil.0 }}">{{ perfil.1 }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        {% include 'acoes_form.html' %}
     </div>
-    
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+</div>
+</div>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous"></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
@@ -86,6 +109,7 @@
         
         $('#dt_nascimento').blur(function(){
                 var anoDeNascimento = new Date($(this).val()).getFullYear();
+                console.log(anoDeNascimento)
                 var anoAtual = new Date().getFullYear();
                 var idade = anoAtual - anoDeNascimento;
                 
