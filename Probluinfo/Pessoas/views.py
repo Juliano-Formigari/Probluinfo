@@ -25,6 +25,7 @@ def lista_pessoas(request):
             }
 
     return render(request, 'lista_pessoas.html', dados)
+    
 def altera_pessoas(request):
     return render(request,'altera_pessoas.html')
 
