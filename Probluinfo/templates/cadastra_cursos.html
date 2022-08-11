@@ -1,30 +1,32 @@
-{% extends 'base.html' %}
-{% block titulo %}Cadastra Cursos{% endblock %}
-{% block corpo %}
-<form method="post">
-  {% csrf_token %}
-    <div class="mb-3 row">
-        <label for="colFormLabelLg" class="col-2 col-form-label col-form-label-lg"><b>Curso</b></label>
-        <div class="col-10">
-          <input type="text" name="nm_curso" class="form-control form-control-lg" max_length=50 id="colFormLabelLg" placeholder="Nome do curso" required>
+{% extends 'base_gestao.html' %}
+{% block conteudo %}
+
+<div class="container bg-light back02">
+    <form method="POST" class="form-group" name="cursos_form" action="">
+        {% csrf_token %}
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <div><h4> Cadastrar Cursos </h4></div>
+            </div>
         </div>
-    </div>
-    
-    <div class="mb-3 row">
-        <label for="colFormLabelLg" class="col-2 col-form-label col-form-label-lg"><b>Carga horária</b></label>
-        <div class="col-10">
-          <input type="number" min="0" name="carga_horaria" class="form-control form-control-lg" id="colFormLabelLg" placeholder="Carga horária" required>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="nm_curso">Nome do Curso</label>
+                <input type="text" class="form-control form-control-lg"  id="nm_curso" name="nm_curso" maxlength="100" required placeholder="Nome do curso" required/>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="carga_horaria">Carga Horária</label>
+                <input type="text" min="0" class="form-control form-control-lg"  id="carga_horaria" name="carga_horaria"  maxlength="10" placeholder="Carga horária" required/>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="vl_curso">Valor do Curso - R$ </label>
+                <input type="text" class="form-control form-control-lg"  value="0" min="0" id="vl_curso" name="vl_curso"  title="casa decimal deve ser separada por ponto"  maxlength="10" placeholder="R$" required/>         
+            </div>
         </div>
-    </div>
-    
-    <div class="mb-3 row">
-        <label for="colFormLabelLg" class="col-2 col-form-label col-form-label-lg"><b>R$</b> </label>
-        <div class="col-10">
-          <input type="number" value="0" min="0" name="vl_curso" class="form-control form-control-lg" id="colFormLabelLg" placeholder="R$" required>
-        </div>
-    </div>
-  </div>
-    
-    {% include 'acoes_form.html' %}
-</form>
+        {% include 'acoes_form.html' %}
+    </form>
+</div>
 {% endblock %}
+
+

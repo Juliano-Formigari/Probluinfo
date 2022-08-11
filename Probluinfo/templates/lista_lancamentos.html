@@ -1,0 +1,41 @@
+{% extends 'base_gestao.html' %}
+{% block conteudo %}
+
+<div class="container bg-light back02">
+    <form method="POST" class="form-group" name="pessoas_form" action="">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <div><h4> Lista de Lançamentos </h4></div>
+            </div>
+        </div>
+    
+   
+        <div class="container mt-4">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>E-mail</th>
+                        <th>Data de Nasc.</th>
+                        <th>Celular</th>
+                        <th>Fone Resp</th>
+                        <th>Nome Resp</th>
+                        <th>Login</th>
+                        <th>perfil</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">
+                            <label>Total de registros: {{ total }}</label>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+            {% include 'paginacao.html' %}
+        </div>
+    
+    {% endblock %}

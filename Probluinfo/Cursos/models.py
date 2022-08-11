@@ -35,11 +35,12 @@ class Matriculas(models.Model):
     (Vespertino,'Verpertino'),
     (Noturno,'Noturno'),
     )
+    
     dt_inicio = models.DateField(blank=False)
     dt_fim = models.DateField(blank=False)
     qtd_dias = models.DecimalField(max_digits=3,decimal_places=0,blank=False)
     qtd_horas = models.DecimalField(max_digits=3,decimal_places=0,blank=False)
-    periodo = models.CharField(max_length=1,choices=PERIODOS_CHOICES,blank=False)
+    periodo = models.IntegerField(blank=False,choices=PERIODOS_CHOICES)
     id_sala = models.ForeignKey(Salas,on_delete=models.PROTECT)
     id_curso = models.ForeignKey(Cursos,on_delete=models.PROTECT)
     id_pessoa = models.ForeignKey(Pessoas,related_name='pessoas',on_delete=models.PROTECT)
@@ -48,7 +49,7 @@ class Matriculas(models.Model):
         db_table = 'Matriculas'
     
     def __str__(self):
-        return self.id_aluno
+        return self.id_pessoa
 
 class Notas(models.Model):
     id_matricula = models.ForeignKey(Matriculas,blank=False,on_delete=models.PROTECT)

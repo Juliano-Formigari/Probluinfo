@@ -1,0 +1,51 @@
+{% extends 'base_gestao.html' %}
+{% block conteudo %}
+
+<div class="container bg-light back02">
+    <form method="POST" class="form-group" name="pessoas_form" action="">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <div><h4> Lista de Cursos </h4></div>
+            </div>
+        </div>
+    
+    {% include 'form_pesquisa.html' %}
+    <div class="container mt-3">
+        {% if total > 0 %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Carga Horaria</th>
+                    <th>Valor do Curso</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in porPagina %}
+                <tr>
+                    <td>{{ cursos.nm_curso }}</td>
+                    <td>{{ cursos.carga_horaria }}</td>
+                    <td>{{ cursos.vl_curso }}</td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">
+                        <label>Total de registros: {{ total }}</label>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        {% include 'paginacao.html' %}
+        {% elif procura %}
+            {% include 'sem_registro_encontrado.html' %}
+        {% else %}
+            {% include 'sem_item_cadastrado.html' %}
+        {% endif %}
+    </div>
+
+{% endblock %}
