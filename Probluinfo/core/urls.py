@@ -44,13 +44,14 @@ urlpatterns = [
     path('exclui-lancamentos',exclui_lancamentos, name='exclui-lancamentos'),
 
     path('suporte',suporte, name='suporte'),
-    path('base_gestao/',base_gestao, name = "base_gestao"),
-    path('base_pdv/',base_pdv, name = "base_pdv"),
+    path('base-gestao/',base_gestao, name = "base-gestao"),
+    path('base-pdv/',base_pdv, name = "base-pdv"),
     path("login/",login, name="login"),
     path("sobre/",sobre, name="sobre"),
     path('recup-senha/',recup_senha, name ="recup-senha"),
+    path('login/recup-senha/',recup_senha, name ="recup-senha"),
     path('atualizar-dados/',atualizar_dados, name = "atualizar-dados"),
-    path('altera_senha/',altera_senha, name = "altera-senha"),
+    path('altera-senha/',altera_senha, name = "altera-senha"),
     path('accounts/',include('django.contrib.auth.urls')),
     path("",login, name="login"),
 ]

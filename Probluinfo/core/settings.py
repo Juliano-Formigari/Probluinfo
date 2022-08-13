@@ -58,7 +58,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates', 'static'],
+        'DIRS': [BASE_DIR /'templates', 'static'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -131,6 +131,16 @@ LOGIN_URL = 'accounts/login'
 
 LOGIN_REDIRECT_URL = 'login'
 
+LOGOUT_REDIRECT_URL = 'login'
+
+# Configurações de envio do e-mail
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "leandroslv125@gmail.com"
+EMAIL_HOST_PASSWORD = "viablu123"
 
 
 # Default primary key field type

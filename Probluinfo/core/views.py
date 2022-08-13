@@ -1,13 +1,15 @@
 
-from django.shortcuts import render, redirect
+import time
+from django.shortcuts import render
 from django.contrib.auth import logout 
+
 
 def login(request):
     return render(request, 'login.html')
 
-def logout_view(request):
-    logout(request)
-    return render(request, 'logged_out.html')
+def logout(request):
+    time.sleep(2)
+    return render(request, 'login.html')
     
 def pagina_inexistente(request, exception):  # precisa ser exception
     return render(request, 'pagina-inexistente.html')
