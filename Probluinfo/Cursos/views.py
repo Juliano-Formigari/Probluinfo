@@ -36,7 +36,23 @@ def lista_cursos(request):
     return render(request,'lista_cursos.html')
 
 def lista_matriculas(request):
-    return render(request,'lista_matriculas.html')
+    procura = request.GET.get('procura')
+
+    if procura:
+        matricula = Matriculas.objects.filter(nome__icontains=procura)|Matriculas.objects.filter(email__icontains=procura)
+    else:
+        matricula = Matriculas.objects.all()
+
+    total = matricula.count
+
+    dados = {
+                'matricula' : matricula, 
+                'total' : total, 
+                'procura' : procura,
+              
+            }
+
+    return render(request, 'lista_matriculas.html', dados)
 
 def lista_notas(request):
     return render(request,'lista_notas.html')

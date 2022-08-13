@@ -2,18 +2,14 @@
 {% block conteudo %}
 
 <div class="container bg-light back02">
-    <form method="POST" class="form-group" name="pessoas_form" action="">
-        {% csrf_token %}
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <div><h4> Lista de Cursos </h4></div>
-            </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <div><h4> Lista de Cursos </h4></div>
         </div>
-    
+    </div>
     {% include 'form_pesquisa.html' %}
-    <div class="container mt-3">
-        {% if total > 0 %}
-        <table class="table table-hover">
+    <div class="table-responsive">
+        <table class="table table-striped" id="tabela-listar">
             <thead>
                 <tr>
                     <th>Nome</th>
@@ -23,29 +19,65 @@
                 </tr>
             </thead>
             <tbody>
-                {% for usuario in porPagina %}
+                {% for tipo in tipos %}
                 <tr>
-                    <td>{{ cursos.nm_curso }}</td>
-                    <td>{{ cursos.carga_horaria }}</td>
-                    <td>{{ cursos.vl_curso }}</td>
-                    
+                    <td>{{ nm_curso }}</td>
+                    <td>{{ carga_horaria }}</td>
+                    <td>{{ vl_curso }}</td>
                 </tr>
-                {% endfor %}
+                {% empty %}
+            <tr>
+                <td colspan="3">Nenhum Curso Registrado.</td>
+            </tr>
+            {% endfor %}
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="3">
+                    <td colspan="2">
                         <label>Total de registros: {{ total }}</label>
                     </td>
                 </tr>
             </tfoot>
         </table>
         {% include 'paginacao.html' %}
-        {% elif procura %}
-            {% include 'sem_registro_encontrado.html' %}
-        {% else %}
-            {% include 'sem_item_cadastrado.html' %}
-        {% endif %}
     </div>
+    <script>
+
+        $(document).ready(function(){
+    
+            $("#tabela-listar").DataTable({
+                responsive: true,
+                // "bSort": false,
+                "aaSorting": [],
+                "pageLength": 50,
+                "language": {
+                    "decimal": "",
+                    "emptyTable": "Sem dados disponíveis",
+                    "info": "Mostrando de _START_ até _END_ de _TOTAL_ registos",
+                    "infoEmpty": "Mostrando de 0 até 0 de 0 registos",
+                    "infoFiltered": "(filtrado de _MAX_ registos no total)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ registos",
+                    "loadingRecords": "A carregar dados...",
+                    "processing": "A processar...",
+                    "search": "Procurar:",
+                    "zeroRecords": "Não foram encontrados resultados",
+                    "paginate": {
+                        "first": "Primeiro",
+                        "last": "Último",
+                        "next": "Seguinte",
+                        "previous": "Anterior"
+                    },
+                    "aria": {
+                        "sortAscending": ": ordem crescente",
+                        "sortDescending": ": ordem decrescente"
+                    }
+                }
+            });
+    
+        });
+    
+    </script>
 
 {% endblock %}

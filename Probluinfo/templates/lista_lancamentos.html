@@ -2,34 +2,43 @@
 {% block conteudo %}
 
 <div class="container bg-light back02">
-    <form method="POST" class="form-group" name="pessoas_form" action="">
-        {% csrf_token %}
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <div><h4> Lista de Lançamentos </h4></div>
-            </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <div><h4> Lista de Lançamentos </h4></div>
         </div>
-    
-   
-        <div class="container mt-4">
-            <table class="table table-hover">
-                <thead>
+    </div>
+    {% include 'form_pesquisa.html' %}
+    <div class="table-responsive">
+        <table class="table table-striped" id="tabela-listar">
+            <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nome</th>
-                        <th>CPF</th>
-                        <th>E-mail</th>
-                        <th>Data de Nasc.</th>
-                        <th>Celular</th>
-                        <th>Fone Resp</th>
-                        <th>Nome Resp</th>
-                        <th>Login</th>
-                        <th>perfil</th>
+                        <th>Tipo</th>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th>Data lançamento</th>
+                        <th>Id Pessoa</th>
                     </tr>
                 </thead>
+                <tbody>
+                    {% for tipo in tipos %}
+                    <tr>
+                        <td>{{ tipo.id }}</td>
+                        <td>{{ tipo.tipo }}</td>
+                        <td>{{ tipo.descricao }}</td>
+                        <td>{{ tipo.valor }}</td>
+                        <td>{{ tipo.dt_lancamento }}</td>
+                        <td>{{ tipo.id_pessoa_id }}</td>
+                    </tr>
+                    {% empty %}
+                <tr>
+                    <td colspan="3">Nenhum Lançamento Registrado.</td>
+                </tr>
+                {% endfor %}
+                </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="3">
+                        <td colspan="2">
                             <label>Total de registros: {{ total }}</label>
                         </td>
                     </tr>
@@ -37,5 +46,43 @@
             </table>
             {% include 'paginacao.html' %}
         </div>
+        <script>
+    
+            $(document).ready(function(){
+        
+                $("#tabela-listar").DataTable({
+                    responsive: true,
+                    // "bSort": false,
+                    "aaSorting": [],
+                    "pageLength": 50,
+                    "language": {
+                        "decimal": "",
+                        "emptyTable": "Sem dados disponíveis",
+                        "info": "Mostrando de _START_ até _END_ de _TOTAL_ registos",
+                        "infoEmpty": "Mostrando de 0 até 0 de 0 registos",
+                        "infoFiltered": "(filtrado de _MAX_ registos no total)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Mostrar _MENU_ registos",
+                        "loadingRecords": "A carregar dados...",
+                        "processing": "A processar...",
+                        "search": "Procurar:",
+                        "zeroRecords": "Não foram encontrados resultados",
+                        "paginate": {
+                            "first": "Primeiro",
+                            "last": "Último",
+                            "next": "Seguinte",
+                            "previous": "Anterior"
+                        },
+                        "aria": {
+                            "sortAscending": ": ordem crescente",
+                            "sortDescending": ": ordem decrescente"
+                        }
+                    }
+                });
+        
+            });
+        
+        </script>
     
     {% endblock %}

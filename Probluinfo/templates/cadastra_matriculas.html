@@ -13,7 +13,7 @@
         <div class="form-row">
             <div class="form-group col-md-3">
                 <label for="id">ID </label>
-                <input type="text" class="form-control" id="id" name="id" maxlength="100" required />
+                <input type="text" class="form-control" id="id" name="id" maxlength="100" placeholder="Digite a ID da Matricula" required />
             </div>
             <div class="form-group col-md-3">
                 <label for="dt_inicio">Data de Inicio </label>
@@ -21,15 +21,15 @@
             </div>
             <div class="form-group col-md-3">
                 <label for="dt_fim">Data de Fim </label>
-                <input type="date" class="form-control" id="dt_fim" placeholder="dd/mm/aaaa" required name="dt_fim"  maxlength="10" />       
+                <input type="date" class="form-control" id="dt_fim" placeholder="dd/mm/aaaa" required name="dt_fim"  maxlength="10" placeholder="Digite a ID do Aluno" />       
             </div>
             <div class="form-group col-md-3">
                 <label for="qtd_dias">Quantidade de Dias</label>
-                <input type="text" class="form-control" id="qtd_dias" name="qtd_dias" maxlength="14"  />  
+                <input type="text" class="form-control" id="qtd_dias" name="qtd_dias" maxlength="14" placeholder=" Quantidade de dias"  />  
             </div>
             <div class="form-group col-md-3">
                 <label for="qtd_horas">Quantidade de Horas</label>
-                <input type="text" class="form-control" id="qtd_horas" name="qtd_horas" maxlength="14" />
+                <input type="text" class="form-control" id="qtd_horas" name="qtd_horas" maxlength="14" placeholder="Quantidade de horas" />
             </div>
             <div class="form-group col-md-3">
                 <label for="periodo">Periodo</label>
@@ -45,28 +45,16 @@
                 </div>
             </div>
             <div class="form-group col-md-3">
-                <label for="id_aluno_id">Aluno ID</label>
-                <input type="text" class="form-control" id="id_aluno_id" name="id_aluno_id" maxlength="14" />    
+                <label for="id_pessoa_id">Aluno ID</label>
+                <input type="text" class="form-control" id="id_pessoa_id" name="id_pessoa_id" maxlength="14" placeholder="Digite a ID do Aluno" />    
             </div>
             <div class="form-group col-md-3">
                 <label for="id_curso_id">Curso ID</label>
-                <input type="text" class="form-control" id="id_curso_id" name="id_curso_id" maxlength="14" />       
-            </div>
-            <div class="form-group col-md-3">
-                <label for="id_instrutor_id">Instrutor ID</label>
-                <input type="text" class="form-control" id="id_instrutor_id" name="id_instrutor_id" maxlength="14" />   
-            </div>
-            <div class="form-group col-md-3">
-                <label for="id_perfil_id">Perfil ID</label>
-                <input type="text" class="form-control" id="id_perfil_id" name="id_perfil_id" maxlength="14" />
+                <input type="text" class="form-control" id="id_curso_id" name="id_curso_id" maxlength="14" placeholder="Digite a ID do Curso" />       
             </div>
             <div class="form-group col-md-3">
                 <label for="id_sala_id">Sala ID</label>
-                <input type="text" class="form-control" id="id_sala_id" name="id_sala_id" maxlength="14" /> 
-            </div>
-            <div class="form-group col-md-3">
-                <label for="id_vendedor_id">Vendedor ID</label>
-                <input type="text" class="form-control" id="id_vendedor_id" name="id_vendedor_id" maxlength="14" />    
+                <input type="text" class="form-control" id="id_sala_id" name="id_sala_id" maxlength="14" placeholder="Digite a ID da Sala" /> 
             </div>
         </div>
         {% include 'acoes_form.html' %}

@@ -48,7 +48,7 @@ urlpatterns = [
     path('base_pdv/',base_pdv, name = "base_pdv"),
     path("login/",login, name="login"),
     path("sobre/",sobre, name="sobre"),
-    path('recup-senha/',recup_senha, name = "recup-senha"),
+    path('recup-senha/',recup_senha, name ="recup-senha"),
     path('atualizar-dados/',atualizar_dados, name = "atualizar-dados"),
     path('altera_senha/',altera_senha, name = "altera-senha"),
     path('accounts/',include('django.contrib.auth.urls')),

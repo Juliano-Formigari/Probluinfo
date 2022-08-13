@@ -1,10 +1,100 @@
 {% extends 'base_gestao.html' %}
 {% block conteudo %}
-<h3>Criar</h3>
 
-<p class="lead">Criar</p>
+<div class="container bg-light back02">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <div><h4> Alteração de Matriculas </h4></div>
+        </div>
+    </div>
+    {% include 'form_pesquisa.html' %}
+    
+    <div class="table-responsive">
+        <table class="table table-striped" id="tabela-listar">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Data Inicio</th>
+                    <th>data Fim</th>
+                    <th>Qtd Dias</th>
+                    <th>Qtd Horas</th>
+                    <th>Periodo</th>
+                    <th>ID Curso</th>
+                    <th>ID Pessoa</th>
+                    <th>ID Sala</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tipo in tipos %}
+                <tr>
+                    <td>{{ id }}</td>
+                    <td>{{ dt_inicio }}</td>
+                    <td>{{ dt_fim }}</td>
+                    <td>{{ qtd_dias }}</td>
+                    <td>{{ qtd_horas }}</td>
+                    <td>{{ periodo }}</td>
+                    <td>{{ id_curso_id }}</td>
+                    <td>{{ id_pessoa_id }}</td>
+                    <td>{{ id_sala_id }}</td>
+                    <td>
+                        <a href="{% url 'cadastra_matriculas' campo.pk %}" class="btn btn-warning btn-sm" title="Editar">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+            <tr>
+                <td colspan="3">Nenhuma Matricula Registrada.</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">
+                        <label>Total de registros: {{ total }}</label>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        {% include 'paginacao.html' %}
+    </div>
+    <script>
 
-<p>
-    Em breve mais detalhes.
-</p>
+        $(document).ready(function(){
+    
+            $("#tabela-listar").DataTable({
+                responsive: true,
+                // "bSort": false,
+                "aaSorting": [],
+                "pageLength": 50,
+                "language": {
+                    "decimal": "",
+                    "emptyTable": "Sem dados disponíveis",
+                    "info": "Mostrando de _START_ até _END_ de _TOTAL_ registos",
+                    "infoEmpty": "Mostrando de 0 até 0 de 0 registos",
+                    "infoFiltered": "(filtrado de _MAX_ registos no total)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ registos",
+                    "loadingRecords": "A carregar dados...",
+                    "processing": "A processar...",
+                    "search": "Procurar:",
+                    "zeroRecords": "Não foram encontrados resultados",
+                    "paginate": {
+                        "first": "Primeiro",
+                        "last": "Último",
+                        "next": "Seguinte",
+                        "previous": "Anterior"
+                    },
+                    "aria": {
+                        "sortAscending": ": ordem crescente",
+                        "sortDescending": ": ordem decrescente"
+                    }
+                }
+            });
+    
+        });
+    
+    </script>
+
 {% endblock %}

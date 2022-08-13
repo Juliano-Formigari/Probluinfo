@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from Financeiro.models import Caixa
 from Financeiro.forms import FormCaixa
 # Create your views here.
@@ -8,6 +8,7 @@ def cadastra_lancamentos(request):
         form = FormCaixa(request.POST or None)
         if form.is_valid():
             form.save()
+            return redirect(cadastra_lancamentos)
     dados = {
         'tipo':tipo,
     }
