@@ -1,7 +1,6 @@
 from django.shortcuts import render,redirect
-from Cursos.forms import FormCursos
-from Cursos.models import Matriculas
-
+from Cursos.forms import FormCursos,FormMatriculas,FormNotas,FormSalas
+from Cursos.models import Matriculas,Cursos,Salas,Notas
 
 # Create your views here.
 
@@ -15,7 +14,7 @@ def cadastra_cursos(request):
 def cadastra_matriculas(request):
     periodos = Matriculas.PERIODOS_CHOICES
     if request.method == 'POST':
-        form = FormCursos(request.POST or None)
+        form = FormMatriculas(request.POST or None)
         if form.is_valid():
             form.save()
             return redirect(cadastra_matriculas)
@@ -26,13 +25,27 @@ def cadastra_matriculas(request):
     return render(request,'cadastra_matriculas.html', dados)
 
 def cadastra_salas(request):
+    if request.method == 'POST':
+        form = FormSalas(request.POST or None)
+        if form.is_valid():
+            form.save()
     return render(request,'cadastra_salas.html')
 
 def cadastra_notas(request):
+    if request.method == 'POST':
+        form = FormNotas(request.POST or None)
+        if form.is_valid():
+            form.save()
     return render(request,'cadastra_notas.html')
 
 
 def lista_cursos(request):
+    tipoCurso = Cursos.objects.all()
+
+    dados = {
+                'tipos' : tipoCurso,
+            }
+
     return render(request,'lista_cursos.html')
 
 def lista_matriculas(request):

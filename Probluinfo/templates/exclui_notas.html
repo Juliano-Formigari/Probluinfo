@@ -2,95 +2,63 @@
 {% block conteudo %}
 
 <div class="container bg-light back02">
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <div><h4> Exclusão de Notas </h4></div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="text-center">
+            <h3>
+                <label class="text-primary">Exclusão de Notas {{ notas.id }} </label>
+            </h3>
         </div>
-    </div>
-    {% include 'form_pesquisa.html' %}
-    
-    <div class="table-responsive">
-        <table class="table table-striped" id="tabela-listar">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nota1</th>
-                    <th>Nota2</th>
-                    <th>Nota3</th>
-                    <th>Nota4</th>
-                    <th>Media</th>
-                    <th>ID Matricula</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for tipo in tipos %}
-                <tr>
-                    <td>{{ id }}</td>
-                    <td>{{ nota_1 }}</td>
-                    <td>{{ nota_2 }}</td>
-                    <td>{{ nota_3 }}</td>
-                    <td>{{ nota_4 }}</td>
-                    <td>{{ media }}</td>
-                    <td>{{ id_matricula_id }}</td>
-                    <td>  
-                        <a href="{% url 'form_delete' campo.pk %}" class="btn btn-warning btn-sm" title="Excluir">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                        </a>
-                    </td>
-                </tr>
-                {% empty %}
-            <tr>
-                <td colspan="3">Nenhuma Nota Registrada.</td>
-            </tr>
-            {% endfor %}
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="2">
-                        <label>Total de registros: {{ total }}</label>
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
-        {% include 'paginacao.html' %}
-    </div>
-    <script>
-
-        $(document).ready(function(){
-    
-            $("#tabela-listar").DataTable({
-                responsive: true,
-                // "bSort": false,
-                "aaSorting": [],
-                "pageLength": 50,
-                "language": {
-                    "decimal": "",
-                    "emptyTable": "Sem dados disponíveis",
-                    "info": "Mostrando de _START_ até _END_ de _TOTAL_ registos",
-                    "infoEmpty": "Mostrando de 0 até 0 de 0 registos",
-                    "infoFiltered": "(filtrado de _MAX_ registos no total)",
-                    "infoPostFix": "",
-                    "thousands": ",",
-                    "lengthMenu": "Mostrar _MENU_ registos",
-                    "loadingRecords": "A carregar dados...",
-                    "processing": "A processar...",
-                    "search": "Procurar:",
-                    "zeroRecords": "Não foram encontrados resultados",
-                    "paginate": {
-                        "first": "Primeiro",
-                        "last": "Último",
-                        "next": "Seguinte",
-                        "previous": "Anterior"
-                    },
-                    "aria": {
-                        "sortAscending": ": ordem crescente",
-                        "sortDescending": ": ordem decrescente"
-                    }
-                }
-            });
-    
-        });
-    
-    </script>
-
+        <div class="form-group col-md-2">
+            <label for="id" class="form-label">ID</label>
+            <input type="text" class="form-control" name="id" value="{{ notas.id }}" id="id" maxlength="50" disabled>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="nota_1 " class="form-label">Nota 1</label>
+            <input type="text" class="form-control" name="nota_1" value="{{ notas.nota_1 }}" id="nota_1   " maxlength="50" disabled>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="nota_2" class="form-label">Nota 2</label>
+            <input type="date" class="form-control" name="nota_2" value="{{ notas.nota_2 }}" id="nota_2   " maxlength="50" disabled>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="nota_3" class="form-label">Nota 3</label>
+            <input type="text" class="form-control" name="nota_3" value="{{ notas.nota_3 }}" id="nota_3   " maxlength="50" disabled>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="nota_4" class="form-label">Nota 4</label>
+            <input type="text" class="form-control" name="nota_4" value="{{ notas.nota_4 }}" id="nota_4   " maxlength="50" disabled>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="media" class="form-label">Media</label>
+            <input type="text" class="form-control" name="media" value="{{ notas.media }}" id="media   " maxlength="50" disabled>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="id_matricula_id " class="form-label">Id Matricula</label>
+            <input type="text" class="form-control" name="id_matricula_id " value="{{ notas.id_matricula_id }}" id="id_matricula_id " maxlength="50"  disabled>
+        </div>
+        
+        {% include 'acoes_form_exclui.html' %}
+    </form>
+    <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-danger">
+              <h5 class="modal-title text-light" id="exampleModalLabel">Excluir registro</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Deseja realmente excluir <strong>{{ notas.id }}</strong>?
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Excluir</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+</div>
 {% endblock %}

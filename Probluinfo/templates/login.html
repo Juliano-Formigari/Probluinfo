@@ -38,8 +38,8 @@
                         </a>
                     </ul>
                 </div>
-                <form class="form" method="POST" autocomplete="off">
-                    {% csrf_token %}    {% if next %}
+                <form class="form" method="POST" autocomplete="off" action="{% url 'base-pdv' %}">{% csrf_token %}
+                 {% if next %}
                     {% if user.is_authenticated %}
                     <p>Your account doesn't have access to this page. To proceed,
                         please login with an account that has access.</p>
@@ -95,7 +95,7 @@
                         </a>
                     </ul>
                 </div>
-                <form class="form" method="POST" autocomplete="off">
+                <form class="form" method="POST" autocomplete="off"action="{% url 'base-gestao' %}">{% csrf_token %}
                     {% csrf_token %}
                     {% if next %}
                     {% if user.is_authenticated %}
@@ -123,7 +123,7 @@
                         <input type="password" id="senha" name="senha" class="form-control" required> 
                     </label>
                     <a class="password" href="recup-senha">Esqueceu sua Senha?</a>
-                    <button class="btn btn-second" href="{% url 'base-gestao' %}" type="submit">Fazer Login</button>
+                    <button class="btn btn-second" action="{% url 'base-gestao' %}" type="submit">Fazer Login</button>
                 </form>
             </div>
         </div>

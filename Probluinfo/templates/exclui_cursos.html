@@ -2,87 +2,47 @@
 {% block conteudo %}
 
 <div class="container bg-light back02">
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <div><h4> Exclusão de Cursos </h4></div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="text-center">
+            <h3>
+                <label class="text-primary">Exclusão de Curso {{ cursos.nm_curso }} </label>
+            </h3>
         </div>
-    </div>
-    {% include 'form_pesquisa.html' %}
-    
-    <div class="table-responsive">
-        <table class="table table-striped" id="tabela-listar">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Carga Horaria</th>
-                    <th>Valor do Curso</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for tipo in tipos %}
-                <tr>
-                    <td>{{ nm_curso }}</td>
-                    <td>{{ carga_horaria }}</td>
-                    <td>{{ vl_curso }}</td>
-                    <td>
-                        <a href="{% url 'form_delete' campo.pk %}" class="btn btn-warning btn-sm" title="Excluir">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                        </a>
-                    </td>
-                </tr>
-                {% empty %}
-            <tr>
-                <td colspan="3">Nenhum Curso Registrado.</td>
-            </tr>
-            {% endfor %}
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="2">
-                        <label>Total de registros: {{ total }}</label>
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
-        {% include 'paginacao.html' %}
-    </div>
-    <script>
-
-        $(document).ready(function(){
-    
-            $("#tabela-listar").DataTable({
-                responsive: true,
-                // "bSort": false,
-                "aaSorting": [],
-                "pageLength": 50,
-                "language": {
-                    "decimal": "",
-                    "emptyTable": "Sem dados disponíveis",
-                    "info": "Mostrando de _START_ até _END_ de _TOTAL_ registos",
-                    "infoEmpty": "Mostrando de 0 até 0 de 0 registos",
-                    "infoFiltered": "(filtrado de _MAX_ registos no total)",
-                    "infoPostFix": "",
-                    "thousands": ",",
-                    "lengthMenu": "Mostrar _MENU_ registos",
-                    "loadingRecords": "A carregar dados...",
-                    "processing": "A processar...",
-                    "search": "Procurar:",
-                    "zeroRecords": "Não foram encontrados resultados",
-                    "paginate": {
-                        "first": "Primeiro",
-                        "last": "Último",
-                        "next": "Seguinte",
-                        "previous": "Anterior"
-                    },
-                    "aria": {
-                        "sortAscending": ": ordem crescente",
-                        "sortDescending": ": ordem decrescente"
-                    }
-                }
-            });
-    
-        });
-    
-    </script>
-
+        <div class="mb-3">
+            <label for="nm_curso " class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nm_curso " name="nm_curso " value="{{ cursos.nm_curso  }}" maxlength="100" disabled />
+        </div>
+        <div class="mb-3">
+            <label for="carga_horaria">Carga Horaria</label>
+            <input type="text" class="form-control" id="carga_horaria " name="carga_horaria " value="{{ cursos.carga_horaria  }}" maxlength="100" disabled />
+        </div>
+        <div class="mb-3">
+            <label for="vl_curso ">Valor do Curso</label>
+            <input type="text" class="form-control" id="vl_curso " name="vl_curso " value="{{ cursos.vl_curso  }}" maxlength="100" disabled />
+        </div>
+        
+        {% include 'acoes_form_exclui.html' %}
+    </form>
+    <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-danger">
+              <h5 class="modal-title text-light" id="exampleModalLabel">Excluir registro</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Deseja realmente excluir <strong>{{ cursos.nm_curso }}</strong>?
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Excluir</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+</div>
 {% endblock %}

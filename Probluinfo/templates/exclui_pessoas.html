@@ -1,100 +1,86 @@
 {% extends 'base_gestao.html' %}
 {% block conteudo %}
-{% load static %}
-
 
 <div class="container bg-light back02">
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <div><h4> Exclusão de Pessoas </h4></div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="text-center">
+            <h3>
+                <label class="text-primary">Exclusão de Pessoas {{ pessoas.id }} </label>
+            </h3>
         </div>
-    </div>
-    {% include 'form_pesquisa.html' %}
-    
-    <div class="table-responsive">
-        <table class="table table-striped" id="tabela-listar">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>CPF</th>
-                    <th>E-mail</th>
-                    <th>Fone Resp</th>
-                    <th>Nome Resp</th>
-                    <th>Login</th>
-                    <th>Perfil</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for tipo in tipos %}
-                <tr>
-                    <td>{{ tipo.id }}</td>
-                    <td>{{ tipo.nm_completo }}</td>
-                    <td>{{ tipo.cpf }}</td>
-                    <td>{{ tipo.email }}</td>
-                    <td>{{ tipo.fone_res }}</td>
-                    <td>{{ tipo.nm_resp }}</td>
-                    <td>{{ tipo.login }}</td>
-                    <td>{{ tipo.perfil }}</td>
-                    <td>
-                        <a href="{% url 'cadastra_pessoas' campo.pk %}" class="btn btn-warning btn-sm" title="Excluir">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                        </a>
-                    </td>
-                </tr>
-                {% empty %}
-            <tr>
-                <td colspan="3">Nenhuma pessoa Registrada.</td>
-            </tr>
-            {% endfor %}
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="2">
-                        <label>Total de registros: {{ total }}</label>
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
-        {% include 'paginacao.html' %}
-    </div>
-    <script>
-
-        $(document).ready(function(){
-    
-            $("#tabela-listar").DataTable({
-                responsive: true,
-                // "bSort": false,
-                "aaSorting": [],
-                "pageLength": 50,
-                "language": {
-                    "decimal": "",
-                    "emptyTable": "Sem dados disponíveis",
-                    "info": "Mostrando de _START_ até _END_ de _TOTAL_ registos",
-                    "infoEmpty": "Mostrando de 0 até 0 de 0 registos",
-                    "infoFiltered": "(filtrado de _MAX_ registos no total)",
-                    "infoPostFix": "",
-                    "thousands": ",",
-                    "lengthMenu": "Mostrar _MENU_ registos",
-                    "loadingRecords": "A carregar dados...",
-                    "processing": "A processar...",
-                    "search": "Procurar:",
-                    "zeroRecords": "Não foram encontrados resultados",
-                    "paginate": {
-                        "first": "Primeiro",
-                        "last": "Último",
-                        "next": "Seguinte",
-                        "previous": "Anterior"
-                    },
-                    "aria": {
-                        "sortAscending": ": ordem crescente",
-                        "sortDescending": ": ordem decrescente"
-                    }
-                }
-            });
-    
-        });
-    
-    </script>
-
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="nm_completo">Nome Completo</label>
+                <input type="text" class="form-control" id="nm_completo" name="nm_completo" value="{{ pessoas.id }}" maxlength="100" placeholder="Digite seu nome completo" disabled/>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="dt_nascimento">Data de nascimento</label>
+                <input type="date" class="form-control" id="dt_nascimento" name="dt_nascimento" value="{{ pessoas.nm_completo  }}" placeholder="dd/mm/aaaa" disabled />
+            </div>
+            <div class="form-group col-md-3">
+                <label for="cpf">CPF</label>
+                <input type="text" class="form-control" id="cpf" name="cpf" value="{{ pessoas.cpf  }}" maxlength="14" placeholder="000.000.000-00" />
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="celular">Celular</label>
+            <input type="tel" class="form-control" id="celular" name="celular" value="{{ pessoas.celular }}" placeholder="(00) 00000-0000" />         
+        </div>
+        <div class="form-group col-md-6">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" maxlength="50" value="{{ pessoas.email  }}" placeholder="Digite seu e-mail" />         
+        </div>
+        <div class="form-group col-md-6">
+            <label for="nm_resp">Responsável<span style="color: red;">*</span></label>
+            <input type="text" class="form-control" id="nm_resp" name="nm_resp" maxlength="100" value="{{ pessoas.nm_resp  }}" placeholder="Digite o nome do responsável" disabled />       
+        </div>
+        <div class="form-group col-md-6">
+            <label for="fone_res">Telefone do Responsável</label>
+            <input type="tel" class="form-control" id="fone_res" name="fone_res" maxlength="100" value="{{ pessoas.fone_res  }}" placeholder="(00) 00000-0000" disabled />       
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="login">Login <span style="color: red;">*</span></label>
+                <input type="text" class="form-control" id="login" name="login" value="{{ pessoas.login  }}" placeholder="Digite seu login" disabled   />   
+            </div>
+            <div class="form-group col-md-3">
+                <label for="senha">Senha <span style="color: red;">*</span></label>
+                <input type="password" class="form-control" id="senha"  name="senha" value="{{ pessoas.senha }}" placeholder="Digite sua senha" disabled    />            
+            </div>
+            <div class="form-group col-md-6">
+                <label for="perfil">
+                <span style="color: red;">*</span></label>
+                    Perfil
+                <select class="form-control" name="perfil" id="perfil" disabled>
+                        <option value="0">Selecione o tipo</option>
+                    {% for perfil in perfis %}
+                        <option value="{{ perfil.0 }}">{{ perfil.1 }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        
+        {% include 'acoes_form_exclui.html' %}
+    </form>
+    <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-danger">
+              <h5 class="modal-title text-light" id="exampleModalLabel">Excluir registro</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Deseja realmente excluir <strong>{{ pessoas.id }}</strong>?
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Excluir</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+</div>
 {% endblock %}

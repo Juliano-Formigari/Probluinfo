@@ -6,11 +6,26 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views
 
-from core.views import suporte,base_gestao,base_pdv,login,sobre,recup_senha,atualizar_dados,altera_senha
-from Cursos.views import cadastra_cursos,altera_cursos,lista_cursos,exclui_cursos,cadastra_salas,altera_salas,lista_salas,exclui_salas,cadastra_notas,altera_notas,lista_notas,exclui_notas,cadastra_matriculas,altera_matriculas,lista_matriculas,exclui_matriculas
-from Financeiro.views import cadastra_lancamentos,lista_lancamentos,altera_lancamentos,exclui_lancamentos
-from Pessoas.views import lista_pessoas,cadastra_pessoas,altera_pessoas,exclui_pessoas
+from core.views import suporte,base,base_gestao,base_pdv,login,sobre,recup_senha,atualizar_dados,altera_senha
 
+
+
+from Cursos.views import cadastra_cursos,cadastra_salas,cadastra_notas,cadastra_matriculas
+from Cursos.views import exclui_cursos,exclui_salas,exclui_notas,exclui_matriculas
+from Cursos.views import lista_cursos,lista_salas,lista_notas,lista_matriculas
+from Cursos.views import altera_cursos,altera_salas,altera_notas,altera_matriculas
+
+
+from Financeiro.views import cadastra_lancamentos
+from Financeiro.views import exclui_lancamentos
+from Financeiro.views import lista_lancamentos
+from Financeiro.views import altera_lancamentos
+
+
+from Pessoas.views import cadastra_pessoas
+from Pessoas.views import exclui_pessoas
+from Pessoas.views import lista_pessoas
+from Pessoas.views import altera_pessoas
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -46,6 +61,7 @@ urlpatterns = [
     path('suporte',suporte, name='suporte'),
     path('base-gestao/',base_gestao, name = "base-gestao"),
     path('base-pdv/',base_pdv, name = "base-pdv"),
+    path('base/',base, name = "base"),
     path("login/",login, name="login"),
     path("sobre/",sobre, name="sobre"),
     path('recup-senha/',recup_senha, name ="recup-senha"),

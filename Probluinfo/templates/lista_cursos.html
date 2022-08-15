@@ -8,28 +8,29 @@
         </div>
     </div>
     {% include 'form_pesquisa.html' %}
-    <div class="table-responsive">
-        <table class="table table-striped" id="tabela-listar">
+    <div class="container mt-4">
+        {% if total > 0 %}
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Nome</th>
                     <th>Carga Horaria</th>
                     <th>Valor do Curso</th>
-                   
+                    <th class="text-center">Ações</th>
                 </tr>
             </thead>
             <tbody>
-                {% for tipo in tipos %}
+                {% for cursos in porPagina %}
                 <tr>
                     <td>{{ nm_curso }}</td>
                     <td>{{ carga_horaria }}</td>
                     <td>{{ vl_curso }}</td>
+                    <td class="text-center">
+                        <button class="btn btn-warning" onclick="location.href='altera-cursos/{{ nm_curso.id }}'">Alterar</button>
+                        <button class="btn btn-danger" onclick="location.href='exclui-cursos/{{ nm_curso.id }}'">Excluir</button>
+                    </td>
                 </tr>
-                {% empty %}
-            <tr>
-                <td colspan="3">Nenhum Curso Registrado.</td>
-            </tr>
-            {% endfor %}
+                {% endfor %}
             </tbody>
             <tfoot>
                 <tr>
@@ -40,44 +41,10 @@
             </tfoot>
         </table>
         {% include 'paginacao.html' %}
+        {% elif procura %}
+            {% include 'sem_registro_encontrado.html' %}
+        {% else %}
+            {% include 'sem_item_cadastrado.html' %}
+        {% endif %}
     </div>
-    <script>
-
-        $(document).ready(function(){
-    
-            $("#tabela-listar").DataTable({
-                responsive: true,
-                // "bSort": false,
-                "aaSorting": [],
-                "pageLength": 50,
-                "language": {
-                    "decimal": "",
-                    "emptyTable": "Sem dados disponíveis",
-                    "info": "Mostrando de _START_ até _END_ de _TOTAL_ registos",
-                    "infoEmpty": "Mostrando de 0 até 0 de 0 registos",
-                    "infoFiltered": "(filtrado de _MAX_ registos no total)",
-                    "infoPostFix": "",
-                    "thousands": ",",
-                    "lengthMenu": "Mostrar _MENU_ registos",
-                    "loadingRecords": "A carregar dados...",
-                    "processing": "A processar...",
-                    "search": "Procurar:",
-                    "zeroRecords": "Não foram encontrados resultados",
-                    "paginate": {
-                        "first": "Primeiro",
-                        "last": "Último",
-                        "next": "Seguinte",
-                        "previous": "Anterior"
-                    },
-                    "aria": {
-                        "sortAscending": ": ordem crescente",
-                        "sortDescending": ": ordem decrescente"
-                    }
-                }
-            });
-    
-        });
-    
-    </script>
-
 {% endblock %}
