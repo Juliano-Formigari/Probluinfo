@@ -1,4 +1,4 @@
-{% extends 'base_gestao.html' %}
+{% extends 'base_pbi.html' %}
 {% block conteudo %}
 
 <div class="container bg-light back02">
@@ -6,17 +6,17 @@
         {% csrf_token %}
         <div class="text-center">
             <h3>
-                <label class="text-primary">Alteração de Pessoas {{ pessoas.id }} </label>
+                <label class="text-dark">Alteração de Pessoas {{ pessoas.nm_completo }} </label>
             </h3>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="nm_completo">Nome Completo</label>
-                <input type="text" class="form-control" id="nm_completo" name="nm_completo" value="{{ pessoas.id }}" maxlength="100" placeholder="Digite seu nome completo" required />
+                <input type="text" class="form-control" id="nm_completo" name="nm_completo" value="{{ pessoas.nm_completo }}" maxlength="100" placeholder="Digite seu nome completo" required />
             </div>
             <div class="form-group col-md-3">
                 <label for="dt_nascimento">Data de nascimento</label>
-                <input type="date" class="form-control" id="dt_nascimento" name="dt_nascimento" value="{{ pessoas.nm_completo  }}" placeholder="dd/mm/aaaa" required />  
+                <input type="date" class="form-control" id="dt_nascimento" name="dt_nascimento" value={{ data_nas }} placeholder="dd/mm/aaaa" required />  
             </div>
             <div class="form-group col-md-3">
                 <label for="cpf">CPF</label>
@@ -59,11 +59,9 @@
                     {% endfor %}
                 </select>
             </div>
-        
-        {% include 'acoes_form_altera.html' %}
-        
-    </form>
-</div>
+        </form>
+    </div>
+    {% include 'acoes_form_altera.html' %}
    
 
 {% endblock %}

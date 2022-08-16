@@ -1,4 +1,4 @@
-{% extends 'base_gestao.html' %}
+{% extends 'base_pbi.html' %}
 {% block conteudo %}
 
 <div class="container bg-light back02">
@@ -24,7 +24,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for notas in porPagina %}
+                {% for nota in porPagina %}
                 <tr>
                     <td>{{ id }}</td>
                     <td>{{ nota_1 }}</td>
@@ -34,8 +34,8 @@
                     <td>{{ media }}</td>
                     <td>{{ id_matricula_id }}</td>
                     <td class="text-center">
-                        <button class="btn btn-warning" onclick="location.href='altera-notas/{{ id.id }}'">Alterar</button>
-                        <button class="btn btn-danger" onclick="location.href='exclui-notas/{{ id.id }}'">Excluir</button>
+                        <button class="btn btn-info" onclick="location.href='{% url 'altera-notas'  id=nota.id %}'">✏</button>
+                        <button class="btn btn-danger" onclick="location.href='{% url 'exclui-notas'  id=nota.id %}'">❌</button>
                     </td>
                 </tr>
                 {% endfor %}

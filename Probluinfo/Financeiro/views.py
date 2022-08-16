@@ -1,6 +1,9 @@
 from django.shortcuts import render,redirect
 from Financeiro.models import Caixa
 from Financeiro.forms import FormCaixa
+from django.views.decorators.http import require_POST
+
+
 # Create your views here.
 def cadastra_lancamentos(request):
     tipo = Caixa.TIPOS_CHOICES

@@ -1,4 +1,4 @@
-{% extends 'base_gestao.html' %}
+{% extends 'base_pbi.html' %}
 {% block conteudo %}
 
 <div class="container bg-light back02">
@@ -6,7 +6,7 @@
         {% csrf_token %}
         <div class="text-center">
             <h3>
-                <label class="text-primary">Exclusão de Pessoas {{ pessoas.id }} </label>
+                <label class="text-dark">Exclusão de Pessoas {{ pessoas.id }} </label>
             </h3>
         </div>
         <div class="form-row">
@@ -59,14 +59,15 @@
                     {% endfor %}
                 </select>
             </div>
-        
-        {% include 'acoes_form_exclui.html' %}
-    </form>
+            </form>
+        </div>
+    {% include 'acoes_form_exclui.html' %}
+
     <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header bg-danger">
-              <h5 class="modal-title text-light" id="exampleModalLabel">Excluir registro</h5>
+                <h5 class="modal-title text-light" id="exampleModalLabel">Excluir registro</h5>
               <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

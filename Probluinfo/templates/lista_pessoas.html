@@ -1,7 +1,7 @@
-{% extends 'base_gestao.html' %}
+{% extends 'base_pbi.html' %}
 {% block conteudo %}
 
-<div class="container bg-light back02">
+<div class="container bg-light back2s">
     <div class="form-row">
         <div class="form-group col-md-6">
             <div><h4> Lista de Pessoas </h4></div>
@@ -17,9 +17,9 @@
                     <th>Nome</th>
                     <th>CPF</th>
                     <th>E-mail</th>
-                    <th>Fone Resp</th>
-                    <th>Nome Resp</th>
-                    <th>Login</th>
+                    {% comment %} <th>Fone Resp</th> {% endcomment %}
+                    {% comment %} <th>Nome Resp</th> {% endcomment %}
+                    {% comment %} <th>Login</th> {% endcomment %}
                     <th>Perfil</th>
                     <th class="text-center">Ações</th>
                 </tr>
@@ -31,13 +31,13 @@
                     <td>{{ tipo.nm_completo }}</td>
                     <td>{{ tipo.cpf }}</td>
                     <td>{{ tipo.email }}</td>
-                    <td>{{ tipo.fone_res }}</td>
-                    <td>{{ tipo.nm_resp }}</td>
-                    <td>{{ tipo.login }}</td>
+                    {% comment %} <td>{{ tipo.fone_res }}</td> {% endcomment %}
+                    {% comment %} <td>{{ tipo.nm_resp }}</td> {% endcomment %}
+                    {% comment %} <td>{{ tipo.login }}</td> {% endcomment %}
                     <td>{{ tipo.perfil }}</td>
                     <td class="text-center">
-                        <button class="btn btn-warning" onclick="location.href='altera-pessoas/{{ id.id }}'">Alterar</button>
-                        <button class="btn btn-danger" onclick="location.href='exclui-pessoas/{{ id.id }}'">Excluir</button>
+                        <button class="btn btn-info" onclick="location.href='{% url 'altera-pessoas'  id=tipo.id %}'">✏</button>
+                        <button class="btn btn-danger" onclick="location.href='{% url 'exclui-pessoas'  id=tipo.id %}'">❌</button>
                     </td>
                 </tr>
                 {% endfor %}

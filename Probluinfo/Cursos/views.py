@@ -1,6 +1,9 @@
 from django.shortcuts import render,redirect
 from Cursos.forms import FormCursos,FormMatriculas,FormNotas,FormSalas
 from Cursos.models import Matriculas,Cursos,Salas,Notas
+from ViewsProject.views import efetua_paginacao
+from django.views.decorators.http import require_POST
+
 
 # Create your views here.
 
@@ -40,13 +43,23 @@ def cadastra_notas(request):
 
 
 def lista_cursos(request):
-    tipoCurso = Cursos.objects.all()
+    
+    procura= request.GET.get('procura')
+    if procura:
+        cursos = Cursos.objects.filter(cursos__icontains=procura)
+    else:
+        cursos = Cursos.objects.all()
+    
+    total = cursos.count
 
     dados = {
-                'tipos' : tipoCurso,
+                'cursos' : cursos,
+                'total' : total, 
+                'procura' : procura,
+                'porPagina' : efetua_paginacao(request, cursos)
             }
 
-    return render(request,'lista_cursos.html')
+    return render(request,'lista_cursos.html',dados)
 
 def lista_matriculas(request):
     procura = request.GET.get('procura')

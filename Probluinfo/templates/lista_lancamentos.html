@@ -1,4 +1,4 @@
-{% extends 'base_gestao.html' %}
+{% extends 'base_pbi.html' %}
 {% block conteudo %}
 
 <div class="container bg-light back02">
@@ -23,7 +23,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for lancamentos in porPagina %}
+                {% for lancamento in porPagina %}
                 <tr>
                     <td>{{ tipo.id }}</td>
                     <td>{{ tipo.tipo }}</td>
@@ -32,8 +32,8 @@
                     <td>{{ tipo.dt_lancamento }}</td>
                     <td>{{ tipo.id_pessoa_id }}</td>
                     <td class="text-center">
-                        <button class="btn btn-warning" onclick="location.href='altera-lancamentos/{{ nm_curso.id }}'">Alterar</button>
-                        <button class="btn btn-danger" onclick="location.href='exclui-lancamentos/{{ nm_curso.id }}'">Excluir</button>
+                        <button class="btn btn-info" onclick="location.href='{% url 'altera-lancamentos'  id=lancamento.id %}'">✏</button>
+                        <button class="btn btn-danger" onclick="location.href='{% url 'exclui-lancamentos'  id=lancamento.id %}'">❌</button>
                     </td>
                 </tr>
                 {% endfor %}

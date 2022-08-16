@@ -1,4 +1,4 @@
-{% extends 'base_gestao.html' %}
+{% extends 'base_pbi.html' %}
 {% block conteudo %}
 
 <div class="container bg-light back02">
@@ -20,14 +20,14 @@
                 </tr>
             </thead>
             <tbody>
-                {% for salas in porPagina %}
+                {% for sala in porPagina %}
                 <tr>
                     <td>{{ id }}</td>
                     <td>{{ nm_sala }}</td>
                     <td>{{ capacidade }}</td>
                     <td class="text-center">
-                        <button class="btn btn-warning" onclick="location.href='altera-salas/{{ id.id }}'">Alterar</button>
-                        <button class="btn btn-danger" onclick="location.href='exclui-salas/{{ id.id }}'">Excluir</button>
+                        <button class="btn btn-info" onclick="location.href='{% url 'altera-salas'  id=sala.id %}'">✏</button>
+                        <button class="btn btn-danger" onclick="location.href='{% url 'exclui-salas'  id=sala.id %}'">❌</button>
                     </td>
                 </tr>
                 {% endfor %}

@@ -5,8 +5,9 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views
+from ViewsProject.views import retornaRequest, exibeTabela
 
-from core.views import suporte,base,base_gestao,base_pdv,login,sobre,recup_senha,atualizar_dados,altera_senha
+from core.views import suporte,base_pbi,login,sobre,recup_senha,atualizar_dados,altera_senha
 
 
 
@@ -30,12 +31,12 @@ from Pessoas.views import altera_pessoas
 urlpatterns = [
     path('admin/', admin.site.urls),
     
-    path('altera-pessoas',altera_pessoas, name='altera-pessoas'),
-    path('altera-cursos',altera_cursos, name='altera-cursos'),
-    path('altera-salas',altera_salas, name='altera-salas'),
-    path('altera-notas',altera_notas, name='altera-notas'),
-    path('altera-matriculas',altera_matriculas, name='altera-matriculas'),
-    path('altera-lancamentos',altera_lancamentos, name='altera-lancamentos'),
+    path('altera-pessoas/<int:id>',altera_pessoas,name='altera-pessoas'),
+    path('altera-cursos/<int:id>',altera_cursos,name='altera-cursos'),
+    path('altera-salas/<int:id>',altera_salas,name='altera-salas'),
+    path('altera-notas/<int:id>',altera_notas,name='altera-notas'),
+    path('altera-matriculas/<int:id>',altera_matriculas,name='altera-matriculas'),
+    path('altera-lancamentos/<int:id>',altera_lancamentos,name='altera-lancamentos'),
 
     path('cadastra-pessoas',cadastra_pessoas, name='cadastra-pessoas'),
     path('cadastra-cursos',cadastra_cursos, name='cadastra-cursos'),
@@ -51,17 +52,17 @@ urlpatterns = [
     path('lista-matriculas',lista_matriculas, name='lista-matriculas'),
     path('lista-lancamentos',lista_lancamentos, name='lista-lancamentos'),
 
-    path('exclui-pessoas',exclui_pessoas, name='exclui-pessoas'),
-    path('exclui-cursos',exclui_cursos, name='exclui-cursos'),
-    path('exclui-salas',exclui_salas, name='exclui-salas'),
-    path('exclui-notas',exclui_notas, name='exclui-notas'),
-    path('exclui-matriculas',exclui_matriculas, name='exclui-matriculas'),
-    path('exclui-lancamentos',exclui_lancamentos, name='exclui-lancamentos'),
+    path('exclui-pessoas/<int:id>',exclui_pessoas,name='exclui-pessoas'),
+    path('exclui-cursos/<int:id>',exclui_cursos,name='exclui-cursos'),
+    path('exclui-salas/<int:id>',exclui_salas,name='exclui-salas'),
+    path('exclui-notas/<int:id>',exclui_notas,name='exclui-notas'),
+    path('exclui-matriculas/<int:id>',exclui_matriculas,name='exclui-matriculas'),
+    path('exclui-lancamentos/<int:id>',exclui_lancamentos,name='exclui-lancamentos'),
 
     path('suporte',suporte, name='suporte'),
-    path('base-gestao/',base_gestao, name = "base-gestao"),
-    path('base-pdv/',base_pdv, name = "base-pdv"),
-    path('base/',base, name = "base"),
+    path('__exemplo', retornaRequest),
+    path('__tabela', exibeTabela),
+    path('base/',base_pbi, name = "base-pbi"),
     path("login/",login, name="login"),
     path("sobre/",sobre, name="sobre"),
     path('recup-senha/',recup_senha, name ="recup-senha"),

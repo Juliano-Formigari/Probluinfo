@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_pbi.html' %}
 {% load static %}
 
 {% block conteudo %}
@@ -24,9 +24,9 @@
                 <label for="mensagem" class="form-label">Mensagem</label>
                 <textarea class="form-control" id="mensagem" rows="3" required></textarea>
             </div>
-            <div class="mb-3">
-                <input  type="submit" value="Enviar" class="btn btn-primary"/>
-                <input type="reset" value="Cancelar" class="btn btn-danger"/>
+            <div class="d-flex my-3 justify-content-around">
+                <input class="btn btn-primary" type="submit" value="Enviar">
+                <input class="btn btn-secondary" type="reset" value="Cancelar" onclick="window.history.back()">
             </div>
         </form>
     </form>
