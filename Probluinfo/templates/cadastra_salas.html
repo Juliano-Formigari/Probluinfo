@@ -1,27 +1,25 @@
-{% extends 'base_gestao.html' %}
-{% block conteudo %}
+{% extends 'base_pbi.html' %}
 
+{% block conteudo %}
 <div class="container bg-light back02">
-    <form method="POST" class="form-group" name="salas_form" action="">
+    <form method="POST" class="form-group" name="salas_form" >
         {% csrf_token %}
 
         <div class="form-row">
             <div class="form-group col-md-4">
-                <div><h4>Cadastrar Salas</h4></div>
+                <div>
+                    <h4> Cadastrar Salas </h4>
+                </div>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="nm_sala">Código da Sala </label>
-                <input type="text" class="form-control" id="nm_sala" name="nm_sala" maxlength="100" required
-                       value="{% if request.POST %}{{ request.POST.nm_sala }}{% elif object.nm_sala %}{{ object.nm_sala }}{% endif %}">
-                <p class="errorlist">{{ form.errors.nm_sala }}</p>
+                <input type="text" class="form-control" id="nm_sala" name="nm_sala" maxlength="100" placeholder="Digite o codigo da Sala"  required />
             </div>
             <div class="form-group col-md-6">
                 <label for="capacidade">Capacidade</label>
-                <input type="text" class="form-control" id="capacidade" name="capacidade" maxlength="100" required
-                       value="{% if request.POST %}{{ request.POST.capacidade }}{% elif object.capacidade %}{{ object.capacidade }}{% endif %}">
-                <p class="errorlist">{{ form.errors.capacidade }}</p>
+                <input type="text" class="form-control" id="capacidade" name="capacidade" maxlength="100" placeholder="Digite a capacidade de alunos" required />    
             </div>
         </div>
         {% include 'acoes_form.html' %}

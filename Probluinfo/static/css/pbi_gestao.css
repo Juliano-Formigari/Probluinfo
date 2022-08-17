@@ -4,10 +4,16 @@ Cores do pbi
 */
 .bg-pbi {
     background-color: #304351;
+
+}
+
+.bg-pbi2 {
+    background-color: #E4C981;
 }
 
 .text-pbi {
     color: #304351;
+
 }
 
 .border-pbi {
@@ -24,32 +30,6 @@ Cores do pbi
 .border-pbi-escuro {
     border-color: #304351;
 }
-
-
-/* 
-Tamanhos diferentes para fontes 
-*/
-.font-75 {
-    font-size: 75%;
-}
-
-.font-115 {
-    font-size: 115%;
-}
-
-.font-125 {
-    font-size: 125%;
-}
-
-.font-150 {
-    font-size: 150%;
-}
-
-.font-175 {
-    font-size: 175%;
-}
-
-
 
 
 /* 

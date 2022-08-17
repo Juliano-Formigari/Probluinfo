@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-&6u&-nvj#a^z$sxlr=4+w5nq1teb4v_)9c3thkrq-68e@xamg_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ViewsProject',
     'Cursos',
     'Financeiro',
     'Pessoas'
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates', 'static'],
+        'DIRS': [BASE_DIR /'templates', 'static'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'probluinfo',
         'USER' : 'root',
-        'PASSWORD' : '',
+        'PASSWORD' : 'AdminAdmin',
         'HOST' : 'localhost',
         'PORT' : '3307'
     }
@@ -131,6 +132,16 @@ LOGIN_URL = 'accounts/login'
 
 LOGIN_REDIRECT_URL = 'login'
 
+LOGOUT_REDIRECT_URL = 'login'
+
+# Configurações de envio do e-mail
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "leandroslv125@gmail.com"
+EMAIL_HOST_PASSWORD = "viablu123"
 
 
 # Default primary key field type

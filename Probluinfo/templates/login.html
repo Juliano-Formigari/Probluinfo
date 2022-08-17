@@ -38,34 +38,18 @@
                         </a>
                     </ul>
                 </div>
-                <form class="form" method="POST" autocomplete="off">
-                    {% csrf_token %}    {% if next %}
-                    {% if user.is_authenticated %}
-                    <p>Your account doesn't have access to this page. To proceed,
-                        please login with an account that has access.</p>
-                        {% else %}
-                        <div class="alert alert-info alert-dismissible fade show">
-                            <p>Para acessar a página é necessário estar autenticado.</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    {% endif %}
-                    {% endif %}
-                    {% if form.errors %}
-                    <div class="alert alert-danger alert-dismissible fade show">
-                        <p>Usuário/Senha inválidos. Tente novamente!</p>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    {% endif %}
+                <form class="form" method="POST" autocomplete="off" action="">{% csrf_token %}
                     <label class="label-input" for="">
                         <i class="far fa-envelope icon-modify"></i>
-                        <input type="text" id="login" name="login"  placeholder="Login" class="form-control" value="{{ request.POST.username }}" maxlength="30" required autofocus>
+                        <input type="text" id="login" name="login"  placeholder="Login" class="form-control" maxlength="30" required autofocus>
                     </label>
                     <label class="label-input" for="">
                         <i class="fas fa-lock icon-modify"></i>
-                        <input type="password" id="senha" name="senha" class="form-control" required>   
+                        <input type="password" id="senha" name="senha" class="form-control" required> 
+                        <input type="hidden" name="setor" value="pdv">  
                     </label>
-                    <a class="password" href="#">Esqueceu sua Senha?</a>
-                   <button class="btn btn-second" href="{% url 'base_pdv' %}" type="submit">Fazer Login</button>
+                    <a class="password" href="recup-senha">Esqueceu sua Senha?</a>
+                   <button class="btn btn-second" type="submit">Fazer Login</button>
                 </form>
             </div>
         </div>
@@ -95,35 +79,18 @@
                         </a>
                     </ul>
                 </div>
-                <form class="form" method="POST" autocomplete="off">
-                    {% csrf_token %}
-                    {% if next %}
-                    {% if user.is_authenticated %}
-                    <p>Your account doesn't have access to this page. To proceed,
-                        please login with an account that has access.</p>
-                        {% else %}
-                        <div class="alert alert-info alert-dismissible fade show">
-                            <p>Para acessar a página é necessário estar autenticado.</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    {% endif %}
-                    {% endif %}
-                    {% if form.errors %}
-                    <div class="alert alert-danger alert-dismissible fade show">
-                        <p>Usuário/Senha inválidos. Tente novamente!</p>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    {% endif %}
+                <form class="form" method="POST" autocomplete="off" action="">{% csrf_token %}
                     <label class="label-input" for="">
                         <i class="far fa-envelope icon-modify"></i>
-                        <input type="text" id="login" name="login"  placeholder="Login" class="form-control" value="{{ request.POST.username }}" maxlength="30" required autofocus>
+                        <input type="text" id="login" name="login"  placeholder="Login" class="form-control" maxlength="30" required autofocus>
                     </label>
                     <label class="label-input" for="">
                         <i class="fas fa-lock icon-modify"></i>
                         <input type="password" id="senha" name="senha" class="form-control" required> 
+                        <input type="hidden" name="setor" value="gestao"> 
                     </label>
-                    <a class="password" href="#">Esqueceu sua Senha?</a>
-                    <button class="btn btn-second" href="{% url 'base_gestao' %}" type="submit">Fazer Login</button>
+                    <a class="password" href="recup-senha">Esqueceu sua Senha?</a>
+                    <button class="btn btn-second" type="submit">Fazer Login</button>
                 </form>
             </div>
         </div>

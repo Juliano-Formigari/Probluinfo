@@ -1,10 +1,31 @@
-{% extends 'base_gestao.html' %}
+{% extends 'base_pbi.html' %}
 {% block conteudo %}
-<h3>Criar</h3>
 
-<p class="lead">Criar</p>
+<div class="container bg-light back02">
+    <form method="post">
+        {% csrf_token %}
+        <div class="text-center">
+            <h3>
+                <label class="text-primary">Alteração de Salas {{ salas.nm_sala }} </label>
+            </h3>
+        </div>
+        <div class="mb-3">
+            <label for="id" class="form-label">ID</label>
+            <input type="text" class="form-control" name="id" value="{{ salas.id }}" id="id" maxlength="50"  required>
+        </div>
+        <div class="mb-3">
+            <label for="nm_sala" class="form-label">Nome da Sala</label>
+            <input type="text" class="form-control" name="nm_sala" value="{{ salas.nm_sala }}" id="nm_sala" maxlength="50" required>
+        </div>
+        <div class="mb-3">
+            <label for="capacidade" class="form-label">Capacidade</label>
+            <input type="text" class="form-control" name="capacidade " value="{{ salas.capacidade }}" id="capacidade" maxlength="50" required>
+        </div>
+        
+        {% include 'acoes_form_altera.html' %}
+        
+    </form>
+</div>
+   
 
-<p>
-    Em breve mais detalhes.
-</p>
 {% endblock %}
