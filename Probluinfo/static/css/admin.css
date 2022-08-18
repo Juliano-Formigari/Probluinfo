@@ -551,6 +551,7 @@ pre code {
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
+  
   }
 }
 @media (min-width: 768px) {
@@ -7583,6 +7584,7 @@ button.bg-dark:focus {
 .mt-4,
 .my-4 {
   margin-top: 1.5rem !important;
+
 }
 
 .mr-4,

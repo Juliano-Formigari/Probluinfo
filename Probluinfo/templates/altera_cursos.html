@@ -1,10 +1,31 @@
-{% extends 'base_gestao.html' %}
+{% extends 'base_pbi.html' %}
 {% block conteudo %}
-<h3>Criar</h3>
 
-<p class="lead">Criar</p>
+<div class="container bg-light back02">
+    <form method="post">
+        {% csrf_token %}
+        <div class="text-center">
+            <h3>
+                <label class="text-primary">Alteração de Curso {{ cursos.nm_curso }} </label>
+            </h3>
+        </div>
+        <div class="mb-3">
+            <label for="nm_curso " class="form-label">Nome</label>
+            <input type="text" class="form-control" name="nm_curso " value="{{ cursos.nm_curso }}" id="nm_curso " maxlength="50"  required>
+        </div>
+        <div class="mb-3">
+            <label for="carga_horaria  " class="form-label">Carga Horaria</label>
+            <input type="text" class="form-control" name="carga_horaria  " value="{{ cursos.carga_horaria   }}" id="carga_horaria " maxlength="50" required>
+        </div>
+        <div class="mb-3">
+            <label for="vl_curso " class="form-label">Valor do Curso</label>
+            <input type="text" class="form-control" name="vl_curso " value="{{ cursos.vl_curso  }}" id="vl_curso " maxlength="50" required>
+        </div>
+        
+        {% include 'acoes_form_altera.html' %}
+        
+    </form>
+</div>
+   
 
-<p>
-    Em breve mais detalhes.
-</p>
 {% endblock %}

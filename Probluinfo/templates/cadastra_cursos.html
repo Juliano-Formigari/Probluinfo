@@ -1,17 +1,19 @@
-{% extends 'base_gestao.html' %}
-{% block conteudo %}
+{% extends 'base_pbi.html' %}
 
+{% block conteudo %}
 <div class="container bg-light back02">
-    <form method="POST" class="form-group" name="cursos_form" action="">
+    <form method="POST" class="form-group" name="cursos_form" >
         {% csrf_token %}
 
         <div class="form-row">
             <div class="form-group col-md-4">
-                <div><h4> Cadastrar Cursos </h4></div>
+                <div>
+                    <h4> Cadastrar Cursos </h4>
+                </div>
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <label for="nm_curso">Nome do Curso</label>
                 <input type="text" class="form-control form-control-lg"  id="nm_curso" name="nm_curso" maxlength="100" required placeholder="Nome do curso" required/>
             </div>

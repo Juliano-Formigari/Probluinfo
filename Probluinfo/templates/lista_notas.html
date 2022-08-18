@@ -1,42 +1,58 @@
-{% extends 'base_gestao.html' %}
+{% extends 'base_pbi.html' %}
 {% block conteudo %}
 
 <div class="container bg-light back02">
-    <form method="POST" class="form-group" name="pessoas_form" action="">
-        {% csrf_token %}
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <div><h4> Lista de Notas </h4></div>
-            </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <div><h4> Lista de Notas </h4></div>
         </div>
-    
+    </div>
     {% include 'form_pesquisa.html' %}
-    
     <div class="container mt-4">
+        {% if total > 0 %}
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nome</th>
-                    <th>CPF</th>
-                    <th>E-mail</th>
-                    <th>Data de Nasc.</th>
-                    <th>Celular</th>
-                    <th>Fone Resp</th>
-                    <th>Nome Resp</th>
-                    <th>Login</th>
-                    <th>perfil</th>
+                    <th>Nota1</th>
+                    <th>Nota2</th>
+                    <th>Nota3</th>
+                    <th>Nota4</th>
+                    <th>Media</th>
+                    <th>ID Matricula</th>
+                    <th class="text-center">Ações</th>
                 </tr>
             </thead>
+            <tbody>
+                {% for nota in porPagina %}
+                <tr>
+                    <td>{{ id }}</td>
+                    <td>{{ nota_1 }}</td>
+                    <td>{{ nota_2 }}</td>
+                    <td>{{ nota_3 }}</td>
+                    <td>{{ nota_4 }}</td>
+                    <td>{{ media }}</td>
+                    <td>{{ id_matricula_id }}</td>
+                    <td class="text-center">
+                        <button class="btn btn-info" onclick="location.href='{% url 'altera-notas'  id=nota.id %}'">✏</button>
+                        <button class="btn btn-danger" onclick="location.href='{% url 'exclui-notas'  id=nota.id %}'">❌</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="3">
+                    <td colspan="2">
                         <label>Total de registros: {{ total }}</label>
                     </td>
                 </tr>
             </tfoot>
         </table>
         {% include 'paginacao.html' %}
+        {% elif procura %}
+            {% include 'sem_registro_encontrado.html' %}
+        {% else %}
+            {% include 'sem_item_cadastrado.html' %}
+        {% endif %}
     </div>
-
 {% endblock %}

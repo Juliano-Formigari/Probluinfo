@@ -1,11 +1,65 @@
-{% extends 'base_gestao.html' %}
-
+{% extends 'base_pbi.html' %}
 {% block conteudo %}
-<h3>Criar</h3>
 
-<p class="lead">Criar</p>
-
-<p>
-    Em breve mais detalhes.
-</p>
+<div class="container bg-light back02">
+    <form method="post">
+        {% csrf_token %}
+        <div class="text-center">
+            <h3>
+                <label class="text-primary">Exclusão de Lançamentos {{ cursos.descricao }} </label>
+            </h3>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="id " class="form-label">ID</label>
+            <input type="text" class="form-control" id="id " name="id " value="{{ cursos.id  }}" maxlength="100" disabled />
+        </div>
+        <div class="form-group col-md-2">
+            <label for="tipo">Tipo</label>        
+                    <select class="form-control" name="tipo" id="perfil" disabled>
+                        <option value="0">Selecione o tipo</option>
+                        {% for tipo in tipo %}
+                            <option value="{{ tipo.0 }}">{{ tipo.1 }}</option>
+                        {% endfor %}
+                </select> 
+        </div>
+        <div class="form-group col-md-2">
+            <label for="descricao ">Descrição</label>
+            <input type="text" class="form-control" id="descricao " name="descricao " value="{{ cursos.descricao  }}" maxlength="100" disabled />
+        </div>
+        <div class="form-group col-md-2">
+            <label for="valor ">Valor</label>
+            <input type="text" class="form-control" id="valor " name="valor " value="{{ cursos.valor  }}" maxlength="100" disabled />
+        </div>
+        <div class="form-group col-md-2">
+            <label for="dt_lancamento ">Data Lançamento</label>
+            <input type="date" class="form-control" id="dt_lancamento " name="dt_lancamento " value="{{ cursos.dt_lancamento  }}" maxlength="100" disabled />
+        </div>
+        <div class="form-group col-md-2">
+            <label for="id_pessoa_id ">ID Pessoa</label>
+            <input type="text" class="form-control" id="id_pessoa_id " name="id_pessoa_id " value="{{ cursos.id_pessoa_id  }}" maxlength="100" disabled />
+        </div>
+        
+        {% include 'acoes_form_exclui.html' %}
+    </form>
+    <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-danger">
+              <h5 class="modal-title text-light" id="exampleModalLabel">Excluir registro</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Deseja realmente excluir <strong>{{ cursos.descricao }}</strong>?
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Excluir</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+</div>
 {% endblock %}
