@@ -28,6 +28,9 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1']
 
 
+AUTH_USER_MODEL = 'Pessoas.Pessoas'
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -83,7 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'probluinfo',
         'USER' : 'root',
-        'PASSWORD' : 'AdminAdmin',
+        'PASSWORD' : '',
         'HOST' : 'localhost',
         'PORT' : '3307'
     }
