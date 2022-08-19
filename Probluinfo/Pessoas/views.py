@@ -31,7 +31,11 @@ def cadastra_pessoas(request):
 
 def lista_pessoas(request):
     procura = request.GET.get('procura')
-    tipoPessoa = Pessoas.objects.all()
+    
+    if procura:
+        tipoPessoa = Pessoas.objects.filter(first_name__icontains=procura)
+    else:
+        tipoPessoa = Pessoas.objects.all()
 
     total = tipoPessoa.count
 
@@ -54,24 +58,20 @@ def altera_pessoas(request,id):
     if request.method == 'POST':
         form = FormPessoasAltera(request.POST, instance=pessoas)
         if form.is_valid():
+            print(form.cleaned_data)
             try:
                 with transaction.atomic():
                     form.save()
             except Exception as error:
                 print(error)
             return redirect(lista_pessoas)
+    else:
+        form = FormPessoasAltera()
     dados = {
                 'perfis' : perfil,
                 'pessoas' : pessoas,
-                'data_nas': data_nas
+                'data_nas': data_nas,
+                'form':form
             }
     return render(request, 'altera_pessoas.html', dados)
    
-
-def exclui_pessoas(request,id):
-    pessoas = Pessoas.objects.get(id=id)
-    if request.method == 'POST':
-        pessoas.delete()
-        return redirect(lista_pessoas)
-
-    return render(request,'exclui_pessoas.html' , {'tipo' : pessoas})

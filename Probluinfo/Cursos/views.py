@@ -101,19 +101,6 @@ def altera_salas(request):
 
 
 
-def exclui_cursos(request):
-    return render(request,'exclui_cursos.html')
-
-def exclui_matriculas(request):
-    return render(request,'exclui_matriculas.html')
-def exclui_notas(request):
-    return render(request,'exclui_notas.html')
-
-def exclui_salas(request):
-    return render(request,'exclui_salas.html')
-
-
-
 
 
 
