@@ -2,16 +2,23 @@
 {% load static %}
 
 {% block conteudo %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 <div class="container bg-light back02">
 
     <form method="post" class="form" autocomplete="off">
     {% csrf_token %}
 
-        <div class="row">
+      <div class="row">
             <div class="col col-5">
                 <div class="form-group">
                     <label for="old_password">Senha atual<span style="color: red;">*</span></label>
-                    <input type="password" class="form-control" id="old_password" name="old_password" required autofocus>
+                    <input type="password" class="form-control" id="old_password" name="{{form.old_password.name}}" required autofocus>
                     <p class="errorlist">{{ form.errors.old_password }}</p>
                 </div>
             </div>
@@ -21,7 +28,7 @@
             <div class="col">
                 <div class="form-group">
                     <label for="new_password1">Senha nova<span style="color: red;">*</span></label>
-                    <input type="password" class="form-control" id="new_password1" name="new_password1" required>
+                    <input type="password" class="form-control" id="new_password1" name="{{form.new_password1.name}}"  required>
                     <small id="password-help" class="form-text text-muted">
                     </small>
                     <p class="errorlist">{{ form.errors.new_password1 }}</p>
@@ -30,11 +37,12 @@
             <div class="col">
                 <div class="form-group">
                     <label for="new_password2">Repita a senha nova<span style="color: red;">*</span></label>
-                    <input type="password" class="form-control" id="new_password2" name="new_password2" required>
+                    <input type="password" class="form-control" id="new_password2" name="{{form.new_password2.name}}" required>
                     <p class="errorlist">{{ form.errors.new_password2 }}</p>
                 </div>
             </div>
-        </div>
+        </div> 
+
         {% include 'acoes_form_altera.html' %}
             
         </div>
