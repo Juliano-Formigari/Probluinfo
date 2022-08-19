@@ -1,0 +1,34 @@
+{% extends 'base_pbi.html' %}
+
+{% block conteudo %}
+<div class="container bg-light back02">
+    <form method="POST" class="form-group" name="cursos_form" >
+        {% csrf_token %}
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <div>
+                    <h4> Cadastrar Cursos </h4>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="nm_curso">Nome do Curso</label>
+                <input type="text" class="form-control form-control-lg"  id="nm_curso" name="nm_curso" maxlength="100" required placeholder="Nome do curso" required/>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="carga_horaria">Carga Horária</label>
+                <input type="text" min="0" class="form-control form-control-lg"  id="carga_horaria" name="carga_horaria"  maxlength="10" placeholder="Carga horária" required/>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="vl_curso">Valor do Curso - R$ </label>
+                <input type="text" class="form-control form-control-lg"  value="0" min="0" id="vl_curso" name="vl_curso"  title="casa decimal deve ser separada por ponto"  maxlength="10" placeholder="R$" required/>         
+            </div>
+        </div>
+        {% include 'acoes_form.html' %}
+    </form>
+</div>
+{% endblock %}
+
+

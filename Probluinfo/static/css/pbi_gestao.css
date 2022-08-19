@@ -1,0 +1,81 @@
+
+/* 
+Cores do pbi 
+*/
+.bg-pbi {
+    background-color: #304351;
+
+}
+
+.bg-pbi2 {
+    background-color: #E4C981;
+}
+
+.text-pbi {
+    color: #304351;
+
+}
+
+.border-pbi {
+    border-color: #304351;
+}
+.bg-pbi-escuro {
+    background-color: #304351;
+}
+
+.text-pbi-escuro {
+    color: #304351;
+}
+
+.border-pbi-escuro {
+    border-color: #304351;
+}
+
+
+/* 
+Formatação do DataTable 
+*/
+table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child::before,
+table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child::before {
+    top: 15px !important;
+}
+
+
+/* 
+Personalização da Barra de menu
+*/
+
+.navbar {
+    padding: 0 !important;
+}
+
+.navbars{
+    padding-left: 10px;
+}
+
+.navbar-brand{
+    padding-left: 0.5px;
+}
+
+.navbar a.nav-link{
+    color: white !important;
+}
+
+.navbar .nav-item{
+    padding: 3px 5px;
+}
+
+.navbar .nav-item:hover{
+    background-color: #4c5d68;
+}
+
+
+.alert dl, .alert ol, .alert ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+table td{
+    max-width: 500px;
+}
