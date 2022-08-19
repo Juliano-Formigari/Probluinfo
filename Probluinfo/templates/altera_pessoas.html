@@ -59,9 +59,9 @@
                 <label for="is_active">
                     Ativo?
                     <span style="color: red;">*</span></label>
-                <select class="form-control" name="is_active" id="is_active">
-                    <option value="0" {% if not pessoas.is_active %}selected{% endif %}>Inativo</option>
-                    <option value="1" {% if pessoas.is_active %}selected{% endif %}>Ativo</option>
+                <select class="form-control" name="{{ pessoas.is_active.name }}" id="is_active">
+                    <option value="0" >Inativo</option>
+                    <option value="1" >Ativo</option>
                 </select>
             </div>
         </div>

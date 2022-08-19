@@ -22,11 +22,11 @@
                     {% comment %} <th>Nome Resp</th> {% endcomment %}
                     {% comment %} <th>Login</th> {% endcomment %}
                     <th>Perfil</th>
-                    <th class="text-center">Ações</th>
+                    <th class="text-center">Alterar</th>
                 </tr>
             </thead>
             <tbody>
-                {% for tipo in tipos %}
+                {% for tipo in porPagina %}
                 <tr>
                     <td>{{ tipo.id }}</td>
                     <td>{{ tipo.first_name }} {{ tipo.last_name }}</td>
@@ -34,9 +34,9 @@
                     <td>{{ tipo.email }}</td>
                     
                     <td>{% if tipo.is_active %}
-                            😁
+                            🟢
                         {% else %}
-                            😒
+                            🔴  
                         {% endif %}
                     </td>
                     {% comment %} <td>{{ tipo.fone_res }}</td> {% endcomment %}
@@ -45,7 +45,6 @@
                     <td>{{ tipo.id_perfil.descricao }}</td>
                     <td class="text-center">
                         <button class="btn btn-info" onclick="location.href='{% url 'altera-pessoas'  id=tipo.id %}'">✏</button>
-                        <button class="btn btn-danger" onclick="location.href='{% url 'exclui-pessoas'  id=tipo.id %}'">❌</button>
                     </td>
                 </tr>
                 {% endfor %}

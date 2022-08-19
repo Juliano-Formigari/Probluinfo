@@ -6,25 +6,23 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views
 from ViewsProject.views import retornaRequest, exibeTabela
+from django.contrib.auth import views as auth_views
 
 from core.views import suporte,base_pbi,login,sobre,recup_senha,atualizar_dados,altera_senha
 
 
 
 from Cursos.views import cadastra_cursos,cadastra_salas,cadastra_notas,cadastra_matriculas
-from Cursos.views import exclui_cursos,exclui_salas,exclui_notas,exclui_matriculas
 from Cursos.views import lista_cursos,lista_salas,lista_notas,lista_matriculas
 from Cursos.views import altera_cursos,altera_salas,altera_notas,altera_matriculas
 
 
 from Financeiro.views import cadastra_lancamentos
-from Financeiro.views import exclui_lancamentos
 from Financeiro.views import lista_lancamentos
 from Financeiro.views import altera_lancamentos
 
 
 from Pessoas.views import cadastra_pessoas
-from Pessoas.views import exclui_pessoas
 from Pessoas.views import lista_pessoas
 from Pessoas.views import altera_pessoas
 
@@ -52,12 +50,6 @@ urlpatterns = [
     path('lista-matriculas',lista_matriculas, name='lista-matriculas'),
     path('lista-lancamentos',lista_lancamentos, name='lista-lancamentos'),
 
-    path('exclui-pessoas/<int:id>',exclui_pessoas,name='exclui-pessoas'),
-    path('exclui-cursos/<int:id>',exclui_cursos,name='exclui-cursos'),
-    path('exclui-salas/<int:id>',exclui_salas,name='exclui-salas'),
-    path('exclui-notas/<int:id>',exclui_notas,name='exclui-notas'),
-    path('exclui-matriculas/<int:id>',exclui_matriculas,name='exclui-matriculas'),
-    path('exclui-lancamentos/<int:id>',exclui_lancamentos,name='exclui-lancamentos'),
 
     path('suporte',suporte, name='suporte'),
     path('__exemplo', retornaRequest),
@@ -71,6 +63,9 @@ urlpatterns = [
     path('altera-senha/',altera_senha, name = "altera-senha"),
     path('accounts/',include('django.contrib.auth.urls')),
     path("",login, name="login"),
+
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="password_reset_confirm.html"), name='password_reset_confirm'),
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'), name='password_reset_complete'),
 ]
 handler404 = 'core.views.pagina_inexistente'
     

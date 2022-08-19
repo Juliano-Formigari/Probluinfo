@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from  decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ViewsProject',
+    'ViewsProject',
     'Cursos',
     'Financeiro',
     'Pessoas'
@@ -62,7 +64,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR /'templates', 'static'],
+        'DIRS': [BASE_DIR /BASE_DIR /'templates', 'static'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -86,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'probluinfo',
         'USER' : 'root',
-        'PASSWORD' : '',
+        'PASSWORD' : 'AdminAdmin',
         'HOST' : 'localhost',
         'PORT' : '3307'
     }
@@ -146,9 +148,19 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "leandroslv125@gmail.com"
 EMAIL_HOST_PASSWORD = "viablu123"
 
+# Configurações de envio do e-mail
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
 

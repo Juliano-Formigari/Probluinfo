@@ -23,5 +23,3 @@ def lista_lancamentos(request):
 def altera_lancamentos(request):
     return render(request,'altera_lancamentos.html')
 
-def exclui_lancamentos(request):
-    return render(request,'exclui_lancamentos.html')

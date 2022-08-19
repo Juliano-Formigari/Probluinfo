@@ -33,7 +33,6 @@
                     <td>{{ tipo.id_pessoa_id }}</td>
                     <td class="text-center">
                         <button class="btn btn-info" onclick="location.href='{% url 'altera-lancamentos'  id=lancamento.id %}'">✏</button>
-                        <button class="btn btn-danger" onclick="location.href='{% url 'exclui-lancamentos'  id=lancamento.id %}'">❌</button>
                     </td>
                 </tr>
                 {% endfor %}

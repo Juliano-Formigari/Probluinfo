@@ -39,7 +39,6 @@
                     <td>{{ id_sala_id }}</td>
                     <td class="text-center">
                         <button class="btn btn-info" onclick="location.href='{% url 'altera-matriculas'  id=matricula.id %}'">✏</button>
-                        <button class="btn btn-danger" onclick="location.href='{% url 'exclui-matriculas'  id=matricula.id %}'">❌</button>
                     </td>
                 </tr>
                 {% endfor %}
