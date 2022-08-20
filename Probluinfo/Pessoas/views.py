@@ -74,4 +74,29 @@ def altera_pessoas(request,id):
                 'form':form
             }
     return render(request, 'altera_pessoas.html', dados)
-   
+
+@transaction.atomic 
+def atualizar_dados(request,id):
+    perfil = Perfis.objects.filter(is_active=True).order_by('descricao')
+    pessoas = Pessoas.objects.get(id=id)
+    data_nas = pessoas.dt_nascimento
+    data_nas = data_nas.strftime('%Y-%m-%d')
+    if request.method == 'POST':
+        form = FormPessoasAltera(request.POST, instance=pessoas)
+        if form.is_valid():
+            print(form.cleaned_data)
+            try:
+                with transaction.atomic():
+                    form.save()
+            except Exception as error:
+                print(error)
+            return redirect(lista_pessoas)
+    else:
+        form = FormPessoasAltera()
+    dados = {
+                'perfis' : perfil,
+                'pessoas' : pessoas,
+                'data_nas': data_nas,
+                'form':form
+            }
+    return render(request, 'atualizar_dados.html', dados)

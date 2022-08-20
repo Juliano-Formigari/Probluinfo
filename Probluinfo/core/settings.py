@@ -63,7 +63,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR /'templates', 'static'],
+        'DIRS': [BASE_DIR, 'templates', 'static'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,15 +128,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = ["static/"]
 
-LOGIN_URL = 'accounts/login'
+LOGIN_REDIRECT_URL = '/login'
 
-LOGIN_REDIRECT_URL = 'login'
-
-LOGOUT_REDIRECT_URL = 'login'
+LOGOUT_REDIRECT_URL = '/logout'
 
 # Configurações de envio do e-mail
 EMAIL_BACKEND = config('EMAIL_BACKEND')

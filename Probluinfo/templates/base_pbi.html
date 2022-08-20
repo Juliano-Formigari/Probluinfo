@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Icones -->
-    <link href="{% static 'img/favico.png' %}" rel="shortcut icon" type="image/x-icon" />
+    <link href="{% static 'img/favi.ico' %}" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <!-- Css Bootstrap e Manual -->
@@ -38,9 +38,11 @@
         {% block conteudo %}
 
         {% if request.session.base == "pdv" %}
-            BEM VINDO AO MODULO PDV
+            BEM VINDO AO MODULO PDV - 
+            <b>{{ request.user.id_perfil.descricao }}</b>
         {% else %}
-            BEM VINDO AO MODULO GESTÃO
+            BEM VINDO AO MODULO GESTÃO - 
+            <b>{{ request.user.id_perfil.descricao }}</b>
         {% endif %}
         
         {% endblock %}
