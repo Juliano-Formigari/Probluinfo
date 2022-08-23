@@ -22,9 +22,9 @@
             <tbody>
                 {% for curso in porPagina %}
                 <tr>
-                    <td>{{ nm_curso }}</td>
-                    <td>{{ carga_horaria }}</td>
-                    <td>{{ vl_curso }}</td>
+                    <td>{{ curso.nm_curso }}</td>
+                    <td>{{ curso.carga_horaria }}</td>
+                    <td>{{ curso.vl_curso }}</td>
                     <td class="text-center">
                         <button class="btn btn-info" onclick="location.href='{% url 'altera-cursos'  id=curso.id %}'">✏</button>
                 </tr>

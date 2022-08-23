@@ -49,7 +49,6 @@
                     Perfil
                     <span style="color: red;">*</span></label>
                 <select class="form-control" name="id_perfil" id="id_perfil">
-                        <option value="0">Selecione o tipo</option>
                     {% for perfil in perfis %}
                         <option value="{{ perfil.id }}" {% if perfil.id == pessoas.id_perfil_id %}selected{% endif %}>{{ perfil.descricao }}</option>
                     {% endfor %}
@@ -59,9 +58,14 @@
                 <label for="is_active">
                     Ativo?
                     <span style="color: red;">*</span></label>
-                <select class="form-control" name="{{ pessoas.is_active.name }}" id="is_active">
-                    <option value="0" >Inativo</option>
-                    <option value="1" >Ativo</option>
+                    <select class="form-control" name="is_active" id="is_active">
+                    {% if pessoas.is_active %}
+                        <option value="True">Ativo</option>
+                        <option value="False">Inativo</option>
+                    {% else %}
+                        <option value="False">Inativo</option>
+                        <option value="True">Ativo</option>
+                    {% endif %}
                 </select>
             </div>
         </div>

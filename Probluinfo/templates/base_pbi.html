@@ -39,8 +39,10 @@
 
         {% if request.session.base == "pdv" %}
             BEM VINDO AO MODULO PDV
+            <b>{{ request.user.id_perfil.descricao }}</b>
         {% else %}
             BEM VINDO AO MODULO GESTÃO
+            <b>{{ request.user.id_perfil.descricao }}</b>
         {% endif %}
         
         {% endblock %}

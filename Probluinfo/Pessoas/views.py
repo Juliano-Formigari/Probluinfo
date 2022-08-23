@@ -71,7 +71,7 @@ def altera_pessoas(request,id):
                 'perfis' : perfil,
                 'pessoas' : pessoas,
                 'data_nas': data_nas,
-                'form':form
+                'form': form
             }
     return render(request, 'altera_pessoas.html', dados)
    

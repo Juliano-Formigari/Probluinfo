@@ -74,7 +74,7 @@ def recup_senha(request):
             if associated_users.exists():
                 token= default_token_generator.make_token(associated_users[0])
                 uid = urlsafe_base64_encode(force_bytes(associated_users[0].pk))
-                url= f"http://http://127.0.0.1:8000/reset/{uid}/{token}/"
+                url= f"http://127.0.0.1:8000/reset/{uid}/{token}/"
                 try:
                         send_mail('Resetar Senha', url, 'pbisistema@hotmail.com' , [associated_users[0].email], fail_silently=False)
                         messages.success(request,'Email enviado com Sucesso')
