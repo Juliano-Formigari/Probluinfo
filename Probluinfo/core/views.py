@@ -1,5 +1,6 @@
 
 from distutils.command.config import config
+from distutils.command.config import config
 from http.client import HTTPResponse
 import time
 from django.shortcuts import render,redirect
@@ -57,6 +58,13 @@ def suporte(request):
             messages.success(request,'Contato enviado com Sucesso')
         except BadHeaderError:
             messages.warning(request,'Contato não Enviado!')
+    if request.method == "POST":
+        POST = request.POST
+        try:
+            send_mail('Contato via Sistema', f"Mensagem Enviada de {POST['nome']}\n{POST['mensagem']}" , 'pbisistema@hotmail.com' , ['leandroslv125@gmail.com'],fail_silently=False) 
+            messages.success(request,'Contato enviado com Sucesso')
+        except BadHeaderError:
+            messages.warning(request,'Contato não Enviado!')
     return render(request, 'suporte.html')
 
 def base_pbi(request):
@@ -74,7 +82,7 @@ def recup_senha(request):
             if associated_users.exists():
                 token= default_token_generator.make_token(associated_users[0])
                 uid = urlsafe_base64_encode(force_bytes(associated_users[0].pk))
-                url= f"http://http://127.0.0.1:8000/reset/{uid}/{token}/"
+                url= f"http://127.0.0.1:8000/reset/{uid}/{token}/"
                 try:
                         send_mail('Resetar Senha', url, 'pbisistema@hotmail.com' , [associated_users[0].email], fail_silently=False)
                         messages.success(request,'Email enviado com Sucesso')

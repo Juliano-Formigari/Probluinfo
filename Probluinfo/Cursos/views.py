@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect
-from Cursos.forms import FormCursos,FormMatriculas,FormNotas,FormSalas
+from Cursos.forms import FormCursos, FormCursosAltera,FormMatriculas,FormNotas,FormSalas
 from Cursos.models import Matriculas,Cursos,Salas,Notas
 from ViewsProject.views import efetua_paginacao
 from django.views.decorators.http import require_POST
+from django.db import transaction
 
 
 # Create your views here.
@@ -46,7 +47,7 @@ def lista_cursos(request):
     
     procura= request.GET.get('procura')
     if procura:
-        cursos = Cursos.objects.filter(cursos__icontains=procura)
+        cursos = Cursos.objects.filter(nm_curso__icontains=procura)
     else:
         cursos = Cursos.objects.all()
     
@@ -86,9 +87,25 @@ def lista_notas(request):
 def lista_salas(request):
     return render(request,'lista_salas.html')
 
-
-def altera_cursos(request):
-    return render(request,'altera_cursos.html')
+@transaction.atomic
+def altera_cursos(request,id):
+    cursos = Cursos.objects.get(id=id)
+    if request.method == 'POST':
+        form = FormCursosAltera(request.POST or None)
+        if form.is_valid():
+            print(form.cleaned_data)
+            try:
+                with transaction.atomic():
+                    form.save()
+            except Exception as error:
+                print(error)
+            return redirect(lista_cursos)
+    else:
+        form = FormCursos()
+    dados = {
+                'cursos' : cursos,
+            }
+    return render(request,'altera_cursos.html', dados)
 
 def altera_matriculas(request):
     return render(request,'altera_matriculas.html')
