@@ -35,6 +35,10 @@ def lista_pessoas(request):
     if procura:
         tipoPessoa = Pessoas.objects.filter(first_name__icontains=procura)
     else:
+        
+    if procura:
+        tipoPessoa = Pessoas.objects.filter(first_name__icontains=procura)
+    else:
         tipoPessoa = Pessoas.objects.all()
 
     total = tipoPessoa.count
@@ -58,6 +62,7 @@ def altera_pessoas(request,id):
     if request.method == 'POST':
         form = FormPessoasAltera(request.POST, instance=pessoas)
         if form.is_valid():
+            print(form.cleaned_data)
             print(form.cleaned_data)
             try:
                 with transaction.atomic():

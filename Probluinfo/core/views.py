@@ -1,5 +1,6 @@
 
 from distutils.command.config import config
+from distutils.command.config import config
 from http.client import HTTPResponse
 import time
 from django.shortcuts import render,redirect
@@ -50,6 +51,13 @@ def pagina_inexistente(request, exception):  # precisa ser exception
     return render(request, 'pagina_inexistente.html')
 
 def suporte(request):
+    if request.method == "POST":
+        POST = request.POST
+        try:
+            send_mail('Contato via Sistema', f"Mensagem Enviada de {POST['nome']}\n{POST['mensagem']}" , 'pbisistema@hotmail.com' , ['leandroslv125@gmail.com'],fail_silently=False) 
+            messages.success(request,'Contato enviado com Sucesso')
+        except BadHeaderError:
+            messages.warning(request,'Contato não Enviado!')
     if request.method == "POST":
         POST = request.POST
         try:

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ViewsProject',
+    'ViewsProject',
     'Cursos',
     'Financeiro',
     'Pessoas'
@@ -63,7 +64,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR /BASE_DIR /'templates', 'static'],
+        'DIRS': [BASE_DIR /BASE_DIR /BASE_DIR /'templates', 'static'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'probluinfo',
         'USER' : 'root',
-        'PASSWORD' : '',
+        'PASSWORD' : 'AdminAdmin',
         'HOST' : 'localhost',
         'PORT' : '3307'
     }
@@ -151,6 +152,8 @@ EMAIL_USE_SSL = False
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
 
 
 
