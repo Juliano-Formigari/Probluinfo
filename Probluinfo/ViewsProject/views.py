@@ -51,16 +51,19 @@ def login(request):
             user = authenticate(request, username=login, password=senha)
             
             if user is not None :
-                login_django(request,user)
-                
-                if request.POST.get('setor')=="pdv":
-                    request.session['base']="pdv"
-
+                msg = 'Login sem permissão'
+                if user.id_perfil_id == 1: # Verifica se o usuário é administrador
+                    login_django(request,user)
+                    
+                    if request.POST.get('setor')=="pdv":
+                        request.session['base']="pdv"
+                    else:
+                        request.session['base']="gestao"
+                    return redirect('base-pbi')
                 else:
-                    request.session['base']="gestao"
-                return redirect('base-pbi')
+                    return render(request,'login.html', {'msg' : msg})
 
-        return render (request,'login.html')
+        return render(request,'login.html')
 
 def logout_view(request):
     logout(request)
@@ -77,13 +80,6 @@ def erro_servidor(request, *args, **argv):
     return render(request, 'erro_servidor.html', status=500)
 
 def suporte(request):
-    if request.method == "POST":
-        POST = request.POST
-        try:
-            send_mail('Contato via Sistema', f"Mensagem Enviada de {POST['nome']}\n{POST['mensagem']}" , 'pbisistema@hotmail.com' , ['leandroslv125@gmail.com'],fail_silently=False) 
-            messages.success(request,'Contato enviado com Sucesso')
-        except BadHeaderError:
-            messages.warning(request,'Contato não Enviado!')
     if request.method == "POST":
         POST = request.POST
         try:
