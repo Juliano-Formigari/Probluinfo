@@ -16,7 +16,8 @@
                     <th>Nome</th>
                     <th>Carga Horaria</th>
                     <th>Valor do Curso</th>
-                    <th class="text-center">Ações</th>
+                    <th>Ativo</th>
+                    <th class="text-center">Alterar</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +26,13 @@
                     <td>{{ curso.nm_curso }}</td>
                     <td>{{ curso.carga_horaria }}</td>
                     <td>{{ curso.vl_curso }}</td>
+
+                    <td>{% if tipo.is_active %}
+                        🟢
+                    {% else %}
+                        🔴  
+                    {% endif %}
+                    </td>
                     <td class="text-center">
                         <button class="btn btn-info" onclick="location.href='{% url 'altera-cursos'  id=curso.id %}'">✏</button>
                 </tr>
