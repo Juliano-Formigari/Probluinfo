@@ -35,10 +35,6 @@ def lista_pessoas(request):
     if procura:
         tipoPessoa = Pessoas.objects.filter(first_name__icontains=procura)
     else:
-        
-    if procura:
-        tipoPessoa = Pessoas.objects.filter(first_name__icontains=procura)
-    else:
         tipoPessoa = Pessoas.objects.all()
 
     total = tipoPessoa.count

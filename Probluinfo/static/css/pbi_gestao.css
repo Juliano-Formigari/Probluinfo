@@ -1,14 +1,10 @@
 
 /* 
-Cores do pbi 
+CSS do pbi gestao
 */
 .bg-pbi {
     background-color: #304351;
 
-}
-
-.bg-pbi2 {
-    background-color: #E4C981;
 }
 
 .text-pbi {
@@ -20,30 +16,22 @@ Cores do pbi
     border-color: #304351;
 }
 .bg-pbi-escuro {
-    background-color: #304351;
+    background-color: #182127;
 }
 
 .text-pbi-escuro {
-    color: #304351;
+    color: #182127;
 }
 
 .border-pbi-escuro {
-    border-color: #304351;
+    border-color: #182127;
 }
 
 
-/* 
-Formatação do DataTable 
-*/
 table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child::before,
 table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child::before {
     top: 15px !important;
 }
-
-
-/* 
-Personalização da Barra de menu
-*/
 
 .navbar {
     padding: 0 !important;
