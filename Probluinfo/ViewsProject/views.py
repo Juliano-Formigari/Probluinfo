@@ -1,5 +1,7 @@
 from datetime import datetime
 from django.db import transaction
+from datetime import datetime
+from django.db import transaction
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -24,6 +26,8 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from Pessoas.models import Perfis
 from Pessoas.forms import FormPessoasAltera
+from Pessoas.models import Perfis
+from Pessoas.forms import FormPessoasAltera
 
 
 # Create your views here.
@@ -45,7 +49,11 @@ def efetua_paginacao(request, registros):
 def login(request):
     if request.user.is_authenticated:
         return redirect('base-pbi')
-    else:        
+    else:                
+        return render(request,'login.html')
+
+
+def login_view(request):
         return render(request,'login.html')
 
 
@@ -93,6 +101,7 @@ def suporte(request):
 def base_pbi(request):
     return render(request, 'base_pbi.html')
 
+@transaction.atomic
 @transaction.atomic
 def atualizar_dados(request):
     perfil = Perfis.objects.filter(is_active=True).order_by('descricao')

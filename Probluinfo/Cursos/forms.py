@@ -15,6 +15,12 @@ class FormSalas(ModelForm):
         fields = ['id','nm_sala','capacidade']  
         db_table = 'Salas'
 
+class FormSalasAltera(ModelForm):
+    class Meta:
+        model = Salas
+        fields = ['id','nm_sala','capacidade']  
+        db_table = 'Salas'
+
 class FormMatriculas(ModelForm):
     class Meta:
         model = Matriculas
