@@ -48,9 +48,7 @@ def lista_pessoas(request):
                 'total' : total, 
                 'procura' : procura,
                 'porPagina' : efetua_paginacao(request, tipoPessoa)
-                
             }
-
     return render(request, 'lista_pessoas.html', dados)
 
 @transaction.atomic
@@ -63,7 +61,6 @@ def altera_pessoas(request,id):
     if request.method == 'POST':
         form = FormPessoasAltera(request.POST, instance=pessoas)
         if form.is_valid():
-            print(form.cleaned_data)
             print(form.cleaned_data)
             try:
                 with transaction.atomic():

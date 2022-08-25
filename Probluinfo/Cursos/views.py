@@ -1,18 +1,19 @@
 from django.shortcuts import render,redirect
-from Cursos.forms import FormCursos, FormCursosAltera,FormMatriculas,FormNotas,FormSalas,FormSalasAltera
-from Cursos.models import Matriculas,Cursos,Salas,Notas
-from ViewsProject.views import efetua_paginacao
 from django.views.decorators.http import require_POST
 from django.db import transaction
+from django.contrib import messages
 
+from Cursos.forms import FormCursos,FormMatriculas,FormNotas,FormSalas
+from Cursos.models import Matriculas,Cursos,Salas
+from ViewsProject.views import efetua_paginacao
 
 # Create your views here.
-
 def cadastra_cursos(request):
     if request.method == 'POST':
         form = FormCursos(request.POST or None)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Cadastrado com sucesso!')
     return render(request,'cadastra_cursos.html')
     
 def cadastra_matriculas(request):
@@ -33,6 +34,7 @@ def cadastra_salas(request):
         form = FormSalas(request.POST or None)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Cadastrado com sucesso!')
     return render(request,'cadastra_salas.html')
 
 def cadastra_notas(request):
@@ -42,10 +44,9 @@ def cadastra_notas(request):
             form.save()
     return render(request,'cadastra_notas.html')
 
-
 def lista_cursos(request):
-    
     procura= request.GET.get('procura')
+
     if procura:
         cursos = Cursos.objects.filter(nm_curso__icontains=procura)
     else:
@@ -59,7 +60,6 @@ def lista_cursos(request):
                 'procura' : procura,
                 'porPagina' : efetua_paginacao(request, cursos)
             }
-
     return render(request,'lista_cursos.html',dados)
 
 def lista_matriculas(request):
@@ -76,21 +76,19 @@ def lista_matriculas(request):
                 'matricula' : matricula, 
                 'total' : total, 
                 'procura' : procura,
-              
             }
-
     return render(request, 'lista_matriculas.html', dados)
 
 def lista_notas(request):
     return render(request,'lista_notas.html')
 
 def lista_salas(request):
-
     procura= request.GET.get('procura')
+    
     if procura:
-        salas = Salas.objects.filter(nm_curso__icontains=procura)
+        salas = Salas.objects.filter(nm_sala__icontains=procura)
     else:
-        salas = Cursos.objects.all()
+        salas = Salas.objects.all()
     
     total = salas.count
 
@@ -107,7 +105,7 @@ def lista_salas(request):
 def altera_cursos(request,id):
     cursos = Cursos.objects.get(id=id)
     if request.method == 'POST':
-        form = FormCursosAltera(request.POST or None)
+        form = FormCursos(request.POST,instance=cursos)
         if form.is_valid():
             print(form.cleaned_data)
             try:
@@ -133,7 +131,7 @@ def altera_notas(request):
 def altera_salas(request,id):
     salas = Salas.objects.get(id=id)
     if request.method == 'POST':
-        form = FormSalasAltera(request.POST or None)
+        form = FormSalas(request.POST,instance=salas)
         if form.is_valid():
             print(form.cleaned_data)
             try:
