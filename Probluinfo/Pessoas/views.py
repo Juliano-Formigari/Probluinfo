@@ -1,6 +1,9 @@
+from datetime import datetime
 from django.shortcuts import render, redirect
 from django.db import transaction
 from django.contrib.auth.hashers import make_password
+from django.contrib import messages
+
 from Pessoas.models import Pessoas, Perfis
 from Pessoas.forms import FormPessoas, FormPessoasAltera
 from ViewsProject.views import efetua_paginacao
@@ -17,6 +20,7 @@ def cadastra_pessoas(request):
                 with transaction.atomic():
                     formPessoa.cleaned_data['password'] = make_password(formPessoa.cleaned_data['password'])
                     Pessoas.objects.create(**formPessoa.cleaned_data)
+                    messages.success(request, 'Cadastrado com sucesso!')
             except Exception as error:
                 print(error)
             return redirect(cadastra_pessoas)
@@ -54,6 +58,7 @@ def altera_pessoas(request,id):
     perfil = Perfis.objects.filter(is_active=True).order_by('descricao')
     pessoas = Pessoas.objects.get(id=id)
     data_nas = pessoas.dt_nascimento
+    idade = datetime.now().year - data_nas.year
     data_nas = data_nas.strftime('%Y-%m-%d')
     if request.method == 'POST':
         form = FormPessoasAltera(request.POST, instance=pessoas)
@@ -72,7 +77,8 @@ def altera_pessoas(request,id):
                 'perfis' : perfil,
                 'pessoas' : pessoas,
                 'data_nas': data_nas,
-                'form': form
+                'form': form,
+                'idade' : idade
             }
     return render(request, 'altera_pessoas.html', dados)
    
