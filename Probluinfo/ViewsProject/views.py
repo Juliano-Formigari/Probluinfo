@@ -56,7 +56,7 @@ def login_view(request):
             user = authenticate(request, username=login, password=senha)
             if user is not None :
                 if not user.id_perfil_id == 1 and request.POST.get('setor') != "pdv": # Verifica se o usuário é administrador
-                    messages.warning(request,'Login não permitido nesse modulo')
+                    messages.warning(request,'🚫Login não permitido no módulo gestão!')
                 else:
                     login_django(request,user)
                     if request.POST.get('setor')=="pdv":

@@ -8,19 +8,8 @@ class FormCursos(ModelForm):
         model = Cursos
         fields = ['id','nm_curso','carga_horaria','vl_curso']
         db_table = 'Cursos'          
-class FormCursosAltera(ModelForm):
-    class Meta:
-        model = Cursos
-        fields = ['id','carga_horaria','vl_curso']
-        db_table = 'Cursos'          
 
 class FormSalas(ModelForm):
-    class Meta:
-        model = Salas
-        fields = ['id','nm_sala','capacidade']  
-        db_table = 'Salas'
-
-class FormSalasAltera(ModelForm):
     class Meta:
         model = Salas
         fields = ['id','nm_sala','capacidade']  

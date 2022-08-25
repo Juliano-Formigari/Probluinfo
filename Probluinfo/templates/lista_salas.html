@@ -16,22 +16,15 @@
                     <th>Id</th>
                     <th>Nome da Sala</th>
                     <th>Capacidade</th>
-                    <th>Ativo</th>
                     <th class="text-center">Alterar</th>
                 </tr>
             </thead>
             <tbody>
                 {% for sala in porPagina %}
                 <tr>
-                    <td>{{ id }}</td>
-                    <td>{{ nm_sala }}</td>
-                    <td>{{ capacidade }}</td>
-                    <td>{% if tipo.is_active %}
-                        🟢
-                    {% else %}
-                        🔴  
-                    {% endif %}
-                    </td>
+                    <td>{{ sala.id }}</td>
+                    <td>{{ sala.nm_sala }}</td>
+                    <td>{{ sala.capacidade }}</td>
                     <td class="text-center">
                         <button class="btn btn-info" onclick="location.href='{% url 'altera-salas'  id=sala.id %}'">✏</button>
                 </tr>
