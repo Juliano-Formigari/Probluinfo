@@ -19,7 +19,7 @@ def cadastra_pessoas(request):
                     Pessoas.objects.create(**formPessoa.cleaned_data)
             except Exception as error:
                 print(error)
-            return redirect(cadastra_pessoas)
+            return redirect(lista_pessoas)
     else:
         formPessoa = FormPessoas()
     print(formPessoa.errors)

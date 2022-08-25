@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from Cursos.forms import FormCursos, FormCursosAltera,FormMatriculas,FormNotas,FormSalas
+from Cursos.forms import FormCursos, FormCursosAltera,FormMatriculas,FormNotas,FormSalas,FormSalasAltera
 from Cursos.models import Matriculas,Cursos,Salas,Notas
 from ViewsProject.views import efetua_paginacao
 from django.views.decorators.http import require_POST
@@ -85,7 +85,23 @@ def lista_notas(request):
     return render(request,'lista_notas.html')
 
 def lista_salas(request):
-    return render(request,'lista_salas.html')
+
+    procura= request.GET.get('procura')
+    if procura:
+        salas = Salas.objects.filter(nm_curso__icontains=procura)
+    else:
+        salas = Cursos.objects.all()
+    
+    total = salas.count
+
+    dados = {
+                'salas' : salas,
+                'total' : total, 
+                'procura' : procura,
+                'porPagina' : efetua_paginacao(request, salas)
+            }
+
+    return render(request,'lista_salas.html',dados)
 
 @transaction.atomic
 def altera_cursos(request,id):
@@ -113,9 +129,25 @@ def altera_matriculas(request):
 def altera_notas(request):
     return render(request,'altera_notas.html')
 
-def altera_salas(request):
-    return render(request,'altera_salas.html')
-
+@transaction.atomic
+def altera_salas(request,id):
+    salas = Salas.objects.get(id=id)
+    if request.method == 'POST':
+        form = FormSalasAltera(request.POST or None)
+        if form.is_valid():
+            print(form.cleaned_data)
+            try:
+                with transaction.atomic():
+                    form.save()
+            except Exception as error:
+                print(error)
+            return redirect(lista_salas)
+    else:
+        form = FormSalas()
+    dados = {
+                'salas' : salas,
+            }
+    return render(request,'altera_salas.html', dados)
 
 
 
