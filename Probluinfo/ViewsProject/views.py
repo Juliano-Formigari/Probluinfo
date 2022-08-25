@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-
+from django.contrib import messages
 from distutils.command.config import config
 from distutils.command.config import config
 from http.client import HTTPResponse
@@ -43,27 +43,26 @@ def efetua_paginacao(request, registros):
 def login(request):
     if request.user.is_authenticated:
         return redirect('base-pbi')
-    else:
+    else:        
+        return render(request,'login.html')
+
+
+def login_view(request):
         if request.method=='POST':
             login=request.POST.get('login')
             senha = request.POST.get('senha')
-        
             user = authenticate(request, username=login, password=senha)
-            
             if user is not None :
-                msg = 'Login sem permissão'
-                if user.id_perfil_id == 1: # Verifica se o usuário é administrador
+                if not user.id_perfil_id == 1 and request.POST.get('setor') != "pdv": # Verifica se o usuário é administrador
+                    messages.warning(request,'Login não permitido nesse modulo')
+                else:
                     login_django(request,user)
-                    
                     if request.POST.get('setor')=="pdv":
                         request.session['base']="pdv"
                     else:
                         request.session['base']="gestao"
                     return redirect('base-pbi')
-                else:
-                    return render(request,'login.html', {'msg' : msg})
-
-        return render(request,'login.html')
+        return redirect('login')
 
 def logout_view(request):
     logout(request)
@@ -119,10 +118,10 @@ def altera_senha(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
-            messages.success(request, 'Your password was successfully updated!')
-            return redirect('base-pbi')
+            messages.success(request, 'Sua senha foi alterada')
+            return render(request, 'altera_senha.html', {'form': form})
         else:
-            messages.error(request, 'Please correct the error below.')
+            messages.error(request, 'Verifique o alerta abaixo.')
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'altera_senha.html', {'form': form})
