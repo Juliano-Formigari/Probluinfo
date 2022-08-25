@@ -38,21 +38,25 @@
                         </a>
                     </ul>
                 </div>
-                <form class="form" method="POST" autocomplete="off" action="">{% csrf_token %}
+                <form class="form" method="POST" autocomplete="off" action="{% url 'login-view' %}">{% csrf_token %}
                     <label class="label-input" for="">
                         <i class="far fa-envelope icon-modify"></i>
                         <input type="text" id="login" name="login"  placeholder="Login" class="form-control" maxlength="30" required autofocus>
                     </label>
                     <label class="label-input" for="">
                         <i class="fas fa-lock icon-modify"></i>
-                        <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required> 
+                        <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" placeholder="Senha" required> 
                         <input type="hidden" name="setor" value="pdv">  
                     </label>
                     <a class="password" href="recup-senha">Esqueceu sua Senha?</a>
                    <button class="btn btn-second" type="submit">Fazer Login</button><br>
-                    {% if msg %}
-                        {{ msg }}
-                    {% endif %}
+                   {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <div class="alert alert-{% if message.tags == erro %}danger{% else %}{{message.tags}}{% endif %}">{{ message }}</div>
+                        {% endfor %}
+                    </ul>
+                   {% endif %}
                 </form>
             </div>
         </div>
@@ -82,15 +86,14 @@
                         </a>
                     </ul>
                 </div>
-                <form class="form" method="POST" autocomplete="off" action="">
-                    {% csrf_token %}
+                <form class="form" method="POST" autocomplete="off" action="{% url 'login-view' %}">{% csrf_token %}
                     <label class="label-input" for="">
                         <i class="far fa-envelope icon-modify"></i>
                         <input type="text" id="login" name="login"  placeholder="Login" class="form-control" maxlength="30" required autofocus>
                     </label>
                     <label class="label-input" for="">
                         <i class="fas fa-lock icon-modify"></i>
-                        <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required> 
+                        <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" placeholder="Senha" required> 
                         <input type="hidden" name="setor" value="gestao"> 
                     </label>
                     <a class="password" href="recup-senha">Esqueceu sua Senha?</a>

@@ -13,7 +13,7 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Id</th>
                     <th>Tipo</th>
                     <th>Descrição</th>
                     <th>Valor</th>
@@ -32,6 +32,13 @@
                     <td>{{ tipo.valor }}</td>
                     <td>{{ tipo.dt_lancamento }}</td>
                     <td>{{ tipo.id_pessoa_id }}</td>
+                    <td>{% if tipo.is_active %}
+                        🟢
+                    {% else %}
+                        🔴  
+                    {% endif %}
+                    </td>
+                    
                     <td class="text-center">
                         <button class="btn btn-info" onclick="location.href='{% url 'altera-lancamentos'  id=lancamento.id %}'">✏</button>
                     </td>

@@ -13,7 +13,7 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Id</th>
                     <th>Data Inicio</th>
                     <th>data Fim</th>
                     <th>Qtd Dias</th>
@@ -38,6 +38,12 @@
                     <td>{{ id_curso_id }}</td>
                     <td>{{ id_pessoa_id }}</td>
                     <td>{{ id_sala_id }}</td>
+                    <td>{% if tipo.is_active %}
+                        🟢
+                    {% else %}
+                        🔴  
+                    {% endif %}
+                    </td>
                     <td class="text-center">
                         <button class="btn btn-info" onclick="location.href='{% url 'altera-matriculas'  id=matricula.id %}'">✏</button>
                     </td>

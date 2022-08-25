@@ -1,11 +1,11 @@
+from datetime import datetime
+from django.db import transaction
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-
-from distutils.command.config import config
+from django.contrib import messages
 from distutils.command.config import config
 from http.client import HTTPResponse
-import time
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate
 from Pessoas.models import Pessoas
@@ -22,6 +22,8 @@ from django.db.models.query_utils import Q
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
+from Pessoas.models import Perfis
+from Pessoas.forms import FormPessoasAltera
 
 
 # Create your views here.
@@ -43,27 +45,26 @@ def efetua_paginacao(request, registros):
 def login(request):
     if request.user.is_authenticated:
         return redirect('base-pbi')
-    else:
+    else:        
+        return render(request,'login.html')
+
+
+def login_view(request):
         if request.method=='POST':
             login=request.POST.get('login')
             senha = request.POST.get('senha')
-        
             user = authenticate(request, username=login, password=senha)
-            
             if user is not None :
-                msg = 'Login sem permissão'
-                if user.id_perfil_id == 1: # Verifica se o usuário é administrador
+                if not user.id_perfil_id == 1 and request.POST.get('setor') != "pdv": # Verifica se o usuário é administrador
+                    messages.warning(request,'Login não permitido nesse modulo')
+                else:
                     login_django(request,user)
-                    
                     if request.POST.get('setor')=="pdv":
                         request.session['base']="pdv"
                     else:
                         request.session['base']="gestao"
                     return redirect('base-pbi')
-                else:
-                    return render(request,'login.html', {'msg' : msg})
-
-        return render(request,'login.html')
+        return redirect('login')
 
 def logout_view(request):
     logout(request)
@@ -92,8 +93,34 @@ def suporte(request):
 def base_pbi(request):
     return render(request, 'base_pbi.html')
 
+@transaction.atomic
 def atualizar_dados(request):
-    return render(request, 'atualizar_dados.html')
+    perfil = Perfis.objects.filter(is_active=True).order_by('descricao')
+    pessoas = Pessoas.objects.filter(id=request.user.id)[0]
+    data_nas = pessoas.dt_nascimento
+    idade = datetime.now().year - data_nas.year
+    data_nas = data_nas.strftime('%Y-%m-%d')
+    if request.method == 'POST':
+        form = FormPessoasAltera(request.POST, instance=pessoas)
+        print(form.errors)
+        if form.is_valid():
+            print(form.cleaned_data)
+            try:
+                with transaction.atomic():
+                    form.save()
+                    messages.success(request, 'Alterado com sucesso!')
+            except Exception as error:
+                print(error)
+    else:
+        form = FormPessoasAltera()
+    dados = {
+                'perfis' : perfil,
+                'pessoas' : pessoas,
+                'data_nas': data_nas,
+                'form': form,
+                'idade' : idade
+            }
+    return render(request, 'atualizar_dados.html', dados)
 
 def recup_senha(request):
     if request.method == "POST":
@@ -119,10 +146,10 @@ def altera_senha(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
-            messages.success(request, 'Your password was successfully updated!')
-            return redirect('base-pbi')
+            messages.success(request, 'Sua senha foi alterada')
+            return render(request, 'altera_senha.html', {'form': form})
         else:
-            messages.error(request, 'Please correct the error below.')
+            messages.error(request, 'Verifique o alerta abaixo.')
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'altera_senha.html', {'form': form})

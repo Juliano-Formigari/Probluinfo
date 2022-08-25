@@ -5,7 +5,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views
-from ViewsProject.views import suporte,base_pbi,login,sobre,recup_senha,atualizar_dados,altera_senha,pagina_inexistente,erro_servidor,nao_autorizado
+from ViewsProject.views import login
 from django.contrib.auth import views as auth_views
 
 from Cursos.views import cadastra_cursos,cadastra_salas,cadastra_notas,cadastra_matriculas
@@ -49,17 +49,8 @@ urlpatterns = [
     path('lista-matriculas',lista_matriculas, name='lista-matriculas'),
     path('lista-lancamentos',lista_lancamentos, name='lista-lancamentos'),
 
-    path('atualizar-dados/',atualizar_dados, name = "atualizar-dados"),
-
-
-    path('suporte',suporte, name='suporte'),
-    path('base/',base_pbi, name = "base-pbi"),
-    path("login/",login, name="login"),
-    path("sobre/",sobre, name="sobre"),
-    path('recup-senha/',recup_senha, name ="recup-senha"),
-    path('altera-senha/',altera_senha, name = "altera-senha"),
     path('accounts/',include('django.contrib.auth.urls')),
-    path("",login, name="login"),
+    path("",include('ViewsProject.urls')),
   
     # Path Reseta Senha
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="password_reset_confirm.html"), name='password_reset_confirm'),
