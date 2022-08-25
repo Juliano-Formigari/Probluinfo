@@ -1,11 +1,11 @@
+from datetime import datetime
+from django.db import transaction
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib import messages
 from distutils.command.config import config
-from distutils.command.config import config
 from http.client import HTTPResponse
-import time
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate
 from Pessoas.models import Pessoas
@@ -22,6 +22,8 @@ from django.db.models.query_utils import Q
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
+from Pessoas.models import Perfis
+from Pessoas.forms import FormPessoasAltera
 
 
 # Create your views here.
@@ -91,8 +93,34 @@ def suporte(request):
 def base_pbi(request):
     return render(request, 'base_pbi.html')
 
+@transaction.atomic
 def atualizar_dados(request):
-    return render(request, 'atualizar_dados.html')
+    perfil = Perfis.objects.filter(is_active=True).order_by('descricao')
+    pessoas = Pessoas.objects.filter(id=request.user.id)[0]
+    data_nas = pessoas.dt_nascimento
+    idade = datetime.now().year - data_nas.year
+    data_nas = data_nas.strftime('%Y-%m-%d')
+    if request.method == 'POST':
+        form = FormPessoasAltera(request.POST, instance=pessoas)
+        print(form.errors)
+        if form.is_valid():
+            print(form.cleaned_data)
+            try:
+                with transaction.atomic():
+                    form.save()
+                    messages.success(request, 'Alterado com sucesso!')
+            except Exception as error:
+                print(error)
+    else:
+        form = FormPessoasAltera()
+    dados = {
+                'perfis' : perfil,
+                'pessoas' : pessoas,
+                'data_nas': data_nas,
+                'form': form,
+                'idade' : idade
+            }
+    return render(request, 'atualizar_dados.html', dados)
 
 def recup_senha(request):
     if request.method == "POST":
