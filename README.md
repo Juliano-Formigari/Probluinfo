@@ -1,11 +1,18 @@
 # Probluinfo
-Projeto de conclusão do curso de especialização em desenvolvimento FullStack da Proway.
-O tema escolhido foi um sistema escolar, nele foi criado várias funcionalidades como:
-  - Cadastro de pessoas;
-  - Alteração de cadastro de pessoas;
-  - Autenticação de usuário admin dependendo do módulo selecionado na tela inicial;
-  - Utilizamos criptografia de senha;
-
+Projeto de conclusão do curso de especialização em desenvolvimento Web FullStack da [Proway](https://www.proway.com.br/). A apresentação ocorreu no dia 25/08/2022.
+O curso contou com uma carga horária de 500 hrs, onde vimos diversos conteúdos, porém o objetivo principal do curso foi Python/Django.
+Hard Skils vistas durante o curso:
+  - Lógica de programação, Html, Css, Help Desk, Javascript, jQuery, Ajax, Typescript, Angular, MySql, React, React Native, Trilha de empreendedorismo, NodeJs,             GitHub e Python/Django.
+ 
+O tema do nosso projeto foi um sistema escolar que chamamos de Probluinfo, nele disponibilizamos várias funcionalidades como:
+  - Autenticação de usuário admin, dependendo do módulo selecionado na tela inicial de login;
+  - Opção de envio por e-mail para o usuário redefinir a senha, caso ele tenha esquecido;
+  - Utilizamos criptografia de senha em banco;
+  - Cadastro de pessoas, cadastro de cursos, cadastro de salas, matricular um aluno;
+    Na tela de cdastro de pessoas, validamos se o usuário é menor de idade, caso seja, liberamos os campos para preenchimento dos dados do responsável;
+  - Alteração de cadastro de pessoas, alteração dos dados de cursos, alteração dos dados de salas, alteração de matrículas do aluno;
+  - Alteração de senha, dentro do sistema;
+  
 Neste projeto utilizamos o framework Django, Bootstrap, jQuery, Css, Html e o MySql.
 
 Para gerenciamento das atividades utilizamos a ferramenta Trello.
