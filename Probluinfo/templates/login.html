@@ -48,15 +48,15 @@
                         <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" placeholder="Senha" required> 
                         <input type="hidden" name="setor" value="pdv">  
                     </label>
-                    <a class="password" href="recup-senha">Esqueceu sua Senha?</a>
-                   <button class="btn btn-second" type="submit">Fazer Login</button><br>
-                   {% if messages %}
-                    <ul class="messages">
-                        {% for message in messages %}
-                        <div class="alert alert-{% if message.tags == erro %}danger{% else %}{{message.tags}}{% endif %}">{{ message }}</div>
-                        {% endfor %}
-                    </ul>
-                   {% endif %}
+                    <button class="btn btn-second" type="submit">Fazer Login</button>
+                    <a class="password" href="recup-senha">Esqueceu sua Senha?</a><br>
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <div class="alert alert-{% if message.tags == erro %}danger{% else %}{{message.tags}}{% endif %}">{{ message }}</div>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
                 </form>
             </div>
         </div>
@@ -96,8 +96,8 @@
                         <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" placeholder="Senha" required> 
                         <input type="hidden" name="setor" value="gestao"> 
                     </label>
-                    <a class="password" href="recup-senha">Esqueceu sua Senha?</a>
                     <button class="btn btn-second" type="submit">Fazer Login</button>
+                    <a class="password" href="recup-senha">Esqueceu sua Senha?</a>
                 </form>
             </div>
         </div>

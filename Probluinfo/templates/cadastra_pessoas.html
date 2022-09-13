@@ -3,17 +3,6 @@
 
 {% block conteudo %}
 <div class="container bg-light back02">
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <div class="alert alert-{{message.tags}}">{{ message }}</div>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    <form method="POST" class="form-group" action="">
-        {% csrf_token %}
-
-<div class="container bg-light back02">
     <form method="POST" class="form-group" name="pessoas_form">
         {% csrf_token %}
         <!-- Identificação -->
@@ -31,7 +20,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="last_name">Segundo nome</label>
-                <input type="text" class="form-control" id="last_name" name="last_name" maxlength="100" placeholder="Digite seu segundo nome" required />
+                <input type="text" class="form-control" id="last_name" name="last_name" maxlength="100" placeholder="Digite seu segundo nome" />
             </div>
             <div class="form-group col-md-3">
                 <label for="dt_nascimento">Data de nascimento</label>
@@ -111,16 +100,6 @@
             </div>
         </div>
         {% include 'acoes_form.html' %}
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                <div class="alert alert-{% if message.tags == erro %}danger{% else %}{{message.tags}}{% endif %} alert-dismissible fade show" role="alert">
-                    <strong>{{ message }}</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                {% endfor %}
-            </ul>
-        {% endif %}
     </form>
 </div>
     
